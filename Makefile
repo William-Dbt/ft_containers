@@ -14,19 +14,20 @@ CYAN	= \033[96m
 # => VARIABLES
 ################################################################################
 
-NAME		= ex00
+NAME		= containers
 
 PATHSRCS	= srcs/
+PATHTEMP	= ${PATHSRCS}templates/
 PATHHEADERS	= includes/
 PATHNULL	= /dev/null
 
 SRCS		= $(addprefix ${PATHSRCS}, main.cpp)
-# $(addprefix ${PATHSRCS}vector/, vector.cpp)
 
 OBJS		= ${SRCS:.cpp=.o}
 
 CC			= c++
-INC			= -I${PATHHEADERS}
+INC			= -I${PATHHEADERS} \
+			-I${PATHTEMP}vector/
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 RM			= rm -rf
