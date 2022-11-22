@@ -2,27 +2,44 @@
 # define __VECTOR_HPP__
 
 # include <memory>
+# include <cstddef>
 
 namespace	ft {
 	template < typename T, class Allocator = std::allocator<T> >
 	class vector {
 		public:
-			// Constructors
+			// Typedefs>----------------------------------------------
+			typedef T											value_type;
+			typedef Allocator									allocator_type;
+			typedef std::size_t									size_type;
+			typedef typename allocator_type::reference			reference;
+			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::pointer			pointer;
+
+			// Constructors & Destructor>-----------------------------
 			vector();
-			// explicit vector(const Allocator& alloc);
-			// explicit vector(size_t count,
-			// 				const T& value = T(),
-			// 				const Allocator& alloc = Allocator());
-
-			// template < class InputIt >
-			// vector(InputIt first, InputIt last, const Allocator& alloc = Allocator());
-
+			explicit vector(const allocator_type& alloc);
+			explicit vector(size_type n,
+							const value_type& value = T(),
+							const allocator_type& alloc = allocator_type());
 			// vector(const vector& other);
-			// ----------------------------------------
+
+			// template <class InputIt>
+			// vector(InputIt first, InputIt last,
+			// 		const Allocator& alloc = Allocator());
+
+			~vector();
+
+			// Elements Access>---------------------------------------
+			reference&			operator[](size_type n);
+			const_reference&	operator[](size_type n) const;
 
 		private:
-			static T			value_type;
-			static Allocator	allocator_type;
+			T				*_datas;
+			allocator_type	_alloc;
+			size_type		_size;
+			size_type		_capacity;
+			
 	};
 }
 

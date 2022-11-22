@@ -28,6 +28,7 @@ OBJS		= ${SRCS:.cpp=.o}
 CC			= c++
 INC			= -I${PATHHEADERS} \
 			-I${PATHTEMP}vector/
+
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 RM			= rm -rf
