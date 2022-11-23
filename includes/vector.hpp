@@ -17,17 +17,16 @@ namespace	ft {
 			typedef typename allocator_type::pointer			pointer;
 
 			// Constructors & Destructor>-----------------------------
-			vector();
-			explicit vector(const allocator_type& alloc);
+			explicit vector(const allocator_type& alloc = allocator_type());
 			explicit vector(size_type n,
 							const value_type& value = T(),
 							const allocator_type& alloc = allocator_type());
-			// vector(const vector& other);
 
-			// template <class InputIt>
-			// vector(InputIt first, InputIt last,
-			// 		const Allocator& alloc = Allocator());
+			template <class InputIt>
+			vector(InputIt first, InputIt last,
+					const allocator_type& alloc = allocator_type());
 
+			vector(const vector& other);
 			~vector();
 
 			// Elements Access>---------------------------------------
@@ -35,7 +34,7 @@ namespace	ft {
 			const_reference&	operator[](size_type n) const;
 
 		private:
-			T				*_datas;
+			pointer			_datas;
 			allocator_type	_alloc;
 			size_type		_size;
 			size_type		_capacity;

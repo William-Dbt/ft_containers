@@ -21,7 +21,7 @@ PATHTEMP	= ${PATHSRCS}templates/
 PATHHEADERS	= includes/
 PATHNULL	= /dev/null
 
-SRCS		= $(addprefix ${PATHSRCS}, main.cpp)
+SRCS		= $(addprefix ${PATHSRCS}mains/, main.cpp)
 
 OBJS		= ${SRCS:.cpp=.o}
 
