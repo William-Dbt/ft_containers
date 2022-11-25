@@ -19,7 +19,7 @@ namespace	ft {
 			// Constructors & Destructor>-----------------------------
 			explicit vector(const allocator_type& alloc = allocator_type());
 			explicit vector(size_type n,
-							const value_type& value = T(),
+							const value_type& value = value_type(),
 							const allocator_type& alloc = allocator_type());
 
 			template <class InputIt>

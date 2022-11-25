@@ -15,7 +15,6 @@ void	ft::vector<T, Alloc>::resize(size_type n, value_type val) {
 	if (n == this->_size || n == 0)
 		return ;
 
-	(void)val;
 	if (n > this->_capacity)
 		this->changeCapacity(this->_capacity + (n - this->_capacity) * 2);
 
