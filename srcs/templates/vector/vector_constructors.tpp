@@ -32,15 +32,17 @@ template <class InputIterator>
 ft::vector<T, Alloc>::vector(InputIterator first, InputIterator last, const allocator_type& alloc) :
 							_alloc(alloc)
 {
-	pointer			tmp;
+	size_type		i;
 	InputIterator	it;
 
-	this->_size = std::distance(first, last);
+	for (i = 0, it = first; it != last; i++, it++)
+		continue ;
+
+	this->_size = i;
 	this->_capacity = this->_size * 2;
 	this->_datas = this->_alloc.allocate(this->_capacity);
-	tmp = this->_datas;
-	for (it = first; it != last; it++)
-		this->_alloc.construct(tmp++, *it);
+	for (i = 0; first != last; i++, first++)
+		this->_alloc.construct(&this->_datas[i], *first);
 }
 
 template <typename T, class Alloc>

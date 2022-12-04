@@ -5,7 +5,7 @@
 static void	capacityTests() {
 	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Create a vector container which contains 5 content (18 here):" << std::endl;
-	ft::vector<int>	intVector(5, 98);
+	ft::vector<int>	intVector(5, 18);
 
 	std::cout << "Vector size: " << intVector.size() << std::endl;
 	std::cout << "The maximum size available is: " << intVector.max_size() << std::endl;

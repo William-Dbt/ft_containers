@@ -11,7 +11,7 @@ namespace	ft {
 			// Typedefs>----------------------------------------------
 			typedef T											value_type;
 			typedef Allocator									allocator_type;
-			typedef std::size_t									size_type;
+			typedef typename allocator_type::size_type			size_type;
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename allocator_type::pointer			pointer;
