@@ -1,14 +1,14 @@
-template <typename T, class Alloc>
+template <class T, class Alloc>
 typename ft::vector<T, Alloc>::size_type	ft::vector<T, Alloc>::size() const {
 	return this->_size;
 }
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 typename ft::vector<T, Alloc>::size_type	ft::vector<T, Alloc>::max_size() const {
 	return this->_alloc.max_size();
 }
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 void	ft::vector<T, Alloc>::resize(size_type n, value_type val) {
 	pointer	dataTmp = this->_datas;
 
@@ -33,12 +33,12 @@ void	ft::vector<T, Alloc>::resize(size_type n, value_type val) {
 	this->_size = n;
 }
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 typename ft::vector<T, Alloc>::size_type	ft::vector<T, Alloc>::capacity() const {
 	return (this->_capacity);
 }
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 bool	ft::vector<T, Alloc>::empty() const {
 	return (!this->_size);
 }

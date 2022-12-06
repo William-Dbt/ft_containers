@@ -1,8 +1,8 @@
-template <typename T, class Alloc>
+template <class T, class Alloc>
 ft::vector<T, Alloc>::vector(const allocator_type& alloc) : _datas(NULL), _alloc(alloc),
 														_size(0), _capacity(0) {}
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 ft::vector<T, Alloc>::vector(size_type n, const value_type& value, const allocator_type& alloc) :
 							_alloc(alloc), _size(n), _capacity(n * 2)
 {
@@ -14,7 +14,7 @@ ft::vector<T, Alloc>::vector(size_type n, const value_type& value, const allocat
 		this->_alloc.construct(tmp++, value);
 }
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 ft::vector<T, Alloc>::vector(const vector& other) {
 	pointer	tmp;
 
@@ -27,7 +27,7 @@ ft::vector<T, Alloc>::vector(const vector& other) {
 		this->_alloc.construct(tmp++, other[i]);
 }
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 template <class InputIt, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type*>
 ft::vector<T, Alloc>::vector(InputIt first, InputIt last, const allocator_type& alloc) :
 							_alloc(alloc)
@@ -45,7 +45,7 @@ ft::vector<T, Alloc>::vector(InputIt first, InputIt last, const allocator_type& 
 		this->_alloc.construct(&this->_datas[i], *first);
 }
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 ft::vector<T, Alloc>::~vector() {
 	pointer	tmp;
 

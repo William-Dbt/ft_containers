@@ -3,7 +3,7 @@
 #include "vector_access.tpp"
 #include "vector_allocator.tpp"
 
-template <typename T, class Alloc>
+template <class T, class Alloc>
 void	ft::vector<T, Alloc>::changeCapacity(const size_type newCapacity) {
 	pointer	newData;
 	pointer	tmpNewData;

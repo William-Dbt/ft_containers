@@ -5,7 +5,7 @@
 # include <cstddef>
 
 namespace	ft {
-	template < typename T, class Allocator = std::allocator<T> >
+	template < class T, class Allocator = std::allocator<T> >
 	class vector {
 		public:
 			// Typedefs>----------------------------------------------
