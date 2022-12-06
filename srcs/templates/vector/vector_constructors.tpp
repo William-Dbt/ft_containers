@@ -28,12 +28,12 @@ ft::vector<T, Alloc>::vector(const vector& other) {
 }
 
 template <typename T, class Alloc>
-template <class InputIterator>
-ft::vector<T, Alloc>::vector(InputIterator first, InputIterator last, const allocator_type& alloc) :
+template <class InputIt, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type*>
+ft::vector<T, Alloc>::vector(InputIt first, InputIt last, const allocator_type& alloc) :
 							_alloc(alloc)
 {
 	size_type		i;
-	InputIterator	it;
+	InputIt			it;
 
 	for (i = 0, it = first; it != last; i++, it++)
 		continue ;

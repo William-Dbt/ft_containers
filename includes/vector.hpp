@@ -22,7 +22,8 @@ namespace	ft {
 							const value_type& value = value_type(),
 							const allocator_type& alloc = allocator_type());
 
-			template <class InputIt>
+			template <class InputIt, typename std::enable_if<!std::is_integral<InputIt>::value,
+																	InputIt>::type* = nullptr>
 			vector(InputIt first, InputIt last,
 					const allocator_type& alloc = allocator_type());
 
