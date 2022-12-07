@@ -33,8 +33,6 @@ ft::vector<T, Alloc>::vector(InputIt first, InputIt last, const allocator_type& 
 							typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type*) :
 							_alloc(alloc)
 {
-	InputIt			it;
-
 	this->_size = ft::distance(first, last);
 	this->_capacity = this->_size * 2;
 	this->_datas = this->_alloc.allocate(this->_capacity);

@@ -3,6 +3,7 @@
 
 # include <memory>
 # include <cstddef>
+# include <stdexcept>
 # include "utils.hpp"
 
 namespace	ft {
@@ -39,10 +40,14 @@ namespace	ft {
 			void		resize(size_type n, value_type val = value_type());
 			size_type	capacity() const;
 			bool		empty() const;
+			void		reserve(size_type n);
+			void		shrink_to_fit();
 
 			// Element Access>----------------------------------------
 			reference&			operator[](size_type n);
 			const_reference&	operator[](size_type n) const;
+			reference&			at(size_type n);
+			const_reference&	at(size_type n) const;
 
 			// Allocator>---------------------------------------------
 			allocator_type	get_allocator() const;
