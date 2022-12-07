@@ -3,6 +3,7 @@
 
 # include <memory>
 # include <cstddef>
+# include "utils.hpp"
 
 namespace	ft {
 	template < class T, class Allocator = std::allocator<T> >
@@ -22,10 +23,10 @@ namespace	ft {
 							const value_type& value = value_type(),
 							const allocator_type& alloc = allocator_type());
 
-			template <class InputIt, typename std::enable_if<!std::is_integral<InputIt>::value,
-																	InputIt>::type* = nullptr>
+			template <class InputIt>
 			vector(InputIt first, InputIt last,
-					const allocator_type& alloc = allocator_type());
+					const allocator_type& alloc = allocator_type(),
+					typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type* = NULL);
 
 			vector(const vector& other);
 			~vector();
