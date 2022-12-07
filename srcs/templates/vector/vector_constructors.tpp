@@ -28,20 +28,17 @@ ft::vector<T, Alloc>::vector(const vector& other) {
 }
 
 template <class T, class Alloc>
-template <class InputIt, typename std::enable_if<!std::is_integral<InputIt>::value, InputIt>::type*>
-ft::vector<T, Alloc>::vector(InputIt first, InputIt last, const allocator_type& alloc) :
+template <class InputIt>
+ft::vector<T, Alloc>::vector(InputIt first, InputIt last, const allocator_type& alloc,
+							typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type*) :
 							_alloc(alloc)
 {
-	size_type		i;
 	InputIt			it;
 
-	for (i = 0, it = first; it != last; i++, it++)
-		continue ;
-
-	this->_size = i;
+	this->_size = ft::distance(first, last);
 	this->_capacity = this->_size * 2;
 	this->_datas = this->_alloc.allocate(this->_capacity);
-	for (i = 0; first != last; i++, first++)
+	for (int i = 0; first != last; i++, first++)
 		this->_alloc.construct(&this->_datas[i], *first);
 }
 
