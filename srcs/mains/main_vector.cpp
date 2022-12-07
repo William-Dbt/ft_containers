@@ -44,8 +44,8 @@ static void	capacityTests() {
 		cVector.reserve(cVector.max_size() + 1);
 		std::cerr << "error: exception on reserve more than max_size" << std::endl;
 	}
-	catch (std::length_error &le) {
-		std::cerr << "Length error: " << le.what() << std::endl;
+	catch (std::length_error &e) {
+		std::cerr << "Length error: " << e.what() << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -58,6 +58,57 @@ static void	capacityTests() {
 		std::cout << intVector[i] << std::endl;
 
 	std::cout << "----------------------------------------" << std::endl;
+}
+
+static void	accessTests() {
+	std::cout << "----------------------------------------" << std::endl;
+	std::cout << "Create a vector of 5 string elements:" << std::endl;
+	ft::vector<std::string>	strVector(5);
+
+	std::cout << "Size and capacity: " << strVector.size() << '|' << strVector.capacity() << std::endl << std::endl;
+	std::cout << "Let's fill the 1st, 2nd and 3rd element with [] operator" << std::endl;
+	strVector[0] = "Toto";
+	strVector[1] = "Tutu";
+	strVector[2] = "Titi";
+
+	std::cout << "Now fill the last one with .at function" << std::endl;
+	strVector.at(3) = "Tete";
+	strVector.at(4) = "Tata";
+
+	std::cout << "Print the vector:" << std::endl;
+	for (int i = 0; i < (int)strVector.size(); i++)
+		std::cout << strVector[i] << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << "Is it possible to fill the 6th element?" << std::endl;
+	try {
+		strVector.at(5) = "Tyty";
+		std::cerr << "error: exception .at function test" << std::endl;
+	}
+	catch (std::out_of_range &e) {
+		std::cerr << "Out of range exception: " << e.what() << std::endl;
+	}
+	std::cout << "Nope." << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Catch the first element of strVector with front() function: " << strVector.front() << std::endl;
+	std::cout << "And now catch the last element: " << strVector.back() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Let's change values of strVector with a copy of his data:" << std::endl;
+	std::string	*data = strVector.data();
+
+	*data++ = "Hello!";
+	*data++ = "My";
+	data[0] = "name";
+	data[1] = "is";
+	data[2] = "Frankie.";
+	std::cout << "Let's print the vector:" << std::endl;
+	for (int i = 0; i < (int)strVector.size(); i++)
+		std::cout << strVector[i] << std::endl;
+
+	std::cout << "----------------------------------------" << std::endl;
+
 }
 
 static void	showTestList() {
@@ -87,6 +138,10 @@ void	vectorTests() {
 		switch (atoi(idx.c_str())) {
 			case 2: {
 				capacityTests();
+				break ;
+			}
+			case 3: {
+				accessTests();
 				break ;
 			}
 		}

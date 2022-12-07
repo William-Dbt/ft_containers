@@ -44,10 +44,16 @@ namespace	ft {
 			void		shrink_to_fit();
 
 			// Element Access>----------------------------------------
-			reference&			operator[](size_type n);
-			const_reference&	operator[](size_type n) const;
-			reference&			at(size_type n);
-			const_reference&	at(size_type n) const;
+			reference			operator[](size_type n);
+			const_reference		operator[](size_type n) const;
+			reference			at(size_type n);
+			const_reference		at(size_type n) const;
+			reference			front();
+			const_reference		front() const;
+			reference			back();
+			const_reference		back() const;
+			value_type*			data();
+			const value_type*	data() const;
 
 			// Allocator>---------------------------------------------
 			allocator_type	get_allocator() const;
