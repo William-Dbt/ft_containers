@@ -61,6 +61,7 @@ namespace	ft {
 												InputIt>::type* = NULL);
 
 			void	assign(size_type n, const value_type& val);
+			void	push_back(const value_type& val);
 
 			// Allocator>---------------------------------------------
 			allocator_type	get_allocator() const;

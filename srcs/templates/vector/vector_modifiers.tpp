@@ -29,9 +29,18 @@ void	ft::vector<T, Alloc>::assign(size_type n, const value_type& val) {
 		this->_alloc.destroy(&this->_datas[i]);
 	
 	this->_size = 0;
-	changeCapacity(n * 2);
+	this->changeCapacity(n * 2);
 	for (i = 0; i < n; i++)
 		this->_alloc.construct(&this->_datas[i], val);
 
 	this->_size = n;
+}
+
+template <class T, class Alloc>
+void	ft::vector<T, Alloc>::push_back(const value_type& val) {
+	if (this->_size + 1 > this->_capacity)
+		this->changeCapacity(this->_capacity * 2);
+
+	this->_datas[this->_size] = val;
+	this->_size++;
 }
