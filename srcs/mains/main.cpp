@@ -12,8 +12,6 @@ static void	showIndexes() {
 	std::cout << "exit: Exit program" << std::endl << std::endl;
 }
 
-#include "is_integral.hpp"
-
 int	main() {
 	std::string	idx;
 

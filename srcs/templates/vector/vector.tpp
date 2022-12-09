@@ -1,6 +1,7 @@
 #include "vector_constructors.tpp"
 #include "vector_capacity.tpp"
 #include "vector_access.tpp"
+#include "vector_modifiers.tpp"
 #include "vector_allocator.tpp"
 
 template <class T, class Alloc>

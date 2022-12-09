@@ -3,6 +3,8 @@
 #include "vector.hpp"
 
 static void	capacityTests() {
+	int	i;
+
 	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Create a vector container which contains 5 content (18 here):" << std::endl;
 	ft::vector<int>	intVector(5, 18);
@@ -10,7 +12,7 @@ static void	capacityTests() {
 	std::cout << "Vector size: " << intVector.size() << std::endl;
 	std::cout << "The maximum size available is: " << intVector.max_size() << std::endl;
 	std::cout << "Let's print the vector:" << std::endl;
-	for (int i = 0; i < (int)intVector.size(); i++)
+	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl;
 	
 	std::cout << std::endl;
@@ -21,7 +23,7 @@ static void	capacityTests() {
 	intVector.resize(15, 42);
 	std::cout << "New size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 	std::cout << "And that's the vector:" << std::endl;
-	for (int i = 0; i < (int)intVector.size(); i++)
+	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl;
 
 	std::cout << std::endl;
@@ -54,13 +56,15 @@ static void	capacityTests() {
 	intVector.shrink_to_fit();
 	std::cout << "The capacity is now: " << intVector.capacity() << " and the size: " << intVector.size() << std::endl;
 	std::cout << "Let's print the vector to check if all content is here:" << std::endl;
-	for (int i = 0; i < (int)intVector.size(); i++)
+	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl;
 
 	std::cout << "----------------------------------------" << std::endl;
 }
 
 static void	accessTests() {
+	int	i;
+
 	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Create a vector of 5 string elements:" << std::endl;
 	ft::vector<std::string>	strVector(5);
@@ -76,7 +80,7 @@ static void	accessTests() {
 	strVector.at(4) = "Tata";
 
 	std::cout << "Print the vector:" << std::endl;
-	for (int i = 0; i < (int)strVector.size(); i++)
+	for (i = 0; i < (int)strVector.size(); i++)
 		std::cout << strVector[i] << std::endl;
 	
 	std::cout << std::endl;
@@ -104,18 +108,69 @@ static void	accessTests() {
 	data[1] = "is";
 	data[2] = "Frankie.";
 	std::cout << "Let's print the vector:" << std::endl;
-	for (int i = 0; i < (int)strVector.size(); i++)
+	for (i = 0; i < (int)strVector.size(); i++)
 		std::cout << strVector[i] << std::endl;
 
 	std::cout << "----------------------------------------" << std::endl;
+}
 
+#include <vector>
+
+static void	modifiersTests() {
+	int	i;
+
+	std::cout << "----------------------------------------" << std::endl;
+	std::cout << "Create a vector of size 5:" << std::endl;
+	ft::vector<int>		intVector(5, 66);
+
+	for (i = 0; i < (int)intVector.size(); i++)
+		std::cout << intVector[i] << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Assign the intVector by 2 contents of 15:" << std::endl;
+	intVector.assign(2, 15);
+	for (i = 0; i < (int)intVector.size(); i++)
+		std::cout << intVector[i] << std::endl;
+
+	std::cout << std::endl;
+	std::vector<int>	itVector(10, 42);
+
+	std::cout << "Assign the intVector throw iterators of itVectors that contains 10 elements of 42:" << std::endl;
+	intVector.assign(itVector.begin(), itVector.end());
+	for (i = 0; i < (int)intVector.size(); i++)
+		std::cout << intVector[i] << std::endl;
+
+	std::cout << "----------------------------------------" << std::endl;
+}
+
+static void	allocatorTest() {
+	ft::vector<int>	intVector;
+	int				*allocator;
+	int				i;
+
+	std::cout << "----------------------------------------" << std::endl;
+	std::cout << "Let's create a int vector with allocator of get_allocator()" << std::endl;
+	allocator = intVector.get_allocator().allocate(5);
+	for (i = 0; i < 5; i++)
+		intVector.get_allocator().construct(&allocator[i], i);
+
+	for (i = 0; i < 5; i++)
+		std::cout << allocator[i] << std::endl;
+
+	for (i = 0; i < 5; i++)
+		intVector.get_allocator().destroy(&allocator[i]);
+
+	intVector.get_allocator().deallocate(allocator, 5);
+	std::cout << "----------------------------------------" << std::endl;
 }
 
 static void	showTestList() {
 	std::cout << "List of tests:" << std::endl;
 	std::cout << "0: Show list" << std::endl;
-	std::cout << "2: Capacity tests" << std::endl;
+	std::cout << "2: Capacity" << std::endl;
 	std::cout << "3: Element access" << std::endl;
+	std::cout << "4: Modifiers" << std::endl;
+	std::cout << "5: Allocator" << std::endl;
 	std::cout << "exit: Main menu" << std::endl << std::endl;
 }
 
@@ -142,6 +197,14 @@ void	vectorTests() {
 			}
 			case 3: {
 				accessTests();
+				break ;
+			}
+			case 4: {
+				modifiersTests();
+				break ;
+			}
+			case 5: {
+				allocatorTest();
 				break ;
 			}
 		}
