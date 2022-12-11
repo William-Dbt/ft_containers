@@ -50,6 +50,7 @@ static void	capacityTests() {
 		std::cerr << "Length error: " << e.what() << std::endl;
 	}
 
+	/*	Test about shrink_to_fit() function (C++11)
 	std::cout << std::endl;
 	std::cout << "Let's take the intVector created before (size " << intVector.size() << " and capacity " << intVector.capacity() << ')' << std::endl;
 	std::cout << "The capacity is bigger than the size and we don't need them anymore! Let's shrink_to_fit" << std::endl;
@@ -57,7 +58,7 @@ static void	capacityTests() {
 	std::cout << "The capacity is now: " << intVector.capacity() << " and the size: " << intVector.size() << std::endl;
 	std::cout << "Let's print the vector to check if all content is here:" << std::endl;
 	for (i = 0; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << intVector[i] << std::endl; */
 
 	std::cout << "----------------------------------------" << std::endl;
 }
@@ -126,11 +127,13 @@ static void	modifiersTests() {
 	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl;
 
+	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 	std::cout << std::endl;
 	std::cout << "Assign the intVector by 2 contents of 15:" << std::endl;
 	intVector.assign(2, 15);
 	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl;
+	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
 	std::vector<int>	itVector(10, 42);
@@ -139,6 +142,40 @@ static void	modifiersTests() {
 	intVector.assign(itVector.begin(), itVector.end());
 	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl;
+
+	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Let's add some stuff to the vector:" << std::endl;
+	for (i = 0; i < 10; i++)
+		intVector.push_back(i);
+
+	std::cout << "..." << std::endl;
+	for (i = 5; i < (int)intVector.size(); i++)
+		std::cout << intVector[i] << std::endl;
+	
+	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << "Maybe one more?" << std::endl;
+	intVector.push_back(69);
+	std::cout << "..." << std::endl;
+	for (i = 15; i < (int)intVector.size(); i++)
+		std::cout << intVector[i] << std::endl;
+	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Let's remove the last element:" << std::endl;
+	intVector.pop_back();
+	for (i = 15; i < (int)intVector.size(); i++)
+		std::cout << intVector[i] << std::endl;
+	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Tests on insert and erase" << std::endl;
+	// ------------
+
+	std::cout << std::endl;
 
 	std::cout << "----------------------------------------" << std::endl;
 }

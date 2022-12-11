@@ -16,6 +16,7 @@ namespace	ft {
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename allocator_type::pointer			pointer;
+			typedef typename allocator_type::const_pointer		const_pointer;
 
 			// Constructors & Destructor>-----------------------------
 			explicit vector(const allocator_type& alloc = allocator_type());
@@ -40,7 +41,7 @@ namespace	ft {
 			size_type	capacity() const;
 			bool		empty() const;
 			void		reserve(size_type n);
-			void		shrink_to_fit();
+			// void		shrink_to_fit();	(C++11)
 
 			// Element Access>----------------------------------------
 			reference			operator[](size_type n);
@@ -60,8 +61,15 @@ namespace	ft {
 						typename ft::enable_if<!ft::is_integral<InputIt>::value,
 												InputIt>::type* = NULL);
 
-			void	assign(size_type n, const value_type& val);
-			void	push_back(const value_type& val);
+			void		assign(size_type n, const value_type& val);
+			void		push_back(const value_type& val);
+			void		pop_back();
+			// iterator	insert(iterator position, const value_type& val);
+			// void		insert(iterator position, size_type n, const value_type& val);
+			/* template <class InputIterator>
+			void	insert(iterator position, InputIterator first, InputIterator last); */
+			// iterator	erase(iterator position);iterator erase (iterator first, iterator last);
+			void	swap(vector& x);
 
 			// Allocator>---------------------------------------------
 			allocator_type	get_allocator() const;

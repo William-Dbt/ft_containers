@@ -31,7 +31,7 @@ typename ft::vector<T, Alloc>::reference	ft::vector<T, Alloc>::front() {
 }
 
 template <class T, class Alloc>
-typename ft::vector<T, Alloc>::const_reference	ft::vector<T, Alloc>::front() const{
+typename ft::vector<T, Alloc>::const_reference	ft::vector<T, Alloc>::front() const {
 	return this->_datas[0];
 }
 
@@ -41,7 +41,7 @@ typename ft::vector<T, Alloc>::reference	ft::vector<T, Alloc>::back() {
 }
 
 template <class T, class Alloc>
-typename ft::vector<T, Alloc>::const_reference	ft::vector<T, Alloc>::back() const{
+typename ft::vector<T, Alloc>::const_reference	ft::vector<T, Alloc>::back() const {
 	return this->_datas[this->_size - 1];
 }
 

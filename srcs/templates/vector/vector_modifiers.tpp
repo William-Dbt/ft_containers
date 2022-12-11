@@ -44,3 +44,34 @@ void	ft::vector<T, Alloc>::push_back(const value_type& val) {
 	this->_datas[this->_size] = val;
 	this->_size++;
 }
+
+template <class T, class Alloc>
+void	ft::vector<T, Alloc>::pop_back() {
+	this->_alloc.destroy(&this->_datas[--this->_size]);
+}
+
+/* template <class T, class Alloc>
+ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val) {
+
+} */
+
+/* template <class T, class Alloc>
+void		ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {
+
+} */
+
+/* template <class T, class Alloc>
+template <class InputIt>
+void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last) {
+
+} */
+
+/* template <class T, class Alloc>
+ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator position);iterator erase (iterator first, iterator last) {
+
+} */
+
+template <class T, class Alloc>
+void	ft::vector<T, Alloc>::swap(vector& x) {
+	(void)x;
+}

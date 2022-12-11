@@ -50,7 +50,8 @@ void	ft::vector<T, Alloc>::reserve(size_type n) {
 		this->changeCapacity(n);
 }
 
+/* C++11 function
 template <class T, class Alloc>
 void	ft::vector<T, Alloc>::shrink_to_fit() {
 	this->changeCapacity(this->_size);
-}
+} */
