@@ -175,8 +175,6 @@ static void	modifiersTests() {
 	std::cout << "Tests on insert and erase" << std::endl;
 	// ------------
 
-	std::cout << std::endl;
-
 	std::cout << "----------------------------------------" << std::endl;
 }
 

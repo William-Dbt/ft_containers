@@ -58,20 +58,10 @@ ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, c
 /* template <class T, class Alloc>
 void		ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {
 
-} */
+}
 
-/* template <class T, class Alloc>
+template <class T, class Alloc>
 template <class InputIt>
 void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last) {
 
 } */
-
-/* template <class T, class Alloc>
-ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator position);iterator erase (iterator first, iterator last) {
-
-} */
-
-template <class T, class Alloc>
-void	ft::vector<T, Alloc>::swap(vector& x) {
-	(void)x;
-}

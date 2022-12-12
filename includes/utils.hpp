@@ -7,8 +7,17 @@
 namespace	ft {
 	template <class InputIt>
 	size_t	distance(InputIt first, InputIt last);
+
+	template <class T>
+	class	vectorIterator {
+		public:
+
+		private:
+
+	};
 }
 
 # include "utils.tpp"
+# include "iterator.tpp"
 
 #endif

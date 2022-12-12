@@ -1,8 +1,8 @@
-#include "vector_constructors.tpp"
-#include "vector_capacity.tpp"
-#include "vector_access.tpp"
-#include "vector_modifiers.tpp"
-#include "vector_allocator.tpp"
+#include "constructors.tpp"
+#include "capacity.tpp"
+#include "access.tpp"
+#include "modifiers.tpp"
+#include "allocator.tpp"
 
 template <class T, class Alloc>
 void	ft::vector<T, Alloc>::changeCapacity(const size_type newCapacity) {

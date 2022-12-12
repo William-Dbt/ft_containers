@@ -68,8 +68,6 @@ namespace	ft {
 			// void		insert(iterator position, size_type n, const value_type& val);
 			/* template <class InputIterator>
 			void	insert(iterator position, InputIterator first, InputIterator last); */
-			// iterator	erase(iterator position);iterator erase (iterator first, iterator last);
-			void	swap(vector& x);
 
 			// Allocator>---------------------------------------------
 			allocator_type	get_allocator() const;
