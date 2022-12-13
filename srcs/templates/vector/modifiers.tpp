@@ -50,10 +50,12 @@ void	ft::vector<T, Alloc>::pop_back() {
 	this->_alloc.destroy(&this->_datas[--this->_size]);
 }
 
-/* template <class T, class Alloc>
-ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val) {
-
-} */
+template <class T, class Alloc>
+typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val) {
+	std::cout << "insert test" << std::endl;
+	(void)position;
+	(void)val;
+}
 
 /* template <class T, class Alloc>
 void		ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {

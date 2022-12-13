@@ -18,6 +18,8 @@ namespace	ft {
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
 
+			typedef typename ft::vectorIterator<T>					iterator;
+
 			// Constructors & Destructor>-----------------------------
 			explicit vector(const allocator_type& alloc = allocator_type());
 			explicit vector(size_type n,
@@ -64,7 +66,7 @@ namespace	ft {
 			void		assign(size_type n, const value_type& val);
 			void		push_back(const value_type& val);
 			void		pop_back();
-			// iterator	insert(iterator position, const value_type& val);
+			iterator	insert(iterator position, const value_type& val);
 			// void		insert(iterator position, size_type n, const value_type& val);
 			/* template <class InputIterator>
 			void	insert(iterator position, InputIterator first, InputIterator last); */

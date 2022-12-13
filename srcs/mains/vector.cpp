@@ -172,8 +172,7 @@ static void	modifiersTests() {
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Tests on insert and erase" << std::endl;
-	// ------------
+	// intVector.insert();
 
 	std::cout << "----------------------------------------" << std::endl;
 }

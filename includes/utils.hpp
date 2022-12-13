@@ -11,9 +11,12 @@ namespace	ft {
 	template <class T>
 	class	vectorIterator {
 		public:
+			typedef T*	pointer;
+
+			vectorIterator();
 
 		private:
-
+			pointer	_data;
 	};
 }
 
