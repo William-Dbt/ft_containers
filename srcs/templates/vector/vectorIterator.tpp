@@ -54,8 +54,28 @@ typename ft::vectorIterator<T>::reference	ft::vectorIterator<T>::operator*() {
 }
 
 template <class T>
+typename ft::vectorIterator<T>::const_reference	ft::vectorIterator<T>::operator*() const {
+	return (*this->_data);
+}
+
+template <class T>
 typename ft::vectorIterator<T>::pointer	ft::vectorIterator<T>::operator->() {
 	return (&this->_data);
+}
+
+template <class T>
+typename ft::vectorIterator<T>::pointer	ft::vectorIterator<T>::operator->() const {
+	return (&this->_data);
+}
+
+template <class T>
+typename ft::vectorIterator<T>::reference	ft::vectorIterator<T>::operator[](distance d) {
+	return (*(this->_data + d));
+}
+
+template <class T>
+typename ft::vectorIterator<T>::const_reference	ft::vectorIterator<T>::operator[](distance d) const {
+	return (*(this->_data + d));
 }
 
 template <class T>

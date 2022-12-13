@@ -26,8 +26,8 @@ static void	vectorTests() {
 		std::cout << i << ": " << floatVector[i] << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Iterator first and end (of std::vector) initialized to 99 constructor:" << std::endl;
-	std::vector<int>	stdVector(10, 99);
+	std::cout << "Fill with iterator and initialize to 99 constructor:" << std::endl;
+	ft::vector<int>	stdVector(10, 99);
 	ft::vector<int>		intItVector(stdVector.begin(), stdVector.end());
 
 	std::cout << "intItVector size & capacity: " << intItVector.size() << '|' << intItVector.capacity() << std::endl;

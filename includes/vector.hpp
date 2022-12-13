@@ -5,6 +5,7 @@
 # include <cstddef>
 # include "utils.hpp"
 # include "vectorIterator.hpp"
+# include "vectorConstIterator.hpp"
 
 namespace	ft {
 	template < class T, class Allocator = std::allocator<T> >
@@ -20,6 +21,7 @@ namespace	ft {
 			typedef typename allocator_type::const_pointer		const_pointer;
 
 			typedef typename ft::vectorIterator<T>				iterator;
+			typedef typename ft::vectorConstIterator<T>			const_iterator;
 
 			// Constructors & Destructor>-----------------------------
 			explicit vector(const allocator_type& alloc = allocator_type());
@@ -37,10 +39,10 @@ namespace	ft {
 
 			// Iterators>---------------------------------------------
 			iterator		begin();
-			// const_iterator	begin() const;
+			const_iterator	begin() const;
 
 			iterator		end();
-			// const_iterator	end() const;
+			const_iterator	end() const;
 
 			// Capacity>----------------------------------------------
 			size_type	size() const;

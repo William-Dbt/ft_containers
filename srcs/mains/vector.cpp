@@ -4,7 +4,7 @@
 
 static void	iteratorTests() {
 	std::cout << "----------------------------------------" << std::endl;
-	std::cout << "Let's fill a vector of 5 elements and print them with iterators:" << std::endl;
+	std::cout << "Let's fill a vector of 5 elements and print them with iterator:" << std::endl;
 	ft::vector<int>				intVector(5);
 	for (int i = 0; i < (int)intVector.size(); i++)
 		intVector[i] = i;
@@ -18,7 +18,7 @@ static void	iteratorTests() {
 
 	std::cout << std::endl;
 	it_end = intVector.begin();
-	it_begin--;
+	--it_begin;
 	std::cout << "With operator--:";
 	for (; it_begin >= it_end; it_begin--)
 		std::cout << ' ' << *it_begin;
@@ -161,7 +161,7 @@ static void	modifiersTests() {
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
-	std::vector<int>	itVector(10, 42);
+	ft::vector<int>	itVector(10, 42);
 
 	std::cout << "Assign the intVector throw iterators of itVectors that contains 10 elements of 42:" << std::endl;
 	intVector.assign(itVector.begin(), itVector.end());
