@@ -7,20 +7,8 @@
 namespace	ft {
 	template <class InputIt>
 	size_t	distance(InputIt first, InputIt last);
-
-	template <class T>
-	class	vectorIterator {
-		public:
-			typedef T*	pointer;
-
-			vectorIterator();
-
-		private:
-			pointer	_data;
-	};
 }
 
 # include "utils.tpp"
-# include "iterator.tpp"
 
 #endif

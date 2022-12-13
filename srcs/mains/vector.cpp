@@ -2,6 +2,31 @@
 #include <cstdlib>
 #include "vector.hpp"
 
+static void	iteratorTests() {
+	std::cout << "----------------------------------------" << std::endl;
+	std::cout << "Let's fill a vector of 5 elements and print them with iterators:" << std::endl;
+	ft::vector<int>				intVector(5);
+	for (int i = 0; i < (int)intVector.size(); i++)
+		intVector[i] = i;
+
+	ft::vector<int>::iterator	it_begin = intVector.begin();
+	ft::vector<int>::iterator	it_end = intVector.end();
+
+	std::cout << "With operator++:";
+	for (; it_begin != it_end; it_begin++)
+		std::cout << ' ' << *it_begin;
+
+	std::cout << std::endl;
+	it_end = intVector.begin();
+	it_begin--;
+	std::cout << "With operator--:";
+	for (; it_begin >= it_end; it_begin--)
+		std::cout << ' ' << *it_begin;
+
+	std::cout << std::endl;
+	std::cout << "----------------------------------------" << std::endl;
+}
+
 static void	capacityTests() {
 	int	i;
 
@@ -201,6 +226,7 @@ static void	allocatorTest() {
 static void	showTestList() {
 	std::cout << "List of tests:" << std::endl;
 	std::cout << "0: Show list" << std::endl;
+	std::cout << "1: Iterators tests" << std::endl;
 	std::cout << "2: Capacity" << std::endl;
 	std::cout << "3: Element access" << std::endl;
 	std::cout << "4: Modifiers" << std::endl;
@@ -225,6 +251,10 @@ void	vectorTests() {
 		}
 
 		switch (atoi(idx.c_str())) {
+			case 1: {
+				iteratorTests();
+				break ;
+			}
 			case 2: {
 				capacityTests();
 				break ;
