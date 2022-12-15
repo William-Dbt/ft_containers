@@ -2,8 +2,6 @@
 #include <cstdlib>
 #include "vector.hpp"
 
-#include <vector>
-
 static void	iteratorTests() {
 	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Let's fill a vector of 5 elements and print them with iterator:" << std::endl;
