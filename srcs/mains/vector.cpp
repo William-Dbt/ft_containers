@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include "vector.hpp"
 
 static void	iteratorTests() {
@@ -264,16 +265,42 @@ static void	modifiersTests() {
 		std::cout << ' ' << intVector[i];
 
 	std::cout << std::endl;	
-	std::cout << "Get an iterator at the 10th position. Value: ";
+	std::cout << "Get an iterator at the 11th position. Value: ";
 	ft::vector<int>::iterator	it = intVector.begin();
 
-	for (int i = 0; i < 10; i++)
+	for (i = 0; i < 10; i++)
 		it++;
 
 	std::cout << *it << std::endl;
-	intVector.insert(it, 5);
-	std::cout << std::endl;
+	std::cout << "Set value \'-1\' before \'0\':" << std::endl;
+	it = intVector.insert(it, -1);
+	std::cout << "...";
+	for (i = 5; i < (int)intVector.size(); i++)
+		std::cout << ' ' << intVector[i];
 
+	std::cout << std::endl << std::endl;
+	std::cout << "Test two times with an empty vector and vector of size one:" << std::endl;
+	ft::vector<std::string>				strVector;
+	ft::vector<std::string>::iterator	strIt;
+
+	strIt = strVector.begin();
+	strIt = strVector.insert(strIt, "Toto");
+	std::cout << "Value just added: " << *strIt << std::endl;
+	std::cout << "strVector:";
+	for (i = 0; i < (int)strVector.size(); i++)
+		std::cout << ' ' << strVector[i];
+
+	std::cout << std::endl << std::endl;
+	std::cout << "Add the second one:" << std::endl;
+	strIt = strVector.begin() + 1;
+	strIt = strVector.insert(strIt, "Titi");
+	std::cout << "Value just added: " << *strIt << std::endl;
+	std::cout << "strVector:";
+	for (i = 0; i < (int)strVector.size(); i++)
+		std::cout << ' ' << strVector[i];
+
+	std::cout << std::endl;
+	strVector.insert(strIt, 5, "Tutu");
 	std::cout << "----------------------------------------" << std::endl;
 }
 

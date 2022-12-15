@@ -6,8 +6,11 @@
 #include "allocator.tpp"
 
 template <class T, class Alloc>
-void	ft::vector<T, Alloc>::changeCapacity(const size_type newCapacity) {
+void	ft::vector<T, Alloc>::changeCapacity(size_type newCapacity) {
 	pointer	newData;
+
+	if (newCapacity == 0)
+		newCapacity = 2;
 
 	newData = this->_alloc.allocate(newCapacity);
 	for (size_type i = 0; i < newCapacity; i++) {

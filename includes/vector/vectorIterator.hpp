@@ -25,6 +25,11 @@ namespace	ft {
 			vectorIterator&	operator--();
 			vectorIterator	operator--(int);
 
+			vectorIterator	operator+(int n) const;
+			vectorIterator&	operator+=(int n);
+			vectorIterator	operator-(int n) const;
+			vectorIterator&	operator-=(int n);
+
 			reference		operator*();
 			const_reference	operator*() const;
 			pointer			operator->();

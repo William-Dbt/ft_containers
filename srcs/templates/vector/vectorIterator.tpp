@@ -34,7 +34,7 @@ ft::vectorIterator<T>&	ft::vectorIterator<T>::operator++() {
 
 template <class T>
 ft::vectorIterator<T>	ft::vectorIterator<T>::operator++(int) {
-	vectorIterator	tmp(*this);
+	vectorIterator	tmp(this->_data);
 
 	operator++();
 	return tmp;
@@ -48,10 +48,38 @@ ft::vectorIterator<T>&	ft::vectorIterator<T>::operator--() {
 
 template <class T>
 ft::vectorIterator<T>	ft::vectorIterator<T>::operator--(int) {
-	vectorIterator	tmp(*this);
+	vectorIterator	tmp(this->_data);
 
 	operator--();
 	return tmp;
+}
+
+template <class T>
+ft::vectorIterator<T>	ft::vectorIterator<T>::operator+(int n) const {
+	vectorIterator	tmp(this->_data);
+
+	tmp._data += n;
+	return tmp;
+}
+
+template <class T>
+ft::vectorIterator<T>&	ft::vectorIterator<T>::operator+=(int n) {
+	this->_data + n;
+	return (*this);
+}
+
+template <class T>
+ft::vectorIterator<T>	ft::vectorIterator<T>::operator-(int n) const {
+	vectorIterator	tmp(this->_data);
+
+	tmp._data -= n;
+	return tmp;
+}
+
+template <class T>
+ft::vectorIterator<T>&	ft::vectorIterator<T>::operator-=(int n) {
+	this->_data - n;
+	return (*this);
 }
 
 template <class T>

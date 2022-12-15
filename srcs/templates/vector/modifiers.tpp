@@ -52,25 +52,51 @@ void	ft::vector<T, Alloc>::pop_back() {
 
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val) {
-	iterator	it_end;
+	size_type	pos = this->_size - 1;
+	iterator	it_end = this->end() - 1;
 
-	(void)val;
 	if (this->_size + 1 > this->_capacity)
 		this->changeCapacity(this->_capacity * 2);
 
-	for (it_end = this->end(); it_end >= position; --it_end)
-		std::cout << ' ' << *it_end;
+	if (this->_size == 0) {
+		this->_alloc.construct(this->_datas, val);
+		this->_size = 1;
+		return (this->begin());
+	}
+	for (; it_end >= position; it_end--, pos--)
+		this->_datas[pos + 1] = this->_datas[pos];
 
-	std::cout << std::endl;
-	return NULL;
-}
-
-/* template <class T, class Alloc>
-void		ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {
-
+	this->_alloc.construct(&this->_datas[pos + 1], val);
+	this->_size++;
+	return it_end + 1;
 }
 
 template <class T, class Alloc>
+void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {
+	size_type	i;
+	size_type	pos = this->_size - 1;
+	iterator	it = this->end() - 1;
+
+	if (this->_size + n > this->_capacity)
+		this->changeCapacity(n + this->_capacity * 2);
+
+	if (this->_size == 0) {
+		for (i = 0; i < n; i++)
+			this->_alloc.construct(&this->_datas[i], val);
+
+		this->_size = n;
+		return ;
+	}
+	for (; it >= position; it--, pos--)
+		this->_datas[pos + n] = this->_datas[pos];
+
+	// it =;
+	// for (; )
+	// 	std::cout << this->_datas[i] << std::endl;
+	this->_size += n;
+}
+
+/* template <class T, class Alloc>
 template <class InputIt>
 void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last) {
 

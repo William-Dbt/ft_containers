@@ -81,7 +81,7 @@ namespace	ft {
 			void		push_back(const value_type& val);
 			void		pop_back();
 			iterator	insert(iterator position, const value_type& val);
-			// void		insert(iterator position, size_type n, const value_type& val);
+			void		insert(iterator position, size_type n, const value_type& val);
 			/* template <class InputIterator>
 			void	insert(iterator position, InputIterator first, InputIterator last); */
 
@@ -94,7 +94,7 @@ namespace	ft {
 			size_type		_size;
 			size_type		_capacity;
 
-			void	changeCapacity(const size_type newCapacity);
+			void	changeCapacity(size_type newCapacity);
 	};
 }
 
