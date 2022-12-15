@@ -52,9 +52,17 @@ void	ft::vector<T, Alloc>::pop_back() {
 
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator position, const value_type& val) {
-	std::cout << "insert test" << std::endl;
-	(void)position;
+	iterator	it_end;
+
 	(void)val;
+	if (this->_size + 1 > this->_capacity)
+		this->changeCapacity(this->_capacity * 2);
+
+	for (it_end = this->end(); it_end >= position; --it_end)
+		std::cout << ' ' << *it_end;
+
+	std::cout << std::endl;
+	return NULL;
 }
 
 /* template <class T, class Alloc>

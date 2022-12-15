@@ -225,7 +225,7 @@ static void	modifiersTests() {
 	std::cout << std::endl;
 	ft::vector<int>	itVector(10, 42);
 
-	std::cout << "Assign the intVector throw iterators of itVectors that contains 10 elements of 42:" << std::endl;
+	std::cout << "Assign the intVector with iterators of itVectors that contains 10 elements of 42:" << std::endl;
 	intVector.assign(itVector.begin(), itVector.end());
 	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl;
@@ -259,7 +259,20 @@ static void	modifiersTests() {
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
-	// intVector.insert();
+	std::cout << "Let's remain the intVector:";
+	for (i = 0; i < (int)intVector.size(); i++)
+		std::cout << ' ' << intVector[i];
+
+	std::cout << std::endl;	
+	std::cout << "Get an iterator at the 10th position. Value: ";
+	ft::vector<int>::iterator	it = intVector.begin();
+
+	for (int i = 0; i < 10; i++)
+		it++;
+
+	std::cout << *it << std::endl;
+	intVector.insert(it, 5);
+	std::cout << std::endl;
 
 	std::cout << "----------------------------------------" << std::endl;
 }
