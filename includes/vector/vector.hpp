@@ -5,7 +5,7 @@
 # include <cstddef>
 # include "utils.hpp"
 # include "vectorIterator.hpp"
-# include "vectorConstIterator.hpp"
+# include "vectorReverseIterator.hpp"
 
 namespace	ft {
 	template < class T, class Allocator = std::allocator<T> >
@@ -21,7 +21,9 @@ namespace	ft {
 			typedef typename allocator_type::const_pointer		const_pointer;
 
 			typedef typename ft::vectorIterator<T>				iterator;
-			typedef typename ft::vectorConstIterator<T>			const_iterator;
+			typedef typename ft::vectorIterator<const T>		const_iterator;
+			typedef typename ft::vectorReverseIterator<T>		reverse_iterator;
+			typedef typename ft::vectorReverseIterator<const T>	const_reverse_iterator;
 
 			// Constructors & Destructor>-----------------------------
 			explicit vector(const allocator_type& alloc = allocator_type());
@@ -38,11 +40,15 @@ namespace	ft {
 			~vector();
 
 			// Iterators>---------------------------------------------
-			iterator		begin();
-			const_iterator	begin() const;
+			iterator				begin();
+			const_iterator			begin() const;
+			reverse_iterator		rbegin();
+			const_reverse_iterator	rbegin() const;
 
-			iterator		end();
-			const_iterator	end() const;
+			iterator				end();
+			const_iterator			end() const;
+			reverse_iterator		rend();
+			const_reverse_iterator	rend() const;
 
 			// Capacity>----------------------------------------------
 			size_type	size() const;

@@ -28,6 +28,7 @@ OBJS		= ${SRCS:.cpp=.o}
 
 CC			= c++
 INC			= -I${PATHHEADERS} \
+			-I${PATHHEADERS}vector/ \
 			-I${PATHTEMP} \
 			-I${PATHTEMP}vector/
 

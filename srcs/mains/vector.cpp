@@ -2,10 +2,13 @@
 #include <cstdlib>
 #include "vector.hpp"
 
+#include <vector>
+
 static void	iteratorTests() {
 	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Let's fill a vector of 5 elements and print them with iterator:" << std::endl;
 	ft::vector<int>				intVector(5);
+
 	for (int i = 0; i < (int)intVector.size(); i++)
 		intVector[i] = i;
 
@@ -22,6 +25,69 @@ static void	iteratorTests() {
 	std::cout << "With operator--:";
 	for (; it_begin >= it_end; it_begin--)
 		std::cout << ' ' << *it_begin;
+
+	std::cout << std::endl << std::endl;
+	std::cout << "Let's fill a vector of 5 elements and print them with const iterator:" << std::endl;
+	ft::vector<int>				intConstVector(5);
+
+	for (int i = 0; i < (int)intConstVector.size(); i++)
+		intConstVector[i] = i;
+
+	ft::vector<int>::const_iterator	itconst_begin = intConstVector.begin();
+	ft::vector<int>::const_iterator	itconst_end = intConstVector.end();
+
+	std::cout << "With operator++:";
+	for (; itconst_begin != itconst_end; itconst_begin++)
+		std::cout << ' ' << *itconst_begin;
+
+	std::cout << std::endl;
+	itconst_end = intConstVector.begin();
+	--itconst_begin;
+	std::cout << "With operator--:";
+	for (; itconst_begin >= itconst_end; itconst_begin--)
+		std::cout << ' ' << *itconst_begin;
+
+	std::cout << std::endl << std::endl;
+	std::cout << "Let's fill a vector of 5 elements and print them with reverse iterator:" << std::endl;
+	ft::vector<int>				intReverseVector(5);
+
+	for (int i = 0; i < (int)intReverseVector.size(); i++)
+		intReverseVector[i] = i;
+
+	ft::vector<int>::reverse_iterator	it_rev_begin = intReverseVector.rbegin();
+	ft::vector<int>::reverse_iterator	it_rev_end = intReverseVector.rend();
+
+	std::cout << "With operator++:";
+	for (; it_rev_begin != it_rev_end; it_rev_begin++)
+		std::cout << ' ' << *it_rev_begin;
+
+	std::cout << std::endl;
+	it_rev_end = intReverseVector.rbegin();
+	--it_rev_begin;
+	std::cout << "With operator--:";
+	for (; it_rev_begin >= it_rev_end; it_rev_begin--)
+		std::cout << ' ' << *it_rev_begin;
+
+	std::cout << std::endl << std::endl;
+	std::cout << "Let's fill a vector of 5 elements and print them with const reverse iterator:" << std::endl;
+	ft::vector<int>				intConstReverseVector(5);
+
+	for (int i = 0; i < (int)intConstReverseVector.size(); i++)
+		intConstReverseVector[i] = i;
+
+	ft::vector<int>::const_reverse_iterator	it_const_rev_begin = intConstReverseVector.rbegin();
+	ft::vector<int>::const_reverse_iterator	it_const_rev_end = intConstReverseVector.rend();
+
+	std::cout << "With operator++:";
+	for (; it_const_rev_begin != it_const_rev_end; it_const_rev_begin++)
+		std::cout << ' ' << *it_const_rev_begin;
+
+	std::cout << std::endl;
+	it_const_rev_end = intConstReverseVector.rbegin();
+	--it_const_rev_begin;
+	std::cout << "With operator--:";
+	for (; it_const_rev_begin >= it_const_rev_end; it_const_rev_begin--)
+		std::cout << ' ' << *it_const_rev_begin;
 
 	std::cout << std::endl;
 	std::cout << "----------------------------------------" << std::endl;
@@ -139,8 +205,6 @@ static void	accessTests() {
 
 	std::cout << "----------------------------------------" << std::endl;
 }
-
-#include <vector>
 
 static void	modifiersTests() {
 	int	i;

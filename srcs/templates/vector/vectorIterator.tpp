@@ -13,6 +13,12 @@ template <class T>
 ft::vectorIterator<T>::~vectorIterator() {}
 
 template <class T>
+ft::vectorIterator<T>::operator vectorIterator<const T>() const
+{
+	return vectorIterator<const T>(this->_data);
+}
+
+template <class T>
 ft::vectorIterator<T>&	ft::vectorIterator<T>::operator=(vectorIterator const & ref) {
 	if (this != &ref)
 		this->_data = ref._data;
