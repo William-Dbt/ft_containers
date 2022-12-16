@@ -82,8 +82,9 @@ namespace	ft {
 			void		pop_back();
 			iterator	insert(iterator position, const value_type& val);
 			void		insert(iterator position, size_type n, const value_type& val);
-			/* template <class InputIterator>
-			void	insert(iterator position, InputIterator first, InputIterator last); */
+
+			template <class InputIt>
+			void		insert(iterator position, InputIt first, InputIt last);
 
 			// Allocator>---------------------------------------------
 			allocator_type	get_allocator() const;

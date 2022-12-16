@@ -100,8 +100,30 @@ void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_ty
 	this->_size += n;
 }
 
-/* template <class T, class Alloc>
+template <class T, class Alloc>
 template <class InputIt>
 void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last) {
+	size_type	i;
+	int			pos = (int)this->_size - 1;
+	iterator	it = this->end() - 1;
+	size_type	distance = ft::distance(first, last);
 
-} */
+	if (this->_size + distance > this->_capacity)
+		this->changeCapacity(distance + this->_capacity * 2);
+
+	if (this->_size == 0) {
+		for (i = 0; first != last; first++, i++)
+			this->_alloc.construct(&this->_datas[i], *first);
+
+		this->_size = distance;
+		return ;
+	}
+	for (; it >= position; it--, pos--)
+		this->_datas[pos + distance] = this->_datas[pos];
+
+	pos++;
+	for (; first != last; first++, pos++)
+		this->_alloc.construct(&this->_datas[pos], *first);
+
+	this->_size += distance;
+}

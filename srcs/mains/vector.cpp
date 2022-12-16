@@ -209,28 +209,33 @@ static void	modifiersTests() {
 	int	i;
 
 	std::cout << "----------------------------------------" << std::endl;
-	std::cout << "Create a vector of size 5:" << std::endl;
+	std::cout << "Create a vector of size 5:";
 	ft::vector<int>		intVector(5, 66);
 
 	for (i = 0; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << ' ' << intVector[i];
 
+	std::cout << std::endl;
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 	std::cout << std::endl;
-	std::cout << "Assign the intVector by 2 contents of 15:" << std::endl;
+	std::cout << "Assign the intVector by 2 contents of 15:";
 	intVector.assign(2, 15);
 	for (i = 0; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << ' ' << intVector[i];
+
+	std::cout << std::endl;
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
 	ft::vector<int>	itVector(10, 42);
 
 	std::cout << "Assign the intVector with iterators of itVectors that contains 10 elements of 42:" << std::endl;
+	std::cout << "intVector:";
 	intVector.assign(itVector.begin(), itVector.end());
 	for (i = 0; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << ' ' << intVector[i];
 
+	std::cout << std::endl;
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
@@ -238,25 +243,30 @@ static void	modifiersTests() {
 	for (i = 0; i < 10; i++)
 		intVector.push_back(i);
 
-	std::cout << "..." << std::endl;
+	std::cout << "...";
 	for (i = 5; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
-	
+		std::cout << ' ' << intVector[i];
+
+	std::cout << std::endl;
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 	
 	std::cout << std::endl;
 	std::cout << "Maybe one more?" << std::endl;
-	intVector.push_back(69);
-	std::cout << "..." << std::endl;
+	intVector.push_back(42);
+	std::cout << "...";
 	for (i = 15; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << ' ' << intVector[i];
+
+	std::cout << std::endl;
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Let's remove the last element:" << std::endl;
+	std::cout << "Let's remove the last element:";
 	intVector.pop_back();
 	for (i = 15; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << ' ' << intVector[i];
+
+	std::cout << std::endl;
 	std::cout << "Vector size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
 
 	std::cout << std::endl;
@@ -299,11 +309,23 @@ static void	modifiersTests() {
 	for (i = 0; i < (int)strVector.size(); i++)
 		std::cout << ' ' << strVector[i];
 
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
+	std::cout << "Let's add 5 \"Tutu\" in the vector at last added position:";
 	strVector.insert(strIt, 5, "Tutu");
 	for (i = 0; i < (int)strVector.size(); i++)
-		std::cout << strVector[i]<< std::endl;
-	
+		std::cout << ' ' << strVector[i];
+
+	std::cout << std::endl << std::endl;
+	ft::vector<std::string>	namesVector(3);
+
+	namesVector[0] = "Jean";
+	namesVector[1] = "Michelle";
+	namesVector[2] = "Paul";
+	std::cout << "Now add three more elements at the first position:";
+	strVector.insert(strVector.begin(), namesVector.begin(), namesVector.end());
+	for (i = 0; i < (int)strVector.size(); i++)
+		std::cout << ' ' << strVector[i];
+
 	std::cout << std::endl;
 	std::cout << "----------------------------------------" << std::endl;
 }
