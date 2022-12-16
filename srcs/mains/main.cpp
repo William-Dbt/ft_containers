@@ -1,14 +1,12 @@
 #include <iostream>
 #include <cstdlib>
 
-void	constructorsTests();
 void	vectorTests();
 
 static void	showIndexes() {
 	std::cout << "List of tests:" << std::endl;
 	std::cout << "0: Show list" << std::endl;
-	std::cout << "1: Constructors" << std::endl;
-	std::cout << "2: Vector Tests" << std::endl;
+	std::cout << "1: Vector Tests" << std::endl;
 	std::cout << "exit: Exit program" << std::endl << std::endl;
 }
 
@@ -28,10 +26,6 @@ int	main() {
 		}
 		switch (atoi(idx.c_str())) {
 			case 1: {
-				constructorsTests();
-				break ;
-			}
-			case 2: {
 				vectorTests();
 				break ;
 			}
