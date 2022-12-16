@@ -104,8 +104,28 @@ namespace	ft {
 
 			void	changeCapacity(size_type newCapacity);
 	};
+
+	template <class T, class Alloc>
+	bool	operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool	operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool	operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool	operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool	operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool	operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
 }
 
 # include "vector.tpp"
+# include "nonMemberFunctions.tpp"
 
 #endif

@@ -53,6 +53,9 @@ ft::vector<T, Alloc>::~vector() {
 
 template <class T, class Alloc>
 ft::vector<T, Alloc>&	ft::vector<T, Alloc>::operator=(const vector& x) {
-	std::cout << "operator=" << std::endl;
-	(void)x;
+	if (this != &x) {
+		this->~vector();
+		new (this) vector(x);
+	}
+	return (*this);
 }

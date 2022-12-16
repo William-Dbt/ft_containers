@@ -21,13 +21,13 @@ static void	constructorTests() {
 	ft::vector<float>	floatVector(5, 42.42);
 
 	std::cout << "floatVector size & capacity: " << floatVector.size() << '|' << floatVector.capacity() << std::endl;
-	for (int i = 0; i < (int)strVector.size(); i++)
+	for (int i = 0; i < (int)floatVector.size(); i++)
 		std::cout << i << ": " << floatVector[i] << std::endl;
 
 	std::cout << std::endl;
 	std::cout << "Fill with iterator and initialize to 99 constructor:" << std::endl;
 	ft::vector<int>	stdVector(10, 99);
-	ft::vector<int>		intItVector(stdVector.begin(), stdVector.end());
+	ft::vector<int>	intItVector(stdVector.begin(), stdVector.end());
 
 	std::cout << "intItVector size & capacity: " << intItVector.size() << '|' << intItVector.capacity() << std::endl;
 	for (int i = 0; i < (int)intItVector.size(); i++)
@@ -41,6 +41,13 @@ static void	constructorTests() {
 	for (int i = 0; i < (int)intCopyVector.size(); i++)
 		std::cout << i << ": " << intCopyVector[i] << std::endl;
 
+	std::cout << std::endl;
+	std::cout << "Is operator= works? Let's copy the floatVector:" << std::endl;
+	ft::vector<float>	cpFloatVector(5, 52.52);
+
+	cpFloatVector = floatVector;
+	for (int i = 0; i < (int)cpFloatVector.size(); i++)
+		std::cout << i << ": " << cpFloatVector[i] << std::endl;
 	std::cout << "----------------------------------------" << std::endl;
 }
 
@@ -142,22 +149,22 @@ static void	capacityTests() {
 
 	std::cout << "Vector size: " << intVector.size() << std::endl;
 	std::cout << "The maximum size available is: " << intVector.max_size() << std::endl;
-	std::cout << "Let's print the vector:" << std::endl;
+	std::cout << "Let's print the vector:";
 	for (i = 0; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << ' ' << intVector[i];
 	
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 	intVector.resize(8);
 	std::cout << "Size and capacity after resize of 8: " << intVector.size() << '|' << intVector.capacity() << std::endl << std::endl;
 
 	std::cout << "Let's try to resize above capacity (like 15 and fill by 42):" << std::endl;
 	intVector.resize(15, 42);
 	std::cout << "New size and capacity: " << intVector.size() << '|' << intVector.capacity() << std::endl;
-	std::cout << "And that's the vector:" << std::endl;
+	std::cout << "And that's the vector:";
 	for (i = 0; i < (int)intVector.size(); i++)
-		std::cout << intVector[i] << std::endl;
+		std::cout << ' ' << intVector[i];
 
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 	std::cout << "Create an empty vector and check if it's empty:" << std::endl;
 	ft::vector<char>	cVector;
 
@@ -167,7 +174,7 @@ static void	capacityTests() {
 	std::cout << std::endl;
 	std::cout << "Let's try to reserve some capacity:" << std::endl;
 	std::cout << "The capacity of cVector is: " << cVector.capacity() << std::endl;
-	std::cout << "Let's reserve 10 spaces of memory.";
+	std::cout << "Let's reserve 10 spaces of memory." << std::endl;
 	cVector.reserve(10);
 	std::cout << "The cVector capacity is now: " << cVector.capacity() << std::endl;
 
@@ -429,7 +436,7 @@ static void	modifiersTests() {
 	std::cout << "----------------------------------------" << std::endl;
 }
 
-static void	allocatorTest() {
+static void	allocatorTests() {
 	ft::vector<int>	intVector;
 	int				*allocator;
 	int				i;
@@ -450,15 +457,85 @@ static void	allocatorTest() {
 	std::cout << "----------------------------------------" << std::endl;
 }
 
+static void	nonMemberFunctionsTests() {
+	std::cout << "----------------------------------------" << std::endl;
+	int	i;
+
+	std::cout << "Create two vectors A and B:" << std::endl;
+	ft::vector<int>	vectorA(5, 100);
+	ft::vector<int>	vectorB(5, 100);
+
+	std::cout << "VectorA:";
+	for (i = 0; i < (int)vectorA.size(); i++)
+		std::cout << ' ' << vectorA[i];
+
+	std::cout << std::endl;
+	std::cout << "VectorB:";
+	for (i = 0; i < (int)vectorB.size(); i++)
+		std::cout << ' ' << vectorB[i];
+
+	std::cout << std::endl << std::endl;
+	std::cout << "Is their equal? : " << std::boolalpha << (vectorA == vectorB) << std::endl;
+	std::cout << "Let's add an element to vector A:";
+	vectorA.push_back(42);
+	for (i = 0; i < (int)vectorA.size(); i++)
+		std::cout << ' ' << vectorA[i];
+
+	std::cout << std::endl;
+	std::cout << "Is still equal? : " << std::boolalpha << (vectorB == vectorA) << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Let's check more compare operators:" << std::endl;
+	std::cout << "vectorA != vectorB: " << std::boolalpha << (vectorA != vectorB) << std::endl;
+	std::cout << std::endl;
+	std::cout << "vectorA < vectorB: " << std::boolalpha << (vectorA < vectorB) << std::endl;
+	std::cout << "vectorB < vectorA: " << std::boolalpha << (vectorB < vectorA) << std::endl;
+	std::cout << std::endl;
+	std::cout << "vectorA <= vectorB: " << std::boolalpha << (vectorA <= vectorB) << std::endl;
+	std::cout << "vectorB <= vectorA: " << std::boolalpha << (vectorB <= vectorA) << std::endl;
+	std::cout << std::endl;
+	std::cout << "vectorA > vectorB: " << std::boolalpha << (vectorA > vectorB) << std::endl;
+	std::cout << "vectorB > vectorA: " << std::boolalpha << (vectorB > vectorA) << std::endl;
+	std::cout << std::endl;
+	std::cout << "vectorA >= vectorB: " << std::boolalpha << (vectorA >= vectorB) << std::endl;
+	std::cout << "vectorB >= vectorA: " << std::boolalpha << (vectorB >= vectorA) << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Create third vector to test >= and <= equal operator:";
+	ft::vector<int>	vectorC(vectorB);
+
+	for (i = 0; i < (int)vectorC.size(); i++)
+		std::cout << ' ' << vectorC[i];
+
+	std::cout << std::endl;
+	std::cout << "VectorA:";
+	for (i = 0; i < (int)vectorA.size(); i++)
+		std::cout << ' ' << vectorA[i];
+
+	std::cout << std::endl;
+	std::cout << "VectorB:";
+	for (i = 0; i < (int)vectorB.size(); i++)
+		std::cout << ' ' << vectorB[i];
+
+	std::cout << std::endl << std::endl;
+	std::cout << "vectorC >= vectorA: " << std::boolalpha << (vectorC >= vectorA) << std::endl;
+	std::cout << "vectorC >= vectorB: " << std::boolalpha << (vectorC >= vectorB) << std::endl;
+	std::cout << std::endl;
+	std::cout << "vectorC <= vectorA: " << std::boolalpha << (vectorC <= vectorA) << std::endl;
+	std::cout << "vectorC <= vectorB: " << std::boolalpha << (vectorC <= vectorB) << std::endl;
+	std::cout << "----------------------------------------" << std::endl;
+}
+
 static void	showTestList() {
 	std::cout << "List of tests:" << std::endl;
 	std::cout << "0: Show list" << std::endl;
-	std::cout << "1: Constructor Tests" << std::endl;
-	std::cout << "2: Iterators tests" << std::endl;
+	std::cout << "1: Constructor" << std::endl;
+	std::cout << "2: Iterators" << std::endl;
 	std::cout << "3: Capacity" << std::endl;
 	std::cout << "4: Element access" << std::endl;
 	std::cout << "5: Modifiers" << std::endl;
 	std::cout << "6: Allocator" << std::endl;
+	std::cout << "7: Non member functions" << std::endl;
 	std::cout << "exit: Main menu" << std::endl << std::endl;
 }
 
@@ -500,7 +577,16 @@ void	vectorTests() {
 				break ;
 			}
 			case 6: {
-				allocatorTest();
+				allocatorTests();
+				break ;
+			}
+			case 7: {
+				nonMemberFunctionsTests();
+				break ;
+			}
+			default: {
+				std::cout << std::endl;
+				showTestList();
 				break ;
 			}
 		}
