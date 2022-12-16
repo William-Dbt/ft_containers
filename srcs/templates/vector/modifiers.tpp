@@ -127,3 +127,67 @@ void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last
 
 	this->_size += distance;
 }
+
+template <class T, class Alloc>
+typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator position) {
+	int	distance = ft::distance(this->begin(), position);
+	int	initial_distance = distance;
+
+	this->_alloc.destroy(&this->_datas[distance]);
+	for (; distance < (int)this->_size; distance++)
+		this->_datas[distance] = this->_datas[distance + 1];
+
+	this->_size--;
+	return (this->begin() + initial_distance);
+}
+
+template <class T, class Alloc>
+typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator first, iterator last) {
+	int	distance = ft::distance(this->begin(), first);
+	int	it_distance = ft::distance(first, last);
+
+	for (; first != last; first++, distance++)
+		this->_alloc.destroy(&this->_datas[distance]);
+
+	for (; last != this->end(); last++, distance++)
+		this->_datas[distance - it_distance] = this->_datas[distance];
+
+	this->_size -= it_distance;
+	return last;
+}
+
+template <class T, class Alloc>
+void	ft::vector<T, Alloc>::swap(vector& x) {
+	pointer			dataTmp;
+	allocator_type	allocTmp;
+	size_type		sizeTmp;
+	size_type		capacityTmp;
+
+	if (this == &x)
+		return ;
+
+	dataTmp = this->_datas;
+	allocTmp = this->_alloc;
+	sizeTmp = this->_size;
+	capacityTmp = this->_capacity;
+
+	this->_datas = x._datas;
+	this->_alloc = x._alloc;
+	this->_size = x._size;
+	this->_capacity = x._capacity;
+
+	x._datas = dataTmp;
+	x._alloc = allocTmp;
+	x._size = sizeTmp;
+	x._capacity = capacityTmp;
+}
+
+template <class T, class Alloc>
+void	ft::vector<T, Alloc>::clear() {
+	size_type	i;
+
+	for (i = 0; i < this->_size; i++)
+		this->_alloc.destroy(&this->_datas[i]);
+
+	this->_size = 0;
+}
