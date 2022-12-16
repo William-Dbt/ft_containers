@@ -73,27 +73,30 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator po
 
 template <class T, class Alloc>
 void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {
-	size_type	i;
-	size_type	pos = this->_size - 1;
-	iterator	it = this->end() - 1;
+	while (n-- > 0)
+		this->insert(position, val);
 
-	if (this->_size + n > this->_capacity)
-		this->changeCapacity(n + this->_capacity * 2);
+	// size_type	i;
+	// size_type	pos = this->_size - 1;
+	// iterator	it = this->end() - 1;
 
-	if (this->_size == 0) {
-		for (i = 0; i < n; i++)
-			this->_alloc.construct(&this->_datas[i], val);
+	// if (this->_size + n > this->_capacity)
+	// 	this->changeCapacity(n + this->_capacity * 2);
 
-		this->_size = n;
-		return ;
-	}
-	for (; it >= position; it--, pos--)
-		this->_datas[pos + n] = this->_datas[pos];
+	// if (this->_size == 0) {
+	// 	for (i = 0; i < n; i++)
+	// 		this->_alloc.construct(&this->_datas[i], val);
 
-	// it =;
-	// for (; )
-	// 	std::cout << this->_datas[i] << std::endl;
-	this->_size += n;
+	// 	this->_size = n;
+	// 	return ;
+	// }
+	// for (; it >= position; it--, pos--)
+	// 	this->_datas[pos + n] = this->_datas[pos];
+
+	// // it =;
+	// // for (; )
+	// // 	std::cout << this->_datas[i] << std::endl;
+	// this->_size += n;
 }
 
 /* template <class T, class Alloc>

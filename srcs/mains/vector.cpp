@@ -301,6 +301,10 @@ static void	modifiersTests() {
 
 	std::cout << std::endl;
 	strVector.insert(strIt, 5, "Tutu");
+	for (i = 0; i < (int)strVector.size(); i++)
+		std::cout << ' ' << strVector[i];
+	
+	std::cout << std::endl;
 	std::cout << "----------------------------------------" << std::endl;
 }
 
