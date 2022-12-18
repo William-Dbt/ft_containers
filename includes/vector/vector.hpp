@@ -4,8 +4,8 @@
 # include <memory>
 # include <cstddef>
 # include "utils.hpp"
-# include "vectorIterator.hpp"
-# include "vectorReverseIterator.hpp"
+# include "iterator.hpp"
+# include "reverse_iterator.hpp"
 
 namespace	ft {
 	template < class T, class Allocator = std::allocator<T> >
@@ -20,10 +20,10 @@ namespace	ft {
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
 
-			typedef typename ft::vectorIterator<T>				iterator;
-			typedef typename ft::vectorIterator<const T>		const_iterator;
-			typedef typename ft::vectorReverseIterator<T>		reverse_iterator;
-			typedef typename ft::vectorReverseIterator<const T>	const_reverse_iterator;
+			typedef typename ft::iterator<T>						iterator;
+			typedef typename ft::iterator<const T>					const_iterator;
+			typedef typename ft::reverse_iterator<iterator>			reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
 			// Constructors, destructor & operator=>-----------------------------
 			explicit vector(const allocator_type& alloc = allocator_type());

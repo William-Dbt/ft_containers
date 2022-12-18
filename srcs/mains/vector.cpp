@@ -95,6 +95,20 @@ static void	iteratorTests() {
 		std::cout << ' ' << *itconst_begin;
 
 	std::cout << std::endl << std::endl;
+	std::cout << "Print two by two with iterator + n:";
+	while (it_end < intVector.end()) {
+		std::cout << ' ' << *it_end;
+		it_end = it_end + 2;
+	}
+	std::cout << std::endl;
+	std::cout << "And print the reverse with it - n:";
+	it_end -= 2;
+	while (it_end >= intVector.begin()) {
+		std::cout << ' ' << *it_end;
+		it_end = it_end - 2;
+	}
+
+	std::cout << std::endl << std::endl;
 	std::cout << "Let's fill a vector of 5 elements and print them with reverse iterator:" << std::endl;
 	ft::vector<int>				intReverseVector(5);
 
@@ -110,7 +124,7 @@ static void	iteratorTests() {
 
 	std::cout << std::endl;
 	it_rev_end = intReverseVector.rbegin();
-	--it_rev_begin;
+	// --it_rev_begin;
 	std::cout << "With operator--:";
 	for (; it_rev_begin >= it_rev_end; it_rev_begin--)
 		std::cout << ' ' << *it_rev_begin;
@@ -131,7 +145,7 @@ static void	iteratorTests() {
 
 	std::cout << std::endl;
 	it_const_rev_end = intConstReverseVector.rbegin();
-	--it_const_rev_begin;
+	// --it_const_rev_begin;
 	std::cout << "With operator--:";
 	for (; it_const_rev_begin >= it_const_rev_end; it_const_rev_begin--)
 		std::cout << ' ' << *it_const_rev_begin;
