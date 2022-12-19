@@ -109,48 +109,86 @@ static void	iteratorTests() {
 	}
 
 	std::cout << std::endl << std::endl;
-	std::cout << "Let's fill a vector of 5 elements and print them with reverse iterator:" << std::endl;
-	ft::vector<int>				intReverseVector(5);
+	std::cout << "Let's fill a vector of 5 elements and print them with reverse iterator" << std::endl << std::endl;
+	std::vector<int>	intRevVector(5);
 
-	for (int i = 0; i < (int)intReverseVector.size(); i++)
-		intReverseVector[i] = i;
+	for (int i = 0; i < (int)intRevVector.size(); i++)
+		intRevVector[i] = i;
 
-	ft::vector<int>::reverse_iterator	it_rev_begin = intReverseVector.rbegin();
-	ft::vector<int>::reverse_iterator	it_rev_end = intReverseVector.rend();
+	std::vector<int>::reverse_iterator	rev_it;
 
-	std::cout << "With operator++:";
-	for (; it_rev_begin != it_rev_end; it_rev_begin++)
-		std::cout << ' ' << *it_rev_begin;
+	std::cout << "Let's print the vector with operator++:";
+	for (rev_it = intRevVector.rbegin(); rev_it != intRevVector.rend(); rev_it++)
+		std::cout << ' ' << *rev_it;
 
 	std::cout << std::endl;
-	it_rev_end = intReverseVector.rbegin();
-	// --it_rev_begin;
-	std::cout << "With operator--:";
-	for (; it_rev_begin >= it_rev_end; it_rev_begin--)
-		std::cout << ' ' << *it_rev_begin;
+	std::cout << "And operator--:";
+	for (rev_it = intRevVector.rend() - 1; rev_it >= intRevVector.rbegin(); rev_it--)
+		std::cout << ' ' << *rev_it;
 
 	std::cout << std::endl << std::endl;
-	std::cout << "Let's fill a vector of 5 elements and print them with const reverse iterator:" << std::endl;
-	ft::vector<int>				intConstReverseVector(5);
-
-	for (int i = 0; i < (int)intConstReverseVector.size(); i++)
-		intConstReverseVector[i] = i;
-
-	ft::vector<int>::const_reverse_iterator	it_const_rev_begin = intConstReverseVector.rbegin();
-	ft::vector<int>::const_reverse_iterator	it_const_rev_end = intConstReverseVector.rend();
-
-	std::cout << "With operator++:";
-	for (; it_const_rev_begin != it_const_rev_end; it_const_rev_begin++)
-		std::cout << ' ' << *it_const_rev_begin;
+	std::cout << "Reverse Iterator is now after the (4) value," << std::endl;
+	std::cout << "Let's call operator+(n) to get the last and the third value: ";
+	std::cout << *(rev_it + 1) << ' ' << *(rev_it + 3) << std::endl;
+	std::cout << "operator-(n) with iterator rend(): ";
+	std::cout << *(intRevVector.rend() - 1) << ' ' << *(intRevVector.rend() - 3) << std::endl;
 
 	std::cout << std::endl;
-	it_const_rev_end = intConstReverseVector.rbegin();
-	// --it_const_rev_begin;
-	std::cout << "With operator--:";
-	for (; it_const_rev_begin >= it_const_rev_end; it_const_rev_begin--)
-		std::cout << ' ' << *it_const_rev_begin;
+	rev_it = intRevVector.rend() - 1;
+	std::cout << "Let's use += and -= operator by 2 to show the content of the vectors" << std::endl;
+	std::cout << "operator-= starting from it.rend(): ";
+	std::cout << *rev_it << ' ';
+	rev_it -= 2;
+	std::cout << *rev_it << ' ';
+	rev_it -= 2;
+	std::cout << *rev_it;
+	std::cout << std::endl;
+
+	std::cout << "And now with operator+=: ";
+	std::cout << *rev_it << ' ';
+	rev_it += 2;
+	std::cout << *rev_it << ' ';
+	rev_it += 2;
+	std::cout << *rev_it;
+	std::cout << std::endl;
 
 	std::cout << std::endl;
+	std::cout << "Let's check relational operators:" << std::endl;
+	std::vector<int>::reverse_iterator	revItA = intRevVector.rbegin();
+	std::vector<int>::reverse_iterator	revItB = intRevVector.rbegin();
+
+	std::cout << std::boolalpha;
+	std::cout << "operator=: " << (revItA == revItB) << std::endl;
+	std::cout << "operator!=: " << (revItA != revItB) << std::endl;
+	std::cout << "operator<: " << (revItA < revItB) << std::endl;
+	std::cout << "operator<=: " << (revItA <= revItB) << std::endl;
+	std::cout << "operator>: " << (revItA > revItB) << std::endl;
+	std::cout << "operator>=: " << (revItA >= revItB) << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Increment revItB and show result:" << std::endl;
+	revItB++;
+	std::cout << "operator=: " << (revItA == revItB) << std::endl;
+	std::cout << "operator!=: " << (revItA != revItB) << std::endl;
+	std::cout << "operator<: " << (revItA < revItB) << std::endl;
+	std::cout << "operator<=: " << (revItA <= revItB) << std::endl;
+	std::cout << "operator>: " << (revItA > revItB) << std::endl;
+	std::cout << "operator>=: " << (revItA >= revItB) << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "intVector:";
+	for (size_t i = 0; i < intRevVector.size(); i++)
+		std::cout << ' ' << intRevVector[i];
+
+	std::cout << std::endl;
+	std::cout << "operator+(n, it), with n = 2 and it = rbegin(): ";
+	revItA = 2 + intRevVector.rbegin();
+	std::cout << *revItA << std::endl;
+
+	std::cout << std::endl;
+	revItA = intRevVector.rbegin();
+	revItB = intRevVector.rend();
+	std::cout << "My vector has: " << (revItB - revItA) << " elements. (Thanks to operator-(itA, itB))" << std::endl;
 	std::cout << "----------------------------------------" << std::endl;
 }
 

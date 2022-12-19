@@ -6,7 +6,7 @@ ft::reverse_iterator<Iterator>::reverse_iterator(iterator_type it) : _iterator(i
 
 template <class Iterator>
 template <class Iter>
-ft::reverse_iterator<Iterator>::reverse_iterator(const reverse_iterator<Iter>& rev_it) : _iterator(rev_it._iterator) {}
+ft::reverse_iterator<Iterator>::reverse_iterator(const reverse_iterator<Iter>& rev_it) : _iterator(rev_it.base()) {}
 
 template <class Iterator>
 typename ft::reverse_iterator<Iterator>::iterator_type	ft::reverse_iterator<Iterator>::base() const {
@@ -31,8 +31,14 @@ template <class Iterator>
 ft::reverse_iterator<Iterator>	ft::reverse_iterator<Iterator>::operator++(int) {
 	reverse_iterator	rev_it(*this);
 
-	this->operator++;
+	this->operator++();
 	return rev_it;
+}
+
+template <class Iterator>
+ft::reverse_iterator<Iterator>&	ft::reverse_iterator<Iterator>::operator+=(difference_type n) {
+	this->_iterator += n;
+	return *this;
 }
 
 template <class Iterator>
@@ -53,8 +59,14 @@ template <class Iterator>
 ft::reverse_iterator<Iterator>	ft::reverse_iterator<Iterator>::operator--(int) {
 	reverse_iterator	rev_it(*this);
 
-	this->operator--;
+	this->operator--();
 	return rev_it;
+}
+
+template <class Iterator>
+ft::reverse_iterator<Iterator>&	ft::reverse_iterator<Iterator>::operator-=(difference_type n) {
+	this->_iterator -= n;
+	return *this;
 }
 
 template <class Iterator>
@@ -97,4 +109,22 @@ bool	ft::operator>(const reverse_iterator<Iterator>& lhs, const reverse_iterator
 template <class Iterator>
 bool	ft::operator>=(const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs) {
 	return (lhs.base() <= rhs.base());
+}
+
+template <class Iterator>
+ft::reverse_iterator<Iterator>	ft::operator+(typename reverse_iterator<Iterator>::difference_type n, const reverse_iterator<Iterator>& rev_it) {
+	reverse_iterator<Iterator>	tmp(rev_it);
+
+	tmp += n;
+	return tmp;
+}
+
+template <class Iterator>
+typename ft::reverse_iterator<Iterator>::difference_type	operator-(const ft::reverse_iterator<Iterator>& lhs, const ft::reverse_iterator<Iterator>& rhs) {
+	typename ft::reverse_iterator<Iterator>::difference_type	i;
+
+	while (lhs++ != rhs)
+		i++;
+
+	return i;
 }
