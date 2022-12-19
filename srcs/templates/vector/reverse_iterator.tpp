@@ -120,11 +120,20 @@ ft::reverse_iterator<Iterator>	ft::operator+(typename reverse_iterator<Iterator>
 }
 
 template <class Iterator>
-typename ft::reverse_iterator<Iterator>::difference_type	operator-(const ft::reverse_iterator<Iterator>& lhs, const ft::reverse_iterator<Iterator>& rhs) {
-	typename ft::reverse_iterator<Iterator>::difference_type	i;
+typename ft::reverse_iterator<Iterator>::difference_type	ft::operator-(const ft::reverse_iterator<Iterator>& lhs, const ft::reverse_iterator<Iterator>& rhs) {
+	ft::reverse_iterator<Iterator>								tmp(lhs);
+	typename ft::reverse_iterator<Iterator>::difference_type	i = 0;
 
-	while (lhs++ != rhs)
-		i++;
+	if (rhs == lhs)
+		return 0;
+
+	if (tmp > rhs) {
+		while (tmp-- != rhs)
+			i++;
+	}
+	else
+		while (tmp++ != rhs)
+			i--;
 
 	return i;
 }

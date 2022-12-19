@@ -1,6 +1,7 @@
 #ifndef __VECTOR_HPP__
 # define __VECTOR_HPP__
 
+#                 include <vector>
 # include <memory>
 # include <cstddef>
 # include "utils.hpp"

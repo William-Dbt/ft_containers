@@ -110,12 +110,12 @@ static void	iteratorTests() {
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Let's fill a vector of 5 elements and print them with reverse iterator" << std::endl << std::endl;
-	std::vector<int>	intRevVector(5);
+	ft::vector<int>	intRevVector(5);
 
 	for (int i = 0; i < (int)intRevVector.size(); i++)
 		intRevVector[i] = i;
 
-	std::vector<int>::reverse_iterator	rev_it;
+	ft::vector<int>::reverse_iterator	rev_it;
 
 	std::cout << "Let's print the vector with operator++:";
 	for (rev_it = intRevVector.rbegin(); rev_it != intRevVector.rend(); rev_it++)
@@ -154,8 +154,8 @@ static void	iteratorTests() {
 
 	std::cout << std::endl;
 	std::cout << "Let's check relational operators:" << std::endl;
-	std::vector<int>::reverse_iterator	revItA = intRevVector.rbegin();
-	std::vector<int>::reverse_iterator	revItB = intRevVector.rbegin();
+	ft::vector<int>::reverse_iterator	revItA = intRevVector.rbegin();
+	ft::vector<int>::reverse_iterator	revItB = intRevVector.rbegin();
 
 	std::cout << std::boolalpha;
 	std::cout << "operator=: " << (revItA == revItB) << std::endl;
