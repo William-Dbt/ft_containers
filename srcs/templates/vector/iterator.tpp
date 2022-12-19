@@ -89,7 +89,7 @@ typename ft::iterator<T>::reference	ft::iterator<T>::operator*() {
 
 template <class T>
 typename ft::iterator<T>::pointer	ft::iterator<T>::operator->() {
-	return (&this->_data);
+	return (&(this->operator*()));
 }
 
 template <class T>
@@ -124,5 +124,24 @@ bool	ft::iterator<T>::operator==(iterator const & ref) const {
 
 template <class T>
 bool	ft::iterator<T>::operator!=(iterator const & ref) const {
-	return (!(this->_data == ref._data));
+	return (this->_data != ref._data);
+}
+
+template <class Iterator>
+typename ft::iterator<Iterator>::difference_type	ft::operator-(const ft::iterator<Iterator>& lhs, const ft::iterator<Iterator>& rhs) {
+	ft::iterator<Iterator>								tmp(lhs);
+	typename ft::iterator<Iterator>::difference_type	i = 0;
+
+	if (rhs == lhs)
+		return 0;
+
+	if (tmp > rhs) {
+		while (tmp-- != rhs)
+			i++;
+	}
+	else
+		while (tmp++ != rhs)
+			i--;
+
+	return i;
 }

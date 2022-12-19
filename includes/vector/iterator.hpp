@@ -43,6 +43,9 @@ namespace	ft {
 		private:
 			pointer	_data;
 	};
+
+	template <class Iterator>
+	typename	iterator<Iterator>::difference_type	operator-(const iterator<Iterator>& lhs, const iterator<Iterator>& rhs);
 }
 
 # include "iterator.tpp"

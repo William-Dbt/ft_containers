@@ -86,7 +86,8 @@ namespace	ft {
 			void		insert(iterator position, size_type n, const value_type& val);
 
 			template <class InputIt>
-			void		insert(iterator position, InputIt first, InputIt last);
+			void		insert(iterator position, InputIt first, InputIt last,
+							typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type* = NULL);
 
 			iterator	erase(iterator position);
 			iterator	erase(iterator first, iterator last);

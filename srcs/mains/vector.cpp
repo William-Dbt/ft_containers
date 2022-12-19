@@ -416,7 +416,8 @@ static void	modifiersTests() {
 		std::cout << ' ' << strVector[i];
 
 	std::cout << std::endl << std::endl;
-	ft::vector<std::string>	namesVector(3);
+	ft::vector<std::string>				namesVector(3);
+	ft::vector<std::string>::iterator	ret;
 
 	namesVector[0] = "Jean";
 	namesVector[1] = "Michelle";
@@ -429,62 +430,65 @@ static void	modifiersTests() {
 	std::cout << std::endl << std::endl;
 	std::cout << "Let's erase \"Toto\" from the list:";
 	strIt = strVector.begin() + 3;
-	strVector.erase(strIt);
+	ret = strVector.erase(strIt);
 	for (i = 0; i < (int)strVector.size(); i++)
 		std::cout << ' ' << strVector[i];
 
 	std::cout << std::endl << std::endl;
+	std::cout << "ret: " << *ret << std::endl;
 	std::cout << "Now erase all \"Tutu\" from the list:";
-	strVector.erase(strVector.begin() + 3, strVector.end() - 1);
+	ret = strVector.erase(strVector.begin() + 3, strVector.end() - 1);
 	for (i = 0; i < (int)strVector.size(); i++)
 		std::cout << ' ' << strVector[i];
 
 	std::cout << std::endl << std::endl;
-	std::cout << "Create two vectors and swap their contents:" << std::endl;
-	ft::vector<float>	vectorA(5, 42.42);
-	ft::vector<float>	vectorB(2, 84.84);
+	std::cout << "ret: " << *ret << std::endl;
 
-	std::cout << "Vector A:";
-	for (i = 0; i < (int)vectorA.size(); i++)
-		std::cout << ' ' << vectorA[i];
+	// std::cout << "Create two vectors and swap their contents:" << std::endl;
+	// ft::vector<float>	vectorA(5, 42.42);
+	// ft::vector<float>	vectorB(2, 84.84);
 
-	std::cout << std::endl;
-	std::cout << "Vector B:";
-	for (i = 0; i < (int)vectorB.size(); i++)
-		std::cout << ' ' << vectorB[i];
+	// std::cout << "Vector A:";
+	// for (i = 0; i < (int)vectorA.size(); i++)
+	// 	std::cout << ' ' << vectorA[i];
 
-	std::cout << std::endl << std::endl;
-	std::cout << "Calling swap function" << std::endl << std::endl;
-	vectorA.swap(vectorB);
-	std::cout << "Vector A:";
-	for (i = 0; i < (int)vectorA.size(); i++)
-		std::cout << ' ' << vectorA[i];
+	// std::cout << std::endl;
+	// std::cout << "Vector B:";
+	// for (i = 0; i < (int)vectorB.size(); i++)
+	// 	std::cout << ' ' << vectorB[i];
 
-	std::cout << std::endl;
-	std::cout << "Vector B:";
-	for (i = 0; i < (int)vectorB.size(); i++)
-		std::cout << ' ' << vectorB[i];
+	// std::cout << std::endl << std::endl;
+	// std::cout << "Calling swap function" << std::endl << std::endl;
+	// vectorA.swap(vectorB);
+	// std::cout << "Vector A:";
+	// for (i = 0; i < (int)vectorA.size(); i++)
+	// 	std::cout << ' ' << vectorA[i];
 
-	int	oldSize = vectorB.size();
-	std::cout << std::endl << std::endl;
-	std::cout << "Let's clear both A and B and check how std::allocator works:" << std::endl;
-	vectorA.clear();
-	vectorB.clear();
-	std::cout << "vectorA.size(): " << vectorA.size() << std::endl;
-	std::cout << "vectorB.size(): " << vectorB.size() << std::endl;
-	std::cout << "vectorA.capacity(): " << vectorA.capacity() << std::endl;
-	std::cout << "vectorB.capacity(): " << vectorB.capacity() << std::endl;
-	std::cout << "The capacity don't changed because we just want to erase the datas of the vector." << std::endl;
-	std::cout << "Now if we print for example the vector B, the values are still here because it's a float but," << std::endl;
-	std::cout << "if it were an object, the object would have been deleted (by allocator.destroy())" << std::endl;
+	// std::cout << std::endl;
+	// std::cout << "Vector B:";
+	// for (i = 0; i < (int)vectorB.size(); i++)
+	// 	std::cout << ' ' << vectorB[i];
 
-	std::cout << std::endl;
-	std::cout << "vectorB:";
-	for (i = 0; i < oldSize; i++)
-		std::cout << ' ' << vectorB[i];
+	// int	oldSize = vectorB.size();
+	// std::cout << std::endl << std::endl;
+	// std::cout << "Let's clear both A and B and check how std::allocator works:" << std::endl;
+	// vectorA.clear();
+	// vectorB.clear();
+	// std::cout << "vectorA.size(): " << vectorA.size() << std::endl;
+	// std::cout << "vectorB.size(): " << vectorB.size() << std::endl;
+	// std::cout << "vectorA.capacity(): " << vectorA.capacity() << std::endl;
+	// std::cout << "vectorB.capacity(): " << vectorB.capacity() << std::endl;
+	// std::cout << "The capacity don't changed because we just want to erase the datas of the vector." << std::endl;
+	// std::cout << "Now if we print for example the vector B, the values are still here because it's a float but," << std::endl;
+	// std::cout << "if it were an object, the object would have been deleted (by allocator.destroy())" << std::endl;
 
-	std::cout << std::endl << std::endl;
-	std::cout << "We still can read in the memory because the capacity doesn't change." << std::endl;
+	// std::cout << std::endl;
+	// std::cout << "vectorB:";
+	// for (i = 0; i < oldSize; i++)
+	// 	std::cout << ' ' << vectorB[i];
+
+	// std::cout << std::endl << std::endl;
+	// std::cout << "We still can read in the memory because the capacity doesn't change." << std::endl;
 	std::cout << "----------------------------------------" << std::endl;
 }
 

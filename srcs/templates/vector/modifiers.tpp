@@ -102,7 +102,8 @@ void	ft::vector<T, Alloc>::insert(iterator position, size_type n, const value_ty
 
 template <class T, class Alloc>
 template <class InputIt>
-void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last) {
+void	ft::vector<T, Alloc>::insert(iterator position, InputIt first, InputIt last,
+									typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type*) {
 	size_type	i;
 	int			pos = (int)this->_size - 1;
 	iterator	it = this->end() - 1;
@@ -138,7 +139,7 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator pos
 		this->_datas[distance] = this->_datas[distance + 1];
 
 	this->_size--;
-	return (this->begin() + initial_distance);
+	return (iterator(this->begin() + initial_distance));
 }
 
 template <class T, class Alloc>
@@ -153,7 +154,7 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator fir
 		this->_datas[distance - it_distance] = this->_datas[distance];
 
 	this->_size -= it_distance;
-	return last;
+	return (iterator(this->begin() + distance - 1));
 }
 
 template <class T, class Alloc>
