@@ -134,27 +134,24 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator pos
 	int	distance = ft::distance(this->begin(), position);
 	int	initial_distance = distance;
 
-	this->_alloc.destroy(&this->_datas[distance]);
-	for (; distance < (int)this->_size; distance++)
-		this->_datas[distance] = this->_datas[distance + 1];
-
+	for (; distance < (int)this->_size; distance++) {
+		this->_alloc.destroy(&this->_datas[distance]);
+		if (distance + 1 < (int)this->_size)
+			this->_alloc.construct(&this->_datas[distance], this->_datas[distance + 1]);
+	}
 	this->_size--;
 	return (iterator(this->begin() + initial_distance));
 }
 
 template <class T, class Alloc>
 typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator first, iterator last) {
-	int	distance = ft::distance(this->begin(), first);
-	int	it_distance = ft::distance(first, last);
+	size_type	distance = ft::distance(first, last);
+	size_type	ret = ft::distance(this->begin(), first);
 
-	for (; first != last; first++, distance++)
-		this->_alloc.destroy(&this->_datas[distance]);
+	for (; distance > 0; distance--)
+		this->erase(first);
 
-	for (; last != this->end(); last++, distance++)
-		this->_datas[distance - it_distance] = this->_datas[distance];
-
-	this->_size -= it_distance;
-	return (iterator(this->begin() + distance - 1));
+	return iterator(this->begin() + ret);
 }
 
 template <class T, class Alloc>

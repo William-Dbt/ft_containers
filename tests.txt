@@ -1,0 +1,13 @@
+vector/ite_arrow.cpp               : COMPILE: ❌ | RET: ❌ | OUT: ❌ | STD: [Y]
+
+vector/ite.cpp                     : COMPILE: ❌ | RET: ❌ | OUT: ❌ | STD: [Y]
+
+vector/ite_eq_ope.cpp              : COMPILE: ❌ | RET: ❌ | OUT: ❌ | STD: [Y]
+
+vector/rite2.cpp                   : COMPILE: ❌ | RET: ❌ | OUT: ❌ | STD: [Y]
+
+vector/rite_arrow.cpp              : COMPILE: ❌ | RET: ❌ | OUT: ❌ | STD: [Y]
+
+vector/rite_eq_ope.cpp             : COMPILE: ❌ | RET: ❌ | OUT: ❌ | STD: [Y]
+
+vector/erase.cpp                   : COMPILE: ✅ | RET: ✅ | OUT: ❌ | STD: [Y]

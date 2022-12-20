@@ -435,7 +435,7 @@ static void	modifiersTests() {
 		std::cout << ' ' << strVector[i];
 
 	std::cout << std::endl << std::endl;
-	std::cout << "ret: " << *ret << std::endl;
+	std::cout << "ret: " << *ret << " (value before: " << *(ret - 1) << ')' << std::endl;
 	std::cout << "Now erase all \"Tutu\" from the list:";
 	ret = strVector.erase(strVector.begin() + 3, strVector.end() - 1);
 	for (i = 0; i < (int)strVector.size(); i++)
