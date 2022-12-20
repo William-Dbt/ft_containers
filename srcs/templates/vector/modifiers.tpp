@@ -68,7 +68,7 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::insert(iterator po
 
 	this->_alloc.construct(&this->_datas[pos + 1], val);
 	this->_size++;
-	return it_end + 1;
+	return (iterator(&this->_datas[pos + 1]));
 }
 
 template <class T, class Alloc>

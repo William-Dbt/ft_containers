@@ -18,9 +18,12 @@ namespace	ft {
 			explicit reverse_iterator(iterator_type it);
 
 			template <class Iter>
-			reverse_iterator	(const reverse_iterator<Iter>& rev_it);
+			reverse_iterator(const reverse_iterator<Iter>& rev_it);
 
 			iterator_type	base() const;
+
+			template <class Iter>
+			reverse_iterator	&operator=(const reverse_iterator<Iter>& other);
 
 			reverse_iterator	operator+(difference_type n) const;
 			reverse_iterator&	operator++();
@@ -33,6 +36,7 @@ namespace	ft {
 
 			reference	operator*() const;
 			pointer 	operator->() const;
+			reference	operator[](difference_type n) const;
 
 		private:
 			iterator_type	_iterator;
@@ -56,11 +60,29 @@ namespace	ft {
 	template <class Iterator>
 	bool	operator>=(const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
 
+	template <class Iterator1, class Iterator2>
+	bool	operator==(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs);
+
+	template <class Iterator1, class Iterator2>
+	bool	operator!=(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs);
+
+	template <class Iterator1, class Iterator2>
+	bool	operator<(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs);
+
+	template <class Iterator1, class Iterator2>
+	bool	operator<=(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs);
+
+	template <class Iterator1, class Iterator2>
+	bool	operator>(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs);
+
+	template <class Iterator1, class Iterator2>
+	bool	operator>=(const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs);
+
 	template <class Iterator>
 	reverse_iterator<Iterator>	operator+(typename reverse_iterator<Iterator>::difference_type n, const reverse_iterator<Iterator>& rev_it);
 
 	template <class Iterator>
-	typename	reverse_iterator<Iterator>::difference_type	operator-(const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
+	typename reverse_iterator<Iterator>::difference_type	operator-(const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs);
 }
 
 # include "reverse_iterator.tpp"
