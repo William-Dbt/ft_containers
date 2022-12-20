@@ -158,7 +158,7 @@ static void	iteratorTests() {
 	ft::vector<int>::reverse_iterator	revItB = intRevVector.rbegin();
 
 	std::cout << std::boolalpha;
-	std::cout << "operator=: " << (revItA == revItB) << std::endl;
+	std::cout << "operator==: " << (revItA == revItB) << std::endl;
 	std::cout << "operator!=: " << (revItA != revItB) << std::endl;
 	std::cout << "operator<: " << (revItA < revItB) << std::endl;
 	std::cout << "operator<=: " << (revItA <= revItB) << std::endl;
@@ -168,7 +168,7 @@ static void	iteratorTests() {
 	std::cout << std::endl;
 	std::cout << "Increment revItB and show result:" << std::endl;
 	revItB++;
-	std::cout << "operator=: " << (revItA == revItB) << std::endl;
+	std::cout << "operator==: " << (revItA == revItB) << std::endl;
 	std::cout << "operator!=: " << (revItA != revItB) << std::endl;
 	std::cout << "operator<: " << (revItA < revItB) << std::endl;
 	std::cout << "operator<=: " << (revItA <= revItB) << std::endl;

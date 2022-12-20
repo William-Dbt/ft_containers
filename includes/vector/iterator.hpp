@@ -18,34 +18,34 @@ namespace	ft {
 			~iterator();
 			
 			operator	iterator<const T>() const;
-			iterator&	operator=(iterator const & ref);
+			iterator&	operator=(iterator<const T> const & ref);
 			iterator&	operator++();
 			iterator	operator++(int);
 			iterator&	operator--();
 			iterator	operator--(int);
 
-			iterator	operator+(int n) const;
-			iterator&	operator+=(int n);
-			iterator	operator-(int n) const;
-			iterator&	operator-=(int n);
+			iterator		operator+(int n) const;
+			iterator&		operator+=(int n);
+			iterator		operator-(int n) const;
+			iterator&		operator-=(int n);
+			difference_type	operator-(iterator<const T> const & ref) const;
 
 			reference	operator*();
 			pointer		operator->();
 			reference	operator[](difference_type d);
 
-			bool	operator>(iterator const & ref) const;
-			bool	operator<(iterator const & ref) const;
-			bool	operator>=(iterator const & ref) const;
-			bool	operator<=(iterator const & ref) const;
-			bool	operator==(iterator const & ref) const;
-			bool	operator!=(iterator const & ref) const;
+			bool	operator>(iterator<const T> const & ref) const;
+			bool	operator<(iterator<const T> const & ref) const;
+			bool	operator>=(iterator<const T> const & ref) const;
+			bool	operator<=(iterator<const T> const & ref) const;
+			bool	operator==(iterator<const T> const & ref) const;
+			bool	operator!=(iterator<const T> const & ref) const;
+
+			pointer	getData() const;
 
 		private:
 			pointer	_data;
 	};
-
-	template <class Iterator>
-	typename	iterator<Iterator>::difference_type	operator-(const iterator<Iterator>& lhs, const iterator<Iterator>& rhs);
 }
 
 # include "iterator.tpp"

@@ -13,13 +13,12 @@ template <class T>
 ft::iterator<T>::~iterator() {}
 
 template <class T>
-ft::iterator<T>::operator iterator<const T>() const
-{
+ft::iterator<T>::operator iterator<const T>() const {
 	return iterator<const T>(this->_data);
 }
 
 template <class T>
-ft::iterator<T>&	ft::iterator<T>::operator=(iterator const & ref) {
+ft::iterator<T>&	ft::iterator<T>::operator=(iterator<const T> const & ref) {
 	if (this != &ref)
 		this->_data = ref._data;
 
@@ -83,6 +82,11 @@ ft::iterator<T>&	ft::iterator<T>::operator-=(int n) {
 }
 
 template <class T>
+typename ft::iterator<T>::difference_type	ft::iterator<T>::operator-(iterator<const T> const & ref) const {
+	return (this->_data - ref.getData());
+}
+
+template <class T>
 typename ft::iterator<T>::reference	ft::iterator<T>::operator*() {
 	return (*this->_data);
 }
@@ -98,50 +102,59 @@ typename ft::iterator<T>::reference	ft::iterator<T>::operator[](difference_type 
 }
 
 template <class T>
-bool	ft::iterator<T>::operator>(iterator const & ref) const {
-	return (this->_data > ref._data);
+bool	ft::iterator<T>::operator>(iterator<const T> const & ref) const {
+	if (this->_data > ref.getData())
+		return true;
+
+	return false;
 }
 
 template <class T>
-bool	ft::iterator<T>::operator<(iterator const & ref) const {
-	return (!(this->_data > ref._data));
+bool	ft::iterator<T>::operator<(iterator<const T> const & ref) const {
+	if (this->_data < ref.getData())
+		return true;
+
+	return false;
 }
 
 template <class T>
-bool	ft::iterator<T>::operator>=(iterator const & ref) const {
-	return (this->_data >= ref._data);
+bool	ft::iterator<T>::operator>=(iterator<const T> const & ref) const {
+	if (this->_data >= ref.getData())
+		return true;
+
+	return false;
 }
 
 template <class T>
-bool	ft::iterator<T>::operator<=(iterator const & ref) const {
-	return (this->_data <= ref._data);
+bool	ft::iterator<T>::operator<=(iterator<const T> const & ref) const {
+	if (this->_data <= ref.getData())
+		return true;
+
+	return false;
 }
 
 template <class T>
-bool	ft::iterator<T>::operator==(iterator const & ref) const {
-	return (this->_data == ref._data);
+bool	ft::iterator<T>::operator==(iterator<const T> const & ref) const {
+	if (this->_data == ref.getData())
+		return true;
+
+	return false;
 }
 
 template <class T>
-bool	ft::iterator<T>::operator!=(iterator const & ref) const {
-	return (this->_data != ref._data);
+bool	ft::iterator<T>::operator!=(iterator<const T> const & ref) const {
+	if (this->_data != ref.getData())
+		return true;
+
+	return false;
 }
 
-template <class Iterator>
-typename ft::iterator<Iterator>::difference_type	ft::operator-(const ft::iterator<Iterator>& lhs, const ft::iterator<Iterator>& rhs) {
-	ft::iterator<Iterator>								tmp(lhs);
-	typename ft::iterator<Iterator>::difference_type	i = 0;
+template <class T>
+typename ft::iterator<T>::pointer	ft::iterator<T>::getData() const {
+	return (this->_data);
+}
 
-	if (rhs == lhs)
-		return 0;
-
-	if (tmp > rhs) {
-		while (tmp-- != rhs)
-			i++;
-	}
-	else
-		while (tmp++ != rhs)
-			i--;
-
-	return i;
+template <class T>
+ft::iterator<T>	operator+(int n, ft::iterator<T> const & ref) {
+	return (ref + n);	
 }
