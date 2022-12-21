@@ -107,25 +107,9 @@ namespace	ft {
 	};
 
 	template <class T, class Alloc>
-	bool	operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-
-	template <class T, class Alloc>
-	bool	operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-
-	template <class T, class Alloc>
-	bool	operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-
-	template <class T, class Alloc>
-	bool	operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-
-	template <class T, class Alloc>
-	bool	operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
-
-	template <class T, class Alloc>
-	bool	operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+	void	swap(ft::vector<T,Alloc>& lhs, ft::vector<T,Alloc>& rhs);
 }
 
 # include "vector.tpp"
-# include "nonMemberFunctions.tpp"
 
 #endif

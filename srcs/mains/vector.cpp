@@ -573,7 +573,20 @@ static void	nonMemberFunctionsTests() {
 	std::cout << std::endl;
 	std::cout << "vectorC <= vectorA: " << std::boolalpha << (vectorC <= vectorA) << std::endl;
 	std::cout << "vectorC <= vectorB: " << std::boolalpha << (vectorC <= vectorB) << std::endl;
+
 	std::cout << std::endl;
+	std::cout << "Let's swap vectorA and vectorB" << std::endl;
+	swap(vectorA, vectorB);
+	std::cout << "vectorA: ";
+	for (i = 0; i < (int)vectorA.size(); i++)
+		std::cout << ' ' << vectorA[i];
+
+	std::cout << std::endl;
+	std::cout << "vectorB: ";
+	for (i = 0; i < (int)vectorB.size(); i++)
+		std::cout << ' ' << vectorB[i];
+
+	std::cout << std::endl << std::endl;
 }
 
 static void	showTestList() {

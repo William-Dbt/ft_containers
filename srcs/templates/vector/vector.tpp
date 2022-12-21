@@ -25,3 +25,47 @@ void	ft::vector<T, Alloc>::changeCapacity(size_type newCapacity) {
 	this->_datas = newData;
 	this->_capacity = newCapacity;
 }
+
+template <class T, class Alloc>
+bool	operator==(const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs) {
+	size_t	i;
+
+	if (lhs.size() != rhs.size())
+		return false;
+
+	for (i = 0; i < lhs.size(); i++)
+		if (lhs[i] != rhs[i])
+			return false;
+
+	return true;
+}
+
+template <class T, class Alloc>
+bool	operator!=(const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs) {
+	return (!(lhs == rhs));
+}
+
+template <class T, class Alloc>
+bool	operator<(const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs) {
+	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+}
+
+template <class T, class Alloc>
+bool	operator<=(const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs) {
+	return (!(rhs < lhs));
+}
+
+template <class T, class Alloc>
+bool	operator>(const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs) {
+	return (rhs < lhs);
+}
+
+template <class T, class Alloc>
+bool	operator>=(const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs) {
+	return (!(lhs < rhs));
+}
+
+template <class T, class Alloc>
+void	ft::swap(ft::vector<T,Alloc>& lhs, ft::vector<T,Alloc>& rhs) {
+	lhs.swap(rhs);
+}
