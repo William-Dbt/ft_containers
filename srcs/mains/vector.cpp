@@ -4,7 +4,6 @@
 #include "vector.hpp"
 
 static void	constructorTests() {
-	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Default constructor:" << std::endl;
 	ft::vector<int>	intVector;
 
@@ -48,11 +47,11 @@ static void	constructorTests() {
 	cpFloatVector = floatVector;
 	for (int i = 0; i < (int)cpFloatVector.size(); i++)
 		std::cout << i << ": " << cpFloatVector[i] << std::endl;
-	std::cout << "----------------------------------------" << std::endl;
+
+	std::cout << std::endl;
 }
 
 static void	iteratorTests() {
-	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Let's fill a vector of 5 elements and print them with iterator:" << std::endl;
 	ft::vector<int>				intVector(5);
 
@@ -188,14 +187,13 @@ static void	iteratorTests() {
 	std::cout << std::endl;
 	revItA = intRevVector.rbegin();
 	revItB = intRevVector.rend();
-	std::cout << "My vector has: " << (revItB - revItA) << " elements. (Thanks to operator-(itA, itB))" << std::endl;
-	std::cout << "----------------------------------------" << std::endl;
+	std::cout << "My vector has: " << (revItB - revItA) << " elements. (Thanks to operator-(it))" << std::endl;
+	std::cout << std::endl;
 }
 
 static void	capacityTests() {
 	int	i;
 
-	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Create a vector container which contains 5 content (18 here):" << std::endl;
 	ft::vector<int>	intVector(5, 18);
 
@@ -250,13 +248,12 @@ static void	capacityTests() {
 	for (i = 0; i < (int)intVector.size(); i++)
 		std::cout << intVector[i] << std::endl; */
 
-	std::cout << "----------------------------------------" << std::endl;
+	std::cout << std::endl;
 }
 
 static void	accessTests() {
 	int	i;
 
-	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Create a vector of 5 string elements:" << std::endl;
 	ft::vector<std::string>	strVector(5);
 
@@ -302,13 +299,12 @@ static void	accessTests() {
 	for (i = 0; i < (int)strVector.size(); i++)
 		std::cout << strVector[i] << std::endl;
 
-	std::cout << "----------------------------------------" << std::endl;
+	std::cout << std::endl;
 }
 
 static void	modifiersTests() {
 	int	i;
 
-	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Create a vector of size 5:";
 	ft::vector<int>		intVector(5, 66);
 
@@ -489,7 +485,7 @@ static void	modifiersTests() {
 
 	std::cout << std::endl << std::endl;
 	std::cout << "We still can read in the memory because the capacity doesn't change." << std::endl;
-	std::cout << "----------------------------------------" << std::endl;
+	std::cout << std::endl;
 }
 
 static void	allocatorTests() {
@@ -497,7 +493,6 @@ static void	allocatorTests() {
 	int				*allocator;
 	int				i;
 
-	std::cout << "----------------------------------------" << std::endl;
 	std::cout << "Let's create a int vector with allocator of get_allocator()" << std::endl;
 	allocator = intVector.get_allocator().allocate(5);
 	for (i = 0; i < 5; i++)
@@ -510,11 +505,10 @@ static void	allocatorTests() {
 		intVector.get_allocator().destroy(&allocator[i]);
 
 	intVector.get_allocator().deallocate(allocator, 5);
-	std::cout << "----------------------------------------" << std::endl;
+	std::cout << std::endl;
 }
 
 static void	nonMemberFunctionsTests() {
-	std::cout << "----------------------------------------" << std::endl;
 	int	i;
 
 	std::cout << "Create two vectors A and B:" << std::endl;
@@ -579,73 +573,72 @@ static void	nonMemberFunctionsTests() {
 	std::cout << std::endl;
 	std::cout << "vectorC <= vectorA: " << std::boolalpha << (vectorC <= vectorA) << std::endl;
 	std::cout << "vectorC <= vectorB: " << std::boolalpha << (vectorC <= vectorB) << std::endl;
-	std::cout << "----------------------------------------" << std::endl;
+	std::cout << std::endl;
 }
 
 static void	showTestList() {
-	std::cout << "List of tests:" << std::endl;
-	std::cout << "0: Show list" << std::endl;
-	std::cout << "1: Constructor" << std::endl;
-	std::cout << "2: Iterators" << std::endl;
-	std::cout << "3: Capacity" << std::endl;
-	std::cout << "4: Element access" << std::endl;
-	std::cout << "5: Modifiers" << std::endl;
-	std::cout << "6: Allocator" << std::endl;
-	std::cout << "7: Non member functions" << std::endl;
-	std::cout << "exit: Main menu" << std::endl << std::endl;
+	std::cout << "\033[33mList of category to test:" << std::endl;
+	std::cout << "\033[93m";
+	std::cout << " \'0\'\tConstructor" << std::endl;
+	std::cout << " \'1\'\tIterators" << std::endl;
+	std::cout << " \'2\'\tCapacity" << std::endl;
+	std::cout << " \'3\'\tElement access" << std::endl;
+	std::cout << " \'4\'\tModifiers" << std::endl;
+	std::cout << " \'5\'\tAllocator" << std::endl;
+	std::cout << " \'6\'\tNon member functions" << std::endl;
+	std::cout << "\033[31m";
+	std::cout << "\'exit\'\tMain menu" << std::endl;
+	std::cout << "\033[33m";
+	std::cout << "> ";
 }
 
 void	vectorTests() {
 	std::string	idx;
 
-	std::cout << std::endl;
 	showTestList();
-	std::cout << "Which test do you want to see: ";
 	while (std::getline(std::cin, idx)) {
+		std::cout << std::endl;
 		if (idx.compare("exit") == 0)
 			break ;
 
-		if (idx.compare("0") == 0) {
+		if (idx.size() == 0) {
 			showTestList();
-			std::cout << "> ";
 			continue ;
 		}
-
+		std::cout << "\033[97m";
 		switch (atoi(idx.c_str())) {
-			case 1: {
+			case 0: {
 				constructorTests();
 				break ;
 			}
-			case 2: {
+			case 1: {
 				iteratorTests();
 				break ;
 			}
-			case 3: {
+			case 2: {
 				capacityTests();
 				break ;
 			}
-			case 4: {
+			case 3: {
 				accessTests();
 				break ;
 			}
-			case 5: {
+			case 4: {
 				modifiersTests();
 				break ;
 			}
-			case 6: {
+			case 5: {
 				allocatorTests();
 				break ;
 			}
-			case 7: {
+			case 6: {
 				nonMemberFunctionsTests();
 				break ;
 			}
-			default: {
-				std::cout << std::endl;
-				showTestList();
+			default:
 				break ;
-			}
 		}
-		std::cout << "> ";
+		std::cout << "\033[0m";
+		showTestList();
 	}
 }

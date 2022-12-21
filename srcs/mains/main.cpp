@@ -3,34 +3,39 @@
 
 void	vectorTests();
 
-static void	showIndexes() {
-	std::cout << "List of tests:" << std::endl;
-	std::cout << "0: Show list" << std::endl;
-	std::cout << "1: Vector Tests" << std::endl;
-	std::cout << "exit: Exit program" << std::endl << std::endl;
+static void	showIndex() {
+	std::cout << "\033[33mList of tests to execute:" << std::endl;
+	std::cout << "\033[93m";
+	std::cout << " \'0\'\tVector Tests" << std::endl;
+	std::cout << "\033[31m";
+	std::cout << "\'exit\'\tExit program" << std::endl;
+	std::cout << "\033[33m";
+	std::cout << "> ";
 }
 
 int	main() {
 	std::string	idx;
 
-	showIndexes();
-	std::cout << "Please enter the number of the test to execute: ";
+	showIndex();
 	while (std::getline(std::cin, idx)) {
+		std::cout << std::endl;
 		if (idx.compare("exit") == 0)
 			break ;
 
-		if (idx.compare("0") == 0) {
-			showIndexes();
-			std::cout << ">> ";
+		if (idx.size() == 0) {
+			showIndex();
 			continue ;
 		}
 		switch (atoi(idx.c_str())) {
-			case 1: {
+			case 0: {
 				vectorTests();
 				break ;
 			}
+			default:
+				break ;
 		}
-		std::cout << ">> ";
+		showIndex();
 	}
+	std::cout << "\033[0m";
 	return 0;
 }
