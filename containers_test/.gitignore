@@ -1,6 +1,3 @@
-.vscode
-*.nfs
-
 # Prerequisites
 *.d
 
@@ -31,5 +28,11 @@
 
 # Executables
 *.exe
-*.out
+*.out*
 *.app
+
+# Test results
+*.log
+*.diff
+
+.vscode
