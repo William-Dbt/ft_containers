@@ -3,12 +3,14 @@
 
 void	vectorTests();
 void	stackTests();
+void	mapTests();
 
 static void	showIndex() {
 	std::cout << "\033[33mList of tests to execute:" << std::endl;
 	std::cout << "\033[93m";
-	std::cout << " \'0\'\tVector Tests" << std::endl;
-	std::cout << " \'1\'\tStack Tests" << std::endl;
+	std::cout << " \'0\'\tVector tests" << std::endl;
+	std::cout << " \'1\'\tStack tests" << std::endl;
+	std::cout << " \'2\'\tMap tests" << std::endl;
 	std::cout << "\033[31m";
 	std::cout << "\'exit\'\tExit program" << std::endl;
 	std::cout << "\033[33m";
@@ -35,6 +37,10 @@ int	main() {
 			}
 			case 1: {
 				stackTests();
+				break ;
+			}
+			case 2: {
+				mapTests();
 				break ;
 			}
 			default:
