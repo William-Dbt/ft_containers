@@ -106,10 +106,7 @@ namespace	ft {
 			void	changeCapacity(size_type newCapacity);
 	};
 
-	template <class T, class Alloc>
-	void	swap(ft::vector<T,Alloc>& lhs, ft::vector<T,Alloc>& rhs);
+	# include "vector.tpp"
 }
-
-# include "vector.tpp"
 
 #endif

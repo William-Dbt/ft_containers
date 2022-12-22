@@ -66,6 +66,6 @@ bool	operator>=(const ft::vector<T,Alloc>& lhs, const ft::vector<T,Alloc>& rhs) 
 }
 
 template <class T, class Alloc>
-void	ft::swap(ft::vector<T,Alloc>& lhs, ft::vector<T,Alloc>& rhs) {
+void	swap(ft::vector<T,Alloc>& lhs, ft::vector<T,Alloc>& rhs) {
 	lhs.swap(rhs);
 }
