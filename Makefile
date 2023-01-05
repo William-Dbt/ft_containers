@@ -21,7 +21,8 @@ PATHTEMP	= ${PATHSRCS}templates/
 PATHHEADERS	= includes/
 PATHNULL	= /dev/null
 
-SRCS		= $(addprefix ${PATHSRCS}mains/, main.cpp vector.cpp stack.cpp map.cpp)
+SRCS		= $(addprefix ${PATHSRCS}mains/, main.cpp vector.cpp stack.cpp map.cpp \
+											pair.cpp)
 
 OBJS		= ${SRCS:.cpp=.o}
 
@@ -36,7 +37,6 @@ INC			= -I${PATHHEADERS} \
 			-I${PATHTEMP}map/
 
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
-# CFLAGS		= -Wall -Wextra -Werror
 
 RM			= rm -rf
 MAKE		= make -C
