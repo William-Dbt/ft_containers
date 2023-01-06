@@ -22,7 +22,7 @@ PATHHEADERS	= includes/
 PATHNULL	= /dev/null
 
 SRCS		= $(addprefix ${PATHSRCS}mains/, main.cpp vector.cpp stack.cpp map.cpp \
-											pair.cpp)
+											pair.cpp bsttree.cpp)
 
 OBJS		= ${SRCS:.cpp=.o}
 

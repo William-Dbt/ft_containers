@@ -36,7 +36,7 @@ bool	operator!=(const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs) {
 
 template <class T1, class T2>
 bool	operator<(const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs) {
-	return (lhs.first < rhs.first || (!(rhs.first<lhs.first) && lhs.second<rhs.second));
+	return (lhs.first < rhs.first || (!(rhs.first < lhs.first) && lhs.second < rhs.second));
 }
 
 template <class T1, class T2>
@@ -52,4 +52,10 @@ bool	operator>(const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs) {
 template <class T1, class T2>
 bool	operator>=(const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs) {
 	return (!(lhs < rhs));
+}
+
+template <class T1, class T2>
+std::ostream&	operator<<(std::ostream& stream, const ft::pair<T1, T2>& ref) {
+	stream << '[' << ref.first << ", " << ref.second << ']';
+	return stream;
 }
