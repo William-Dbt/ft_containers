@@ -42,19 +42,27 @@ namespace	ft {
 			virtual	~BSTree();
 
 			void	addLeaf(value_type key);
-			void	addLeaf(value_type key, node_pointer node);
-
 			void	printInOrder();
-			void	printInOrder(node_pointer node);
 			void	printChildren(value_type key);
+			void	removeNode(value_type key);
 
 			node_pointer	findNode(value_type key);
-			node_pointer	findNode(value_type key, node_pointer node);
-
+			node_pointer	getRoot() const;
+			node_pointer	findSmallest();
 
 		private:
 			node_pointer	createLeaf(value_type key);
+			node_pointer	findNode(value_type key, node_pointer node);
+			node_pointer	findSmallest(node_pointer node);
 
+			void	addLeaf(value_type key, node_pointer node);
+			void	printInOrder(node_pointer node);
+			void	removeNode(value_type key, node_pointer node);
+			void	removeNode(node_pointer parent, node_pointer node, bool isLeft);
+			void	removeRootNode();
+			void	removeSubTree(node_pointer node);
+
+		private:
 			node_pointer	_root;
 			node_alloc		_alloc;
 	};
