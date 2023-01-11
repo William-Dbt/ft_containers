@@ -22,6 +22,7 @@ ft::map<Key, T, Compare, Alloc>::~map() {
 }
 
 template <class Key, class T, class Compare, class Alloc>
-ft::map<Key, T, Compare, Alloc>	ft::map<Key, T, Compare, Alloc>::operator=(const map& ref) {
+ft::map<Key, T, Compare, Alloc>&	ft::map<Key, T, Compare, Alloc>::operator=(const map& ref) {
 	(void)ref;
+	return *this;
 }

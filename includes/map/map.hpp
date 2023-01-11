@@ -4,7 +4,7 @@
 # include <memory>
 # include "binary_search_tree.hpp"
 # include "pair.hpp"
-// # include "iterator_traits.hpp"
+# include "iterator_traits.hpp"
 
 namespace ft {
 	template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<ft::pair<const Key,T> > >
@@ -13,8 +13,9 @@ namespace ft {
 			typedef Key														key_type;
 			typedef T														mapped_type;
 			typedef ft::pair<const key_type, mapped_type>					value_type;
+			typedef size_t													size_type;
+			// typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
 			typedef Compare													key_compare;
-			// value_compare	Nested function class to compare elements	see value_comp
 			typedef Alloc													allocator_type;
 			typedef typename allocator_type::reference						reference;
 			typedef typename allocator_type::const_reference				const_reference;
@@ -24,8 +25,21 @@ namespace ft {
 			// const_iterator	a bidirectional iterator to const value_type	
 			// reverse_iterator	reverse_iterator<iterator>	
 			// const_reverse_iterator	reverse_iterator<const_iterator>
-			// typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
-			typedef size_t													size_type;
+
+			class	value_compare {// in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+				friend class map;
+				public:
+					typedef bool result_type;
+					typedef value_type first_argument_type;
+					typedef value_type second_argument_type;
+					bool operator() (const value_type& x, const value_type& y) const {
+						return comp(x.first, y.first);
+					}
+
+				protected:
+					Compare comp;
+					value_compare (Compare c) : comp(c) {}	// constructed with map's comparison object
+			};
 
 			// Constructors, destructor & operator=
 			explicit map(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
@@ -38,10 +52,10 @@ namespace ft {
 			map&	operator=(const map& ref);
 
 		private:
-			ft::BSTree<key_type, mapped_type>	_tree;
-			size_type							_size;
-			key_compare							_comp;
-			allocator_type						_alloc;
+			ft::BSTree<value_type>	_tree;
+			size_type				_size;
+			key_compare				_comp;
+			allocator_type			_alloc;
 	};
 }
 

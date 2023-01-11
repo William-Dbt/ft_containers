@@ -38,8 +38,10 @@ namespace	ft {
 
 			BSTree();
 			BSTree(const value_type& key);
-
+			BSTree(const BSTree& ref);
 			virtual	~BSTree();
+
+			BSTree	operator=(const BSTree& ref);
 
 			void	addLeaf(value_type key);
 			void	printInOrder();
@@ -54,6 +56,7 @@ namespace	ft {
 			node_pointer	createLeaf(value_type key);
 			node_pointer	findNode(value_type key, node_pointer node);
 			node_pointer	findSmallest(node_pointer node);
+			node_pointer	copySubTree(node_pointer node);
 
 			void	addLeaf(value_type key, node_pointer node);
 			void	printInOrder(node_pointer node);
@@ -62,7 +65,6 @@ namespace	ft {
 			void	removeRootNode();
 			void	removeSubTree(node_pointer node);
 
-		private:
 			node_pointer	_root;
 			node_alloc		_alloc;
 	};

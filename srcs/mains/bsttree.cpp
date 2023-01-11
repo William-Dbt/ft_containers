@@ -52,5 +52,9 @@ void	BSTTests() {
 	std::cout << "Try to remove key that is not in the tree: ";
 	tree.removeNode(ft::make_pair(5153, 461));
 
+	std::cout << std::endl << std::endl;
+	std::cout << "Try to copy a tree by copySubTree function:" << std::endl;
+
+	// Todo
 	std::cout << std::endl;
 }
