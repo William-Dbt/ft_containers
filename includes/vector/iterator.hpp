@@ -5,12 +5,12 @@ namespace	ft {
 	template <class T>
 	class	iterator {
 		public:
-			typedef				T								value_type;
-			typedef				value_type*						pointer;
-			typedef				value_type&						reference;
-			typedef const		value_type&						const_reference;
-			typedef typename	std::random_access_iterator_tag	iterator_category;
-			typedef typename	std::ptrdiff_t					difference_type;
+			typedef T											value_type;
+			typedef value_type*									pointer;
+			typedef value_type&									reference;
+			typedef const value_type&							const_reference;
+			typedef typename std::random_access_iterator_tag	iterator_category;
+			typedef typename std::ptrdiff_t						difference_type;
 
 			iterator();
 			iterator(pointer data);

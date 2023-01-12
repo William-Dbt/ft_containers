@@ -1,14 +1,13 @@
 #ifndef __RBTREE_HPP__
 # define __RBTREE_HPP__
 
-/* Node key 
-- Root:		First top node
-- Parent:	First related top node
-- Child:	First related bottom nodes
-- Leaf:		Lasts nodes (that don't have children)
-*/
-
 namespace	ft {
+	/* Node key 
+	- Root:		First top node
+	- Parent:	First related top node
+	- Child:	First related bottom nodes
+	- Leaf:		Lasts nodes (that don't have children)
+	*/
 	template <class T>
 	struct	node {
 		typedef T		value_type;
@@ -38,10 +37,7 @@ namespace	ft {
 
 			BSTree();
 			BSTree(const value_type& key);
-			BSTree(const BSTree& ref);
 			virtual	~BSTree();
-
-			BSTree	operator=(const BSTree& ref);
 
 			void	addLeaf(value_type key);
 			void	printInOrder();
@@ -56,7 +52,6 @@ namespace	ft {
 			node_pointer	createLeaf(value_type key);
 			node_pointer	findNode(value_type key, node_pointer node);
 			node_pointer	findSmallest(node_pointer node);
-			node_pointer	copySubTree(node_pointer node);
 
 			void	addLeaf(value_type key, node_pointer node);
 			void	printInOrder(node_pointer node);

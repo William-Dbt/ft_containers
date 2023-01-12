@@ -1,5 +1,5 @@
+// This part was done with the youtube tutorial by PaulProgramming channel
 /* ########## Node Part ########## */
-
 template <class T>
 ft::node<T>::node() : key(), left(NULL), right(NULL) {}
 
@@ -50,21 +50,8 @@ ft::BSTree<T>::BSTree(const value_type& key) {
 }
 
 template <class T>
-ft::BSTree<T>::BSTree(const BSTree& ref) {
-	*this = ref;
-}
-
-template <class T>
 ft::BSTree<T>::~BSTree() {
 	this->removeSubTree(this->_root);
-}
-
-template <class T>
-ft::BSTree<T>&	ft::BSTree<T>::operator=(const BSTree& ref) {
-	if (this != &ref)
-		copySubTree(ref._root);
-
-	return *this;
 }
 
 template <class T>
@@ -174,27 +161,6 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findSmallest(node_pointer no
 		return (findSmallest(node->left));
 	else
 		return node;
-}
-
-// To do
-template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::copySubTree(node_pointer node) {
-	static typename ft::BSTree<T>::node_pointer	newRoot;
-	static node_pointer							subRootNode;
-	static bool									functionAlreadyCalled = false;
-
-	if (node == NULL)
-		return NULL;
-
-	if (!functionAlreadyCalled) {
-		newRoot.key = node.key;
-		subRootNode = node;
-		functionAlreadyCalled = true;
-	}
-	if (functionAlreadyCalled && node == subRootNode) {
-		functionAlreadyCalled = false;
-		return newRoot;
-	}
 }
 
 template <class T>
