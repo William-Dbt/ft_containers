@@ -1,11 +1,11 @@
 // This part was done with the youtube tutorial by PaulProgramming channel
 /* ########## Node Part ########## */
 template <class T>
-ft::node<T>::node() : key(), left(NULL), right(NULL) {}
+ft::node<T>::node() : key(), parent(NULL), left(NULL), right(NULL) {}
 
 template <class T>
-ft::node<T>::node(const value_type& nKey, node_pointer nLeft, node_pointer nRight) :
-				key(nKey), left(nLeft), right(nRight) {}
+ft::node<T>::node(const value_type& nKey, node_pointer nParent, node_pointer nLeft, node_pointer nRight) :
+				key(nKey), parent(nParent), left(nLeft), right(nRight) {}
 
 template <class T>
 ft::node<T>::node(const node & ref) {
@@ -16,6 +16,7 @@ template <class T>
 typename ft::node<T>::node_reference	ft::node<T>::operator=(const node & ref) {
 	if (this != &ref) {
 		this->key = ref.key;
+		this->parent = ref.parent;
 		this->left = ref.left;
 		this->right = ref.right;
 	}
@@ -28,6 +29,9 @@ ft::node<T>::~node() {}
 template <class T>
 bool	operator==(const ft::node<T>& lhs, const ft::node<T>& rhs) {
 	if (lhs.key != rhs.key)
+		return false;
+
+	if (lhs.parent != rhs.parent)
 		return false;
 
 	if (lhs.left != rhs.key)
@@ -77,14 +81,18 @@ void	ft::BSTree<T>::addLeaf(value_type key, node_pointer node) {
 	if (key < node->key) {
 		if (node->left != NULL)
 			addLeaf(key, node->left);
-		else
+		else {
 			node->left = createLeaf(key);
+			node->left->parent = node;
+		}
 	}
 	else if (key > node->key) {
 		if (node->right != NULL)
 			addLeaf(key, node->right);
-		else
+		else {
 			node->right = createLeaf(key);
+			node->right->parent = node;
+		}
 	}
 	else
 		std::cerr << "Error: trying to add a key that already exist!" << std::endl;
@@ -154,11 +162,27 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findSmallest() {
 
 template <class T>
 typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findSmallest(node_pointer node) {
-	if (this->_root == NULL)
+	if (this->_root == NULL || node == NULL)
 		return NULL;
 
 	if (node->left != NULL)
 		return (findSmallest(node->left));
+	else
+		return node;
+}
+
+template <class T>
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findGreatest() {
+	return (findGreatest(this->_root));
+}
+
+template <class T>
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findGreatest(node_pointer node) {
+	if (this->_root == NULL || node == NULL)
+		return NULL;
+
+	if (node->right != NULL)
+		return (findGreatest(node->right));
 	else
 		return node;
 }

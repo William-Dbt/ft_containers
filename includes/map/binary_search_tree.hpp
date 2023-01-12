@@ -15,7 +15,7 @@ namespace	ft {
 		typedef node&	node_reference;
 
 		node();
-		node(const value_type& nKey, node_pointer nLeft = NULL, node_pointer nRight = NULL);
+		node(const value_type& nKey, node_pointer nParent = NULL, node_pointer nLeft = NULL, node_pointer nRight = NULL);
 		node(const node & ref);
 
 		virtual	~node();
@@ -24,10 +24,13 @@ namespace	ft {
 
 		// Variables
 		value_type		key;
-		node_pointer	left;	// Value => less than data
-		node_pointer	right;	// Value => greater than data
+		node_pointer	parent;	// Ptr before node
+		node_pointer	left;	// Value => less than key
+		node_pointer	right;	// Value => greater than key
 	};
 
+	// Have to change to ft::pair<key_type, mapped_type>
+	// Always check first value of pair unstead of the pair hisself
 	template <class T>
 	class	BSTree {
 		public:
@@ -47,11 +50,13 @@ namespace	ft {
 			node_pointer	findNode(value_type key);
 			node_pointer	getRoot() const;
 			node_pointer	findSmallest();
+			node_pointer	findSmallest(node_pointer node);
+			node_pointer	findGreatest();
+			node_pointer	findGreatest(node_pointer node);
 
 		private:
 			node_pointer	createLeaf(value_type key);
 			node_pointer	findNode(value_type key, node_pointer node);
-			node_pointer	findSmallest(node_pointer node);
 
 			void	addLeaf(value_type key, node_pointer node);
 			void	printInOrder(node_pointer node);

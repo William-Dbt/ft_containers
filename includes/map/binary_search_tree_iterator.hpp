@@ -19,10 +19,10 @@ namespace	ft {
 			operator		bst_iterator<const T>() const;
 			bst_iterator&	operator=(const bst_iterator& ref);
 
-			// bst_iterator&	operator++();
-			// bst_iterator	operator++(int);
-			// bst_iterator&	operator--();
-			// bst_iterator	operator--(int);
+			bst_iterator&	operator++();
+			bst_iterator	operator++(int);
+			bst_iterator&	operator--();
+			bst_iterator	operator--(int);
 
 			reference	operator*();
 			pointer		operator->();

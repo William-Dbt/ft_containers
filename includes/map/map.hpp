@@ -24,16 +24,16 @@ namespace ft {
 			typedef typename allocator_type::const_pointer					const_pointer;
 			typedef typename ft::bst_iterator<T>							iterator;
 			typedef typename ft::bst_iterator<const T>						const_iterator;
-			typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
-			typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+			// typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
+			// typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 			typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
 
-			class	value_compare {// in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+			class	value_compare { // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
 				friend class map;
 				public:
-					typedef bool result_type;
-					typedef value_type first_argument_type;
-					typedef value_type second_argument_type;
+					typedef bool		result_type;
+					typedef value_type	first_argument_type;
+					typedef value_type	second_argument_type;
 					bool operator() (const value_type& x, const value_type& y) const {
 						return comp(x.first, y.first);
 					}
@@ -52,6 +52,21 @@ namespace ft {
 
 			~map();
 			map&	operator=(const map& ref);
+
+			// Iterators
+			iterator	begin();
+			iterator	end();
+
+			iterator	rbegin();
+			iterator	rend();
+
+			// Modifiers
+			// clear
+			ft::pair<iterator, bool>	insert(const value_type& value);
+			iterator					insert(iterator pos, const value_type& value);
+
+			template <class InputIt>
+			void	insert(InputIt first, InputIt last);
 
 		private:
 			ft::BSTree<value_type>	_tree;

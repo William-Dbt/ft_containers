@@ -20,6 +20,34 @@ ft::bst_iterator<T>&	ft::bst_iterator<T>::operator=(const bst_iterator& ref) {
 	return *this;
 }
 
+template <class T> // Todo
+ft::bst_iterator<T>&	ft::bst_iterator<T>::operator++() {
+	this->_data++;
+	return *this;
+}
+
+template <class T>
+ft::bst_iterator<T>	ft::bst_iterator<T>::operator++(int) {
+	bst_iterator	tmp(this->_data);
+
+	operator++();
+	return tmp;
+}
+
+template <class T> // Todo
+ft::bst_iterator<T>&	ft::bst_iterator<T>::operator--() {
+	this->_data--;
+	return *this;
+}
+
+template <class T>
+ft::bst_iterator<T>	ft::bst_iterator<T>::operator--(int) {
+	bst_iterator	tmp(this->_data);
+
+	operator--();
+	return tmp;
+}
+
 template <class T>
 typename ft::bst_iterator<T>::reference	ft::bst_iterator<T>::operator*() {
 	return (*this->_data);
