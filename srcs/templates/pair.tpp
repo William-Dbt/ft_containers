@@ -1,6 +1,6 @@
 /* MEMBERS FUNCTIONS */
 template <class T1, class T2>
-ft::pair<T1, T2>::pair() : first(first_type()), second(second_type()) {}
+ft::pair<T1, T2>::pair() : first(T1()), second(T2()) {}
 
 template <class T1, class T2>
 ft::pair<T1, T2>::pair(const first_type& a, const second_type& b) : first(a), second(b) {}
@@ -20,7 +20,7 @@ ft::pair<T1, T2>&	ft::pair<T1, T2>::operator=(const pair& ref) {
 
 /* NON-MEMBER FUNCTIONS */
 template <class T1, class T2>
-ft::pair<T1, T2>	ft::make_pair(T1 a, T2 b) {
+ft::pair<T1, T2>	make_pair(T1 a, T2 b) {
 	return (ft::pair<T1, T2>(a, b));
 }
 

@@ -5,14 +5,16 @@ namespace	ft {
 	template <class T>
 	class	bst_iterator {
 		public:
-			typedef T											value_type;
+			typedef typename T::value_type						value_type;
 			typedef value_type*									pointer;
 			typedef value_type&									reference;
-			typedef const value_type&							const_reference;
+			typedef T											node;
+			typedef T*											node_pointer;
 			typedef typename std::bidirectional_iterator_tag	iterator_category;
 			typedef typename std::ptrdiff_t						difference_type;
 
 			bst_iterator();
+			bst_iterator(node_pointer data);
 			bst_iterator(const bst_iterator& ref);
 			~bst_iterator();
 
@@ -24,14 +26,14 @@ namespace	ft {
 			bst_iterator&	operator--();
 			bst_iterator	operator--(int);
 
-			reference	operator*();
-			pointer		operator->();
+			reference	operator*() const;
+			pointer		operator->() const;
 
 			bool	operator==(bst_iterator<const T> const & ref);
 			bool	operator!=(bst_iterator<const T> const & ref);
 
 		private:
-			pointer	_data;
+			node_pointer	_data;
 	};
 }
 

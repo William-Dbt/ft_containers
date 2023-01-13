@@ -2,6 +2,9 @@ template <class T>
 ft::bst_iterator<T>::bst_iterator() : _data(NULL) {}
 
 template <class T>
+ft::bst_iterator<T>::bst_iterator(node_pointer data) : _data(data) {}
+
+template <class T>
 ft::bst_iterator<T>::bst_iterator(const bst_iterator& ref) : _data(ref._data) {}
 
 template <class T>
@@ -49,13 +52,13 @@ ft::bst_iterator<T>	ft::bst_iterator<T>::operator--(int) {
 }
 
 template <class T>
-typename ft::bst_iterator<T>::reference	ft::bst_iterator<T>::operator*() {
-	return (*this->_data);
+typename ft::bst_iterator<T>::reference	ft::bst_iterator<T>::operator*() const {
+	return (this->_data->key);
 }
 
 template <class T>
-typename ft::bst_iterator<T>::pointer	ft::bst_iterator<T>::operator->() {
-	return (&(this->operator*()));
+typename ft::bst_iterator<T>::pointer	ft::bst_iterator<T>::operator->() const {
+	return (&this->_data->key);
 }
 
 template <class T>

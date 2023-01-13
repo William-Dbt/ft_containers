@@ -14,7 +14,7 @@ namespace ft {
 		public:
 			typedef Key														key_type;
 			typedef T														mapped_type;
-			typedef ft::pair<const key_type, mapped_type>					value_type;
+			typedef ft::pair<key_type, mapped_type>							value_type;
 			typedef size_t													size_type;
 			typedef Compare													key_compare;
 			typedef Alloc													allocator_type;
@@ -22,10 +22,10 @@ namespace ft {
 			typedef typename allocator_type::const_reference				const_reference;
 			typedef typename allocator_type::pointer						pointer;
 			typedef typename allocator_type::const_pointer					const_pointer;
-			typedef typename ft::bst_iterator<T>							iterator;
-			typedef typename ft::bst_iterator<const T>						const_iterator;
-			// typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
-			// typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+			typedef typename ft::BSTree<value_type>::iterator				iterator;
+			typedef typename ft::BSTree<value_type>::const_iterator			const_iterator;
+			typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 			typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
 
 			class	value_compare { // in C++98, it is required to inherit binary_function<value_type,value_type,bool>

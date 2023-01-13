@@ -1,8 +1,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+// #include <map>
 #include "map.hpp"
-#include <map>
+#include "pair.hpp"
 
 static void	constructorTests() {
 	// std::map<int, float>	mapTest;
@@ -22,17 +23,18 @@ static void	iteratorTests() {
 	ft::map<std::string, int>			mapName;
 	ft::map<std::string, int>::iterator	it;
 
-	mapName.insert(ft::pair<std::string, int>("Jean", 42));
-	mapName.insert(ft::pair<std::string, int>("Mich", 12));
-	mapName.insert(ft::pair<std::string, int>("Paul", 56));
-	mapName.insert(ft::pair<std::string, int>("Adri", 34));
-	mapName.insert(ft::pair<std::string, int>("Abil", 99));
-	mapName.insert(ft::pair<std::string, int>("Bill", 4));
-	mapName.insert(ft::pair<std::string, int>("Celi", 2));
+	mapName.insert(ft::make_pair("Jean", 42));
+	// mapName.insert(ft::pair<std::string, int>("Mich", 12));
+	// mapName.insert(std::pair<std::string, int>("Paul", 56));
+	// mapName.insert(std::pair<std::string, int>("Adri", 34));
+	// mapName.insert(std::pair<std::string, int>("Abil", 99));
+	// mapName.insert(std::pair<std::string, int>("Bill", 4));
+	// mapName.insert(std::pair<std::string, int>("Celi", 2));
 	it = mapName.begin();
-	std::cout << "Value of begin: " << *it << std::endl;
-	it = mapName.end();
-	std::cout << "Value of end: " << *it << std::endl << std::endl;
+	std::cout << "Value of begin: " << it->first << std::endl;
+	// it = mapName.end();
+	// it--;
+	// std::cout << "Value of end: " << (*it).first << std::endl << std::endl;
 
 	std::cout << std::endl;
 }

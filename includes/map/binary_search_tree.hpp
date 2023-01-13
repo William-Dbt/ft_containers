@@ -1,6 +1,8 @@
 #ifndef __RBTREE_HPP__
 # define __RBTREE_HPP__
 
+# include "binary_search_tree_iterator.hpp"
+
 namespace	ft {
 	/* Node key 
 	- Root:		First top node
@@ -34,9 +36,12 @@ namespace	ft {
 	template <class T>
 	class	BSTree {
 		public:
-			typedef T									value_type;
-			typedef std::allocator< ft::node<T> >		node_alloc;
-			typedef typename ft::node<T>::node_pointer	node_pointer;
+			typedef T											value_type;
+			typedef ft::node<value_type>						node_type;
+			typedef std::allocator< ft::node<value_type> >		node_alloc;
+			typedef typename ft::node<value_type>::node_pointer	node_pointer;
+			typedef ft::bst_iterator<node_type>					iterator;
+			typedef ft::bst_iterator<const node_type>			const_iterator;
 
 			BSTree();
 			BSTree(const value_type& key);
