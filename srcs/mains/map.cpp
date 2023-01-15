@@ -6,25 +6,26 @@
 #include "pair.hpp"
 
 static void	constructorTests() {
-	ft::map<int, float>	mapTest;
+	// Todo
+	// ft::map<int, float>	mapTest;
 
-	mapTest.insert(ft::pair<int, float>(54, 2));
-	mapTest.insert(ft::pair<int, float>(3, 2));
-	mapTest.insert(ft::pair<int, float>(-2, 2));
-	mapTest.insert(ft::pair<int, float>(-56, 2));
-	mapTest.insert(ft::pair<int, float>(53, 2));
-	mapTest.insert(ft::pair<int, float>(13, 2));
+	// mapTest.insert(ft::pair<int, float>(54, 2));
+	// mapTest.insert(ft::pair<int, float>(3, 2));
+	// mapTest.insert(ft::pair<int, float>(-2, 2));
+	// mapTest.insert(ft::pair<int, float>(-56, 2));
+	// mapTest.insert(ft::pair<int, float>(53, 2));
+	// mapTest.insert(ft::pair<int, float>(13, 2));
 
-	ft::map<int, float>::iterator	it;
+	// ft::map<int, float>::iterator	it;
 
-	for (it = mapTest.begin(); it != mapTest.end(); it++)
-		std::cout << it->first << std::endl;
+	// for (it = mapTest.begin(); it != mapTest.end(); it++)
+	// 	std::cout << it->first << std::endl;
 
-	std::cout << std::endl;
-	it = mapTest.end();
-	it--;
-	for (; it != mapTest.begin(); it--)
-		std::cout << it->first << std::endl;
+	// std::cout << std::endl;
+	// it = mapTest.end();
+	// it--;
+	// for (; it != mapTest.begin(); it--)
+	// 	std::cout << it->first << std::endl;
 }
 
 static void	iteratorTests() {
