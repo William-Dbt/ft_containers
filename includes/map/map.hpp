@@ -54,11 +54,14 @@ namespace ft {
 			map&	operator=(const map& ref);
 
 			// Iterators
-			iterator	begin();
-			iterator	end();
+			iterator		begin();
+			const_iterator	begin() const;
 
-			iterator	rbegin();
-			iterator	rend();
+			iterator		end();
+			const_iterator	end() const;
+
+			// iterator	rbegin();
+			// iterator	rend();
 
 			// Modifiers
 			// clear

@@ -14,7 +14,7 @@ namespace	ft {
 			typedef typename std::ptrdiff_t						difference_type;
 
 			bst_iterator();
-			bst_iterator(node_pointer data);
+			bst_iterator(node_pointer data, node_pointer parent);
 			bst_iterator(const bst_iterator& ref);
 			~bst_iterator();
 
@@ -32,8 +32,9 @@ namespace	ft {
 			bool	operator==(bst_iterator<const T> const & ref);
 			bool	operator!=(bst_iterator<const T> const & ref);
 
-		private:
 			node_pointer	_data;
+			// In case of sending NULL in _data (as end iterator)
+			node_pointer	_parent;
 	};
 }
 
