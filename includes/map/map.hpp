@@ -78,12 +78,15 @@ namespace ft {
 			const mapped_type&	at(const key_type& k) const;
 
 			// Modifiers
-			// clear
 			ft::pair<iterator, bool>	insert(const value_type& value);
 			iterator					insert(iterator pos, const value_type& value);
 
 			template <class InputIt>
 			void	insert(InputIt first, InputIt last);
+
+			void		erase(iterator position);
+			size_type	erase(const key_type& k);
+			void		erase(iterator first, iterator last);
 
 		private:
 			ft::BSTree<value_type>	_tree;

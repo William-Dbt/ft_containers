@@ -1,8 +1,40 @@
-// Todo
 template <class Key, class T, class Compare, class Alloc>
 ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, bool>	ft::map<Key, T, Compare, Alloc>::insert(const value_type& value) {
-	this->_tree.addLeaf(value);
-
-	this->_size++;
-	return (ft::make_pair(iterator(NULL, NULL), true));
+	if (this->_tree.findNode(value) == NULL) {
+		this->_tree.addLeaf(value);
+		this->_size++;
+		return (ft::make_pair(iterator(this->_tree.findNode(value), NULL), true));
+	}
+	return (ft::make_pair(iterator(this->_tree.findNode(value), NULL), false));
 }
+
+template <class Key, class T, class Compare, class Alloc>
+typename ft::map<Key, T, Compare, Alloc>::iterator	ft::map<Key, T, Compare, Alloc>::insert(iterator pos, const value_type& value) {
+	// iterator	it = pos;
+	(void)pos;
+
+	if (this->_tree.findNode(value) != NULL)
+		return (iterator(this->_tree.findNode(value), NULL));
+
+	this->insert(value);
+	// MB TODO - Optimize adding element in tree by pos
+	// if (pos == NULL)
+	// 	this->insert(value);
+	// else {
+	// 	if (pos->key.first < value.first)
+	// 		std::cout << "key <" << std::endl;
+	// 	else
+	// 		std::cout << "key >" << std::endl;
+	// }
+	return (iterator(this->_tree.findNode(value), NULL));
+}
+
+template <class Key, class T, class Compare, class Alloc>
+template <class InputIt>
+void	ft::map<Key, T, Compare, Alloc>::insert(InputIt first, InputIt last) {
+	for (; first != last; first++)
+		this->insert(first._data->key);
+}
+
+template <class Key, class T, class Compare, class Alloc>
+void	ft::map<Key, T, Compare, Alloc>::erase()

@@ -111,6 +111,48 @@ static void	accessTests() {
 	
 }
 
+static void	modifiersTests() {
+	std::cout << "Create an empty map" << std::endl;
+	ft::map<std::string, int>							addressNeighbors;
+	ft::pair<ft::map<std::string, int>::iterator, bool>	buffer;
+	ft::map<std::string, int>::iterator					it;
+
+	std::cout << "Insert two elements ([Paul, 14] & [Jean, 16]) " << std::endl;
+	addressNeighbors.insert(ft::pair<std::string, int>("Paul", 14));
+	addressNeighbors.insert(ft::pair<std::string, int>("Jean", 16));
+
+	std::cout << std::endl << "Insert a second time Jean and check the return pair value of insert() function:" << std::endl;
+	buffer = addressNeighbors.insert(ft::pair<std::string, int>("Jean", 16));
+	if (buffer.second == false) {
+		std::cout << "Pair.second value is false, no new element created." << std::endl;
+		std::cout << "Element \"Jean\" already exist: [Jean, " << addressNeighbors["Jean"] << ']' << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << "New map size: " << addressNeighbors.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Add new neighbor Ary, the first one of the street" << std::endl;
+	it = addressNeighbors.insert(addressNeighbors.begin(), ft::pair<std::string, int>("Ary", 1));
+	std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Now show the other neighbors (with the help of the returned iterator of Ary's insert (it to end())): " << std::endl;
+	it++;
+	for (; it != addressNeighbors.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Fill another map container with the first and end iterator of neighbors map:" << std::endl;
+	ft::map<std::string, int>	copyAddress;
+
+	copyAddress.insert(addressNeighbors.begin(), addressNeighbors.end());
+	for (it = copyAddress.begin(); it != copyAddress.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+}
+
 static void	showTestList() {
 	std::cout << "\033[33mList of category to test:" << std::endl;
 	std::cout << "\033[93m";
@@ -118,6 +160,7 @@ static void	showTestList() {
 	std::cout << " \'1\'\tIterator" << std::endl;
 	std::cout << " \'2\'\tCapacity" << std::endl;
 	std::cout << " \'3\'\tAccess" << std::endl;
+	std::cout << " \'4\'\tModifiers" << std::endl;
 	std::cout << "\033[31m";
 	std::cout << "\'exit\'\tMain menu" << std::endl;
 	std::cout << "\033[33m";
@@ -153,6 +196,10 @@ void	mapTests() {
 			}
 			case 3: {
 				accessTests();
+				break ;
+			}
+			case 4: {
+				modifiersTests();
 				break ;
 			}
 			default:
