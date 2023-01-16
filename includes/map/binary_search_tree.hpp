@@ -2,6 +2,7 @@
 # define __RBTREE_HPP__
 
 # include "binary_search_tree_iterator.hpp"
+# include "reverse_iterator.hpp"
 
 namespace	ft {
 	/* Node key 
@@ -31,8 +32,6 @@ namespace	ft {
 		node_pointer	right;	// Value => greater than key
 	};
 
-	// Have to change to ft::pair<key_type, mapped_type>
-	// Always check first value of pair unstead of the pair hisself
 	template <class T>
 	class	BSTree {
 		public:
@@ -42,6 +41,9 @@ namespace	ft {
 			typedef typename ft::node<value_type>::node_pointer	node_pointer;
 			typedef ft::bst_iterator<node_type>					iterator;
 			typedef ft::bst_iterator<const node_type>			const_iterator;
+			// TODO
+			// typedef ft::reverse_iterator<iterator>				reverse_iterator;
+			// typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
 			BSTree();
 			BSTree(const value_type& key);
@@ -58,6 +60,8 @@ namespace	ft {
 			node_pointer	findSmallest(node_pointer node);
 			node_pointer	findGreatest();
 			node_pointer	findGreatest(node_pointer node);
+
+			size_t	max_size() const;
 
 		private:
 			node_pointer	createLeaf(value_type key);

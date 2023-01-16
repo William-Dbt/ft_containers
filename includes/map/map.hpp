@@ -24,11 +24,12 @@ namespace ft {
 			typedef typename allocator_type::const_pointer					const_pointer;
 			typedef typename ft::BSTree<value_type>::iterator				iterator;
 			typedef typename ft::BSTree<value_type>::const_iterator			const_iterator;
-			typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
-			typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+			// TODO
+			// typedef typename ft::BSTree<value_type>::reverse_iterator		reverse_iterator;
+			// typedef typename ft::BSTree<value_type>::const_reverse_iterator	const_reverse_iterator;
 			typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
 
-			class	value_compare { // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+			class	value_compare {
 				friend class map;
 				public:
 					typedef bool		result_type;
@@ -40,7 +41,7 @@ namespace ft {
 
 				protected:
 					Compare comp;
-					value_compare (Compare c) : comp(c) {}	// constructed with map's comparison object
+					value_compare (Compare c) : comp(c) {}
 			};
 
 			// Constructors, destructor & operator=
@@ -60,8 +61,18 @@ namespace ft {
 			iterator		end();
 			const_iterator	end() const;
 
-			// iterator	rbegin();
-			// iterator	rend();
+			// TODO
+			// reverse_iterator		rbegin();
+			// const_reverse_iterator	rbegin() const;
+
+			// reverse_iterator		rend();
+			// const_reverse_iterator	rend() const;
+
+			// Capacity
+			bool		empty() const;
+			size_type	size() const;
+			size_type	max_size() const;
+
 
 			// Modifiers
 			// clear

@@ -1,4 +1,7 @@
 // This part was done with the youtube tutorial by PaulProgramming channel
+// The functions implementations are made with recursive method, I use the parent ptr in the node for iterators
+// I don't wanted to remake thoses functions
+
 /* ########## Node Part ########## */
 template <class T>
 ft::node<T>::node() : key(), parent(NULL), left(NULL), right(NULL) {}
@@ -34,7 +37,7 @@ bool	operator==(const ft::node<T>& lhs, const ft::node<T>& rhs) {
 	if (lhs.parent != rhs.parent)
 		return false;
 
-	if (lhs.left != rhs.key)
+	if (lhs.left != rhs.left)
 		return false;
 
 	if (lhs.right != rhs.right)
@@ -78,7 +81,7 @@ void	ft::BSTree<T>::addLeaf(value_type key, node_pointer node) {
 		this->_root = createLeaf(key);
 		return ;
 	}
-	if (key < node->key) {
+	if (key.first < node->key.first) {
 		if (node->left != NULL)
 			addLeaf(key, node->left);
 		else {
@@ -86,7 +89,7 @@ void	ft::BSTree<T>::addLeaf(value_type key, node_pointer node) {
 			node->left->parent = node;
 		}
 	}
-	else if (key > node->key) {
+	else if (key.first > node->key.first) {
 		if (node->right != NULL)
 			addLeaf(key, node->right);
 		else {
@@ -94,8 +97,6 @@ void	ft::BSTree<T>::addLeaf(value_type key, node_pointer node) {
 			node->right->parent = node;
 		}
 	}
-	else
-		std::cerr << "Error: trying to add a key that already exist!" << std::endl;
 }
 
 template <class T>
@@ -105,10 +106,9 @@ void	ft::BSTree<T>::printInOrder() {
 
 template <class T>
 void	ft::BSTree<T>::printInOrder(node_pointer node) {
-	if (this->_root == NULL) {
-		std::cerr << "Error: the tree is empty!";
+	if (this->_root == NULL)
 		return ;
-	}
+
 	if (node->left != NULL)
 		printInOrder(node->left);
 
@@ -121,10 +121,9 @@ template <class T>
 void	ft::BSTree<T>::printChildren(value_type key) {
 	node_pointer	node = this->findNode(key);
 
-	if (node == NULL) {
-		std::cerr << "Error: the key " << key << " isn't in the tree.";
+	if (node == NULL)
 		return ;
-	}
+
 	std::cout << "Parent: " << key << std::endl;
 	node->left == NULL ? std::cout << "lChild: NULL" << std::endl : std::cout << "lChild: " << node->left->key << std::endl;
 	node->right == NULL ? std::cout << "rChild: NULL" << std::endl : std::cout << "rChild: " << node->right->key << std::endl;
@@ -140,10 +139,10 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key, nod
 	if (node == NULL)
 		return NULL;
 
-	if (node->key == key)
+	if (node->key.first == key.first)
 		return node;
 	else {
-		if (key < node->key)
+		if (key.first < node->key.first)
 			return (findNode(key, node->left));
 		else
 			return (findNode(key, node->right));
@@ -194,19 +193,16 @@ void	ft::BSTree<T>::removeNode(value_type key) {
 
 template <class T>
 void	ft::BSTree<T>::removeNode(value_type key, node_pointer node) {
-	if (this->_root == NULL) {
-		std::cerr << "Error: the tree is empty!" << std::endl;
+	if (this->_root == NULL)
 		return ;
-	}
-	if (this->_root->key == key)
+
+	if (this->_root->key.first == key.first)
 		removeRootNode();
 	else {
 		if (node->left != NULL && key < node->key)
-			node->left->key == key ? this->removeNode(node, node->left, true) : this->removeNode(key, node->left);
-		else if (node->right != NULL && key > node->key)
-			node->right->key == key ? this->removeNode(node, node->right, false) : this->removeNode(key, node->right);
-		else
-			std::cerr << "Error: the key " << key << " wasn't found in the tree" << std::endl;
+			node->left->key.first == key.first ? this->removeNode(node, node->left, true) : this->removeNode(key, node->left);
+		else if (node->right != NULL && key.first > node->key.first)
+			node->right->key.first == key.first ? this->removeNode(node, node->right, false) : this->removeNode(key, node->right);
 	}
 }
 
@@ -214,10 +210,9 @@ template <class T>
 void	ft::BSTree<T>::removeNode(node_pointer parent, node_pointer node, bool isLeft) {
 	value_type	smallestKeyRightTree;
 
-	if (this->_root == NULL) {
-		std::cerr << "Error: cannot remove node. The tree is empty!" << std::endl;
+	if (this->_root == NULL)
 		return ;
-	}
+
 	if (node->left == NULL && node->right == NULL) { // Case 0: 0 children
 		isLeft == true ? parent->left = NULL : parent->right = NULL;
 		this->_alloc.destroy(node);
@@ -247,10 +242,9 @@ void	ft::BSTree<T>::removeRootNode() {
 	node_pointer	node;
 	value_type		key, smallestKeyRightTree;
 
-	if (this->_root == NULL) {
-		std::cerr << "Cannot remove root, the tree is empty!" << std::endl;
+	if (this->_root == NULL)
 		return ;
-	}
+
 	node = this->_root;
 	key = this->_root->key;
 	if (this->_root->left == NULL && this->_root->right == NULL) { // Case 0: 0 children
@@ -289,4 +283,9 @@ void	ft::BSTree<T>::removeSubTree(node_pointer node) {
 
 	this->_alloc.destroy(node);
 	this->_alloc.deallocate(node, 1);
+}
+
+template <class T>
+size_t	ft::BSTree<T>::max_size() const {
+	return this->_alloc.max_size();
 }

@@ -7,25 +7,7 @@
 
 static void	constructorTests() {
 	// Todo
-	// ft::map<int, float>	mapTest;
-
-	// mapTest.insert(ft::pair<int, float>(54, 2));
-	// mapTest.insert(ft::pair<int, float>(3, 2));
-	// mapTest.insert(ft::pair<int, float>(-2, 2));
-	// mapTest.insert(ft::pair<int, float>(-56, 2));
-	// mapTest.insert(ft::pair<int, float>(53, 2));
-	// mapTest.insert(ft::pair<int, float>(13, 2));
-
-	// ft::map<int, float>::iterator	it;
-
-	// for (it = mapTest.begin(); it != mapTest.end(); it++)
-	// 	std::cout << it->first << std::endl;
-
-	// std::cout << std::endl;
-	// it = mapTest.end();
-	// it--;
-	// for (; it != mapTest.begin(); it--)
-	// 	std::cout << it->first << std::endl;
+	;
 }
 
 static void	iteratorTests() {
@@ -44,7 +26,7 @@ static void	iteratorTests() {
 	std::cout << "Key of first element: " << it->first << std::endl;
 	it = people.end();
 	it--;
-	std::cout << "Key of last element: " << it->first << std::endl << std::endl;
+	std::cout << "Key of last element: " << it->first << std::endl;
 
 	std::cout << std::endl;
 	std::cout << "Print all elements thanks to begin() and end() function:" << std::endl;
@@ -52,7 +34,32 @@ static void	iteratorTests() {
 	for (it = people.begin(); it != people.end(); it++)
 		std::cout << it->first << ' ';
 
+	// TODO
+	// std::cout << std::endl;
+	// std::cout << "Try reverse_iterator:" << std::endl;
+	// ft::map<std::string, int>::reverse_iterator	revIt;
+
+	// revIt = people.rbegin();
+	// std::cout << "Key of rbegin (last element): " << revIt->first << std::endl;
 	std::cout << std::endl;
+}
+
+static void	capacityTests() {
+	std::cout << "Create an empty map" << std::endl;
+	ft::map<int, int>	time;
+
+	std::cout << std::boolalpha;
+	std::cout << "Is map empty? : " << time.empty() << std::endl;
+	std::cout << "Size: " << time.size() << std::endl;
+	std::cout << "Max_size: " << time.max_size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Fill the map with two elements" << std::endl;
+	time.insert(ft::pair<int, int>(12, 12));
+	time.insert(ft::pair<int, int>(16, 48));
+	std::cout << "Is map empty? : " << time.empty() << std::endl;
+	std::cout << "Size: " << time.size() << std::endl;
+	std::cout << "Max_size: " << time.max_size() << std::endl;
 	std::cout << std::endl;
 }
 
@@ -61,6 +68,7 @@ static void	showTestList() {
 	std::cout << "\033[93m";
 	std::cout << " \'0\'\tConstructor" << std::endl;
 	std::cout << " \'1\'\tIterator" << std::endl;
+	std::cout << " \'2\'\tCapacity" << std::endl;
 	std::cout << "\033[31m";
 	std::cout << "\'exit\'\tMain menu" << std::endl;
 	std::cout << "\033[33m";
@@ -88,6 +96,10 @@ void	mapTests() {
 			}
 			case 1: {
 				iteratorTests();
+				break ;
+			}
+			case 2: {
+				capacityTests();
 				break ;
 			}
 			default:
