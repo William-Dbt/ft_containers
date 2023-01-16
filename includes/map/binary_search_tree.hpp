@@ -41,9 +41,6 @@ namespace	ft {
 			typedef typename ft::node<value_type>::node_pointer	node_pointer;
 			typedef ft::bst_iterator<node_type>					iterator;
 			typedef ft::bst_iterator<const node_type>			const_iterator;
-			// TODO
-			// typedef ft::reverse_iterator<iterator>				reverse_iterator;
-			// typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
 			BSTree();
 			BSTree(const value_type& key);
@@ -53,6 +50,7 @@ namespace	ft {
 			void	printInOrder();
 			void	printChildren(value_type key);
 			void	removeNode(value_type key);
+			void	deleteTree();
 
 			node_pointer	findNode(value_type key);
 			node_pointer	getRoot() const;

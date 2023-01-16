@@ -18,7 +18,7 @@ ft::map<Key, T, Compare, Alloc>::map(InputIt first, InputIt last, const key_comp
 
 template <class Key, class T, class Compare, class Alloc>
 ft::map<Key, T, Compare, Alloc>::~map() {
-	;
+	this->_tree.deleteTree();
 }
 
 template <class Key, class T, class Compare, class Alloc>

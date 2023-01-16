@@ -2,6 +2,7 @@
 # define __MAP_HPP__
 
 # include <memory>
+# include <stdexcept>
 # include "binary_search_tree.hpp"
 # include "pair.hpp"
 # include "iterator_traits.hpp"
@@ -24,9 +25,8 @@ namespace ft {
 			typedef typename allocator_type::const_pointer					const_pointer;
 			typedef typename ft::BSTree<value_type>::iterator				iterator;
 			typedef typename ft::BSTree<value_type>::const_iterator			const_iterator;
-			// TODO
-			// typedef typename ft::BSTree<value_type>::reverse_iterator		reverse_iterator;
-			// typedef typename ft::BSTree<value_type>::const_reverse_iterator	const_reverse_iterator;
+			typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 			typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
 
 			class	value_compare {
@@ -61,18 +61,21 @@ namespace ft {
 			iterator		end();
 			const_iterator	end() const;
 
-			// TODO
-			// reverse_iterator		rbegin();
-			// const_reverse_iterator	rbegin() const;
+			reverse_iterator		rbegin();
+			const_reverse_iterator	rbegin() const;
 
-			// reverse_iterator		rend();
-			// const_reverse_iterator	rend() const;
+			reverse_iterator		rend();
+			const_reverse_iterator	rend() const;
 
 			// Capacity
 			bool		empty() const;
 			size_type	size() const;
 			size_type	max_size() const;
 
+			// Access
+			mapped_type&		operator[](const key_type& k);
+			mapped_type&		at(const key_type& k);
+			const mapped_type&	at(const key_type& k) const;
 
 			// Modifiers
 			// clear

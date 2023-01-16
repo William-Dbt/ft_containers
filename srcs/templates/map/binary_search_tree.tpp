@@ -272,6 +272,15 @@ void	ft::BSTree<T>::removeRootNode() {
 }
 
 template <class T>
+void	ft::BSTree<T>::deleteTree() {
+	this->removeSubTree(this->_root->left);
+	this->removeSubTree(this->_root->right);
+	this->_alloc.destroy(this->_root);
+	this->_alloc.deallocate(this->_root, 1);
+	this->_root = NULL;
+}
+
+template <class T>
 void	ft::BSTree<T>::removeSubTree(node_pointer node) {
 	if (node == NULL)
 		return ;
@@ -280,7 +289,7 @@ void	ft::BSTree<T>::removeSubTree(node_pointer node) {
 		removeSubTree(node->left);
 	else if (node->right != NULL)
 		removeSubTree(node->right);
-
+	
 	this->_alloc.destroy(node);
 	this->_alloc.deallocate(node, 1);
 }

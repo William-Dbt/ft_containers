@@ -34,13 +34,16 @@ static void	iteratorTests() {
 	for (it = people.begin(); it != people.end(); it++)
 		std::cout << it->first << ' ';
 
-	// TODO
-	// std::cout << std::endl;
-	// std::cout << "Try reverse_iterator:" << std::endl;
-	// ft::map<std::string, int>::reverse_iterator	revIt;
+	std::cout << std::endl << std::endl;
+	std::cout << "Try reverse_iterator:" << std::endl;
+	ft::map<std::string, int>::reverse_iterator	revIt;
 
+	// TODO - Check why infinite loop
 	// revIt = people.rbegin();
 	// std::cout << "Key of rbegin (last element): " << revIt->first << std::endl;
+	revIt = people.rend();
+	revIt--;
+	std::cout << "Key of rend (first element): " << revIt->first << std::endl;
 	std::cout << std::endl;
 }
 
@@ -63,12 +66,58 @@ static void	capacityTests() {
 	std::cout << std::endl;
 }
 
+static void	accessTests() {
+	std::cout << "Create a map of string and int" << std::endl;
+	ft::map<std::string, int>	keys;
+
+	keys.insert(ft::pair<std::string, int>("left", 4));
+	keys.insert(ft::pair<std::string, int>("right", 6));
+	keys.insert(ft::pair<std::string, int>("up", 8));
+	keys.insert(ft::pair<std::string, int>("down", 2));
+	std::cout << "Try to access elements with operator[]:" << std::endl;
+	std::cout << "[left] = " << keys["left"] << std::endl;
+	std::cout << "[right] = " << keys["right"] << std::endl;
+	std::cout << "[up] = " << keys["up"] << std::endl;
+	std::cout << "[down] = " << keys["down"] << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try to change value of \"right\" to 999:" << std::endl;
+	keys["right"] = 999;
+	std::cout << "New \"right\" value: " << keys["right"] << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try to add value that doesn't exist (space mapped on 101):" << std::endl;
+	keys["space"] = 101;
+	std::cout << "New \"space\" variable value: " << keys["space"] << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try to find values with at() function:" << std::endl;
+	try {
+		std::cout << "- Value that doesn't exist, as \"escape\"" << std::endl;
+		keys.at("escape");
+		std::cerr << "Error: exception failed" << std::endl;
+	}
+	catch (const std::out_of_range& e) {
+		std::cerr << "Out of range exception: " << e.what() << std::endl;
+	}
+	std::cout << "- Value \"right\": " << keys.at("right") << std::endl;
+	std::cout << "- Value \"left\": " << keys.at("left") << std::endl;
+	std::cout << "- Value \"up\": " << keys.at("up") << std::endl;
+	std::cout << "- Value \"down\": " << keys.at("down") << std::endl;
+	std::cout << "Right value isn't good, let's change it" << std::endl;
+	keys.at("right") = 6;
+	std::cout << "- Value \"right\": " << keys.at("right") << std::endl;
+	std::cout << std::endl;
+	
+}
+
 static void	showTestList() {
 	std::cout << "\033[33mList of category to test:" << std::endl;
 	std::cout << "\033[93m";
 	std::cout << " \'0\'\tConstructor" << std::endl;
 	std::cout << " \'1\'\tIterator" << std::endl;
 	std::cout << " \'2\'\tCapacity" << std::endl;
+	std::cout << " \'3\'\tAccess" << std::endl;
 	std::cout << "\033[31m";
 	std::cout << "\'exit\'\tMain menu" << std::endl;
 	std::cout << "\033[33m";
@@ -100,6 +149,10 @@ void	mapTests() {
 			}
 			case 2: {
 				capacityTests();
+				break ;
+			}
+			case 3: {
+				accessTests();
 				break ;
 			}
 			default:

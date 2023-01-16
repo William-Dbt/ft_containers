@@ -1,5 +1,5 @@
 template <class Iterator>
-ft::reverse_iterator<Iterator>::reverse_iterator() : _iterator(NULL) {}
+ft::reverse_iterator<Iterator>::reverse_iterator() : _iterator() {}
 
 template <class Iterator>
 ft::reverse_iterator<Iterator>::reverse_iterator(iterator_type it) : _iterator(it) {}
