@@ -151,6 +151,22 @@ static void	modifiersTests() {
 		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
 
 	std::cout << std::endl;
+	std::cout << "Try to erase the first element of addressNeighbors (Ary) by calling erase(iterator)" << std::endl;
+	addressNeighbors.erase(addressNeighbors.begin());
+	for (it = addressNeighbors.begin(); it != addressNeighbors.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try to remove the key \"Paul\":" << std::endl;
+	addressNeighbors.erase("Paul");
+	it = addressNeighbors.begin();
+	std::cout << it->first << std::endl;
+	it++;
+	// for (it = addressNeighbors.begin(); it != addressNeighbors.end(); it++)
+		// std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << std::endl;
 }
 
 static void	showTestList() {

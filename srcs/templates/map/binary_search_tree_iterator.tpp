@@ -1,11 +1,11 @@
 template <class T>
-ft::bst_iterator<T>::bst_iterator() : _data(NULL) {}
+ft::bst_iterator<T>::bst_iterator() : _data(NULL), _parent(NULL) {}
 
 template <class T>
 ft::bst_iterator<T>::bst_iterator(node_pointer data, node_pointer parent) : _data(data), _parent(parent) {}
 
 template <class T>
-ft::bst_iterator<T>::bst_iterator(const bst_iterator& ref) : _data(ref._data) {}
+ft::bst_iterator<T>::bst_iterator(const bst_iterator& ref) : _data(ref._data), _parent(ref._parent) {}
 
 template <class T>
 ft::bst_iterator<T>::~bst_iterator() {}
@@ -34,7 +34,7 @@ ft::bst_iterator<T>&	ft::bst_iterator<T>::operator++() {
 				this->_data = this->_data->left;
 		}
 		else { // If no greater value exist, go to the previous tree axe or just the parent
-			while (this->_data->parent && this->_data->parent->right == this->_data) // The condition is false because my operator copare the ptrs and not the values
+			while (this->_data->parent && this->_data->parent->right == this->_data) // The condition can be false because my operator compare the ptrs and not the values
 				this->_data = this->_data->parent;
 
 			this->_data = this->_data->parent;
@@ -94,7 +94,7 @@ typename ft::bst_iterator<T>::pointer	ft::bst_iterator<T>::operator->() const {
 
 template <class T>
 bool	ft::bst_iterator<T>::operator==(bst_iterator<const T> const & ref) {
-	if (this->_data == ref._data)
+	if (this->_data == ref._data && this->_parent == ref._parent)
 		return true;
 
 	return false;
@@ -102,7 +102,7 @@ bool	ft::bst_iterator<T>::operator==(bst_iterator<const T> const & ref) {
 
 template <class T>
 bool	ft::bst_iterator<T>::operator!=(bst_iterator<const T> const & ref) {
-	if (this->_data != ref._data)
+	if (this->_data != ref._data && this->_parent != ref._parent)
 		return true;
 
 	return false;
