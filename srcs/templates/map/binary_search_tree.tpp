@@ -218,7 +218,6 @@ void	ft::BSTree<T>::removeNode(node_pointer parent, node_pointer node, bool isLe
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
 	}
-	TODO - Same as RemoveRootNode, check why node->right / left NULL (maybe to do on parent)
 	else if (node->left == NULL && node->right != NULL) { // Case 1: 1 child
 		isLeft == true ? parent->left = node->right : parent->right = node->right;
 		node->right = NULL;
@@ -274,6 +273,9 @@ void	ft::BSTree<T>::removeRootNode() {
 
 template <class T>
 void	ft::BSTree<T>::deleteTree() {
+	if (this->_root == NULL)
+		return ;
+
 	this->removeSubTree(this->_root->left);
 	this->removeSubTree(this->_root->right);
 	this->_alloc.destroy(this->_root);
@@ -281,6 +283,8 @@ void	ft::BSTree<T>::deleteTree() {
 	this->_root = NULL;
 }
 
+// This function refers to the printInOrder function, if we delete the smaller to the greater
+// It's sure that we'll not remove a node that we need to to go up in the tree
 template <class T>
 void	ft::BSTree<T>::removeSubTree(node_pointer node) {
 	if (node == NULL)
@@ -288,7 +292,8 @@ void	ft::BSTree<T>::removeSubTree(node_pointer node) {
 
 	if (node->left != NULL)
 		removeSubTree(node->left);
-	else if (node->right != NULL)
+
+	if (node->right != NULL)
 		removeSubTree(node->right);
 	
 	this->_alloc.destroy(node);

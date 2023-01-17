@@ -40,6 +40,9 @@ ft::bst_iterator<T>&	ft::bst_iterator<T>::operator++() {
 			this->_data = this->_data->parent;
 		}
 	}
+	// if (this->_data == NULL)
+	// 	this->_data = this->_parent;
+
 	return *this;
 }
 

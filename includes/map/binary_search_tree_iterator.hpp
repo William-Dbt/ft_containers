@@ -33,7 +33,7 @@ namespace	ft {
 			bool	operator!=(bst_iterator<const T> const & ref);
 
 			node_pointer	_data;
-			// In case of sending NULL in _data (as end iterator)
+			// In case of sending NULL in _data (as end iterator) or iterator outside the tree
 			node_pointer	_parent;
 	};
 }

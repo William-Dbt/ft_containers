@@ -137,7 +137,7 @@ static void	modifiersTests() {
 	std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Now show the other neighbors (with the help of the returned iterator of Ary's insert (it to end())): " << std::endl;
+	std::cout << "Now show the other neighbors (with the help of the returned iterator of Ary's insert (iterate to end())): " << std::endl;
 	it++;
 	for (; it != addressNeighbors.end(); it++)
 		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
@@ -160,12 +160,24 @@ static void	modifiersTests() {
 	std::cout << "Try to remove the key \"Paul\":" << std::endl;
 	addressNeighbors.erase("Paul");
 	it = addressNeighbors.begin();
-	std::cout << it->first << std::endl;
-	it++;
-	// for (it = addressNeighbors.begin(); it != addressNeighbors.end(); it++)
-		// std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+	for (it = addressNeighbors.begin(); it != addressNeighbors.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
 
 	std::cout << std::endl;
+	std::cout << "Remain of the copy of address:" << std::endl;
+	for (it = copyAddress.begin(); it != copyAddress.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+	
+	std::cout << std::endl;
+	std::cout << "Try to remove all the tree by .begin() and .end() iterator functions" << std::endl;
+	copyAddress.erase(copyAddress.begin(), copyAddress.end());
+
+	std::cout << "And try to print the map:" << std::endl;
+	for (it = copyAddress.begin(); it != copyAddress.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Also the size of map: " << copyAddress.size() << std::endl;
 	std::cout << std::endl;
 }
 
