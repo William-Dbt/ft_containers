@@ -87,6 +87,7 @@ namespace ft {
 			void		erase(iterator position);
 			size_type	erase(const key_type& k);
 			void		erase(iterator first, iterator last);
+			void		swap(map& x);
 
 		private:
 			ft::BSTree<value_type>	_tree;

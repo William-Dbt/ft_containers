@@ -59,3 +59,8 @@ void	ft::map<Key, T, Compare, Alloc>::erase(iterator first, iterator last) {
 	while (first != last)
 		this->erase((first++)->first);
 }
+
+template <class Key, class T, class Compare, class Alloc>
+void	ft::map<Key, T, Compare, Alloc>::swap(map& x) {
+	 
+}

@@ -54,6 +54,7 @@ ft::bst_iterator<T>	ft::bst_iterator<T>::operator++(int) {
 	return tmp;
 }
 
+// The STL container come back to end() ptr when iterator is NULL (start of the tree)
 // Same as operator++ but in reverse
 template <class T>
 ft::bst_iterator<T>&	ft::bst_iterator<T>::operator--() {
