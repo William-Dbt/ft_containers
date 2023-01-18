@@ -305,3 +305,12 @@ template <class T>
 size_t	ft::BSTree<T>::max_size() const {
 	return this->_alloc.max_size();
 }
+
+template <class T>
+void	ft::BSTree<T>::swap(BSTree& ref) {
+	node_pointer	tmp;
+
+	tmp = this->_root;
+	this->_root = ref._root;
+	ref._root = tmp;
+}

@@ -51,6 +51,7 @@ namespace	ft {
 			void	printChildren(value_type key);
 			void	removeNode(value_type key);
 			void	deleteTree();
+			void	swap(BSTree& ref);
 
 			node_pointer	findNode(value_type key);
 			node_pointer	getRoot() const;

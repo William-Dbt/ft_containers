@@ -62,5 +62,9 @@ void	ft::map<Key, T, Compare, Alloc>::erase(iterator first, iterator last) {
 
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::swap(map& x) {
-	 
+	size_type				sizeBuffer = this->_size;
+
+	this->_tree.swap(x._tree);
+	this->_size = x._size;
+	x._size = sizeBuffer;
 }

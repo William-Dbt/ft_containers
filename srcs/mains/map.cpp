@@ -178,6 +178,26 @@ static void	modifiersTests() {
 
 	std::cout << std::endl;
 	std::cout << "Also the size of map: " << copyAddress.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Now addressNeighbors have one element and copyAddress zero." << std::endl;
+	std::cout << "addressNeighbors.size(): " << addressNeighbors.size() << std::endl;
+	std::cout << "copyAddress.size(): " << copyAddress.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try to swap addressNeighbors with copyAddress and print contents" << std::endl;
+	addressNeighbors.swap(copyAddress);
+	std::cout << "addressNeighbors:" << std::endl;
+	for (it = addressNeighbors.begin(); it != addressNeighbors.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << "addressNeighbors.size(): " << addressNeighbors.size() << std::endl << std::endl;
+	std::cout << "----------" << std::endl;
+	std::cout << "copyAddress:" << std::endl;
+	for (it = copyAddress.begin(); it != copyAddress.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << "copyAddress.size(): " << copyAddress.size() << std::endl;
 	std::cout << std::endl;
 }
 
