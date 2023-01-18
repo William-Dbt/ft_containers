@@ -68,3 +68,9 @@ void	ft::map<Key, T, Compare, Alloc>::swap(map& x) {
 	this->_size = x._size;
 	x._size = sizeBuffer;
 }
+
+template <class Key, class T, class Compare, class Alloc>
+void	ft::map<Key, T, Compare, Alloc>::clear() {
+	this->_tree.deleteTree();
+	this->_size = 0;
+}

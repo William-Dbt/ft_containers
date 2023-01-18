@@ -3,3 +3,5 @@
 #include "capacity.tpp"
 #include "access.tpp"
 #include "modifiers.tpp"
+#include "observers.tpp"
+#include "operations.tpp"

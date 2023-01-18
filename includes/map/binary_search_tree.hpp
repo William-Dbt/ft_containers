@@ -53,7 +53,7 @@ namespace	ft {
 			void	deleteTree();
 			void	swap(BSTree& ref);
 
-			node_pointer	findNode(value_type key);
+			node_pointer	findNode(value_type key) const;
 			node_pointer	getRoot() const;
 			node_pointer	findSmallest();
 			node_pointer	findSmallest(node_pointer node);
@@ -64,7 +64,7 @@ namespace	ft {
 
 		private:
 			node_pointer	createLeaf(value_type key);
-			node_pointer	findNode(value_type key, node_pointer node);
+			node_pointer	findNode(value_type key, node_pointer node) const;
 
 			void	addLeaf(value_type key, node_pointer node);
 			void	printInOrder(node_pointer node);

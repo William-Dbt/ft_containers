@@ -198,6 +198,70 @@ static void	modifiersTests() {
 		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
 
 	std::cout << "copyAddress.size(): " << copyAddress.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try to clear copyAddress and try to print values with iterators (which is normally destroyed)" << std::endl;
+	copyAddress.clear();
+	for (it = copyAddress.begin(); it != copyAddress.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "copyAddress.size(): " << copyAddress.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Add two elements in addressNeighbors (Kylian and Boulito)" << std::endl;
+	addressNeighbors["Kylian"] = 99;
+	addressNeighbors["Boulito"] = 101;
+	for (it = addressNeighbors.begin(); it != addressNeighbors.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << "addressNeighbors.size(): " << addressNeighbors.size() << std::endl;
+	std::cout << std::endl;
+}
+
+static void	observersTest() {
+	// TODO
+	;
+}
+
+static void	operationsTests() {
+	std::cout << "Create a map with a lot of int and print them" << std::endl;
+	ft::map<int, int>			intMap;
+	ft::map<int, int>::iterator	it;
+
+	intMap[0] = 0;
+	intMap[1] = 1;
+	intMap[2] = 2;
+	intMap[3] = 3;
+	intMap[4] = 4;
+	intMap[5] = 5;
+	intMap[6] = 6;
+	intMap[7] = 7;
+	intMap[8] = 8;
+	intMap[9] = 9;
+	intMap[10] = 10;
+	for (it = intMap.begin(); it != intMap.end(); it++)
+		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Get iterator of 5 with find() function" << std::endl;
+	it = intMap.find(5);
+	std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try with an unknow key (should return the end() iterator, if we decrement this one, we get the last element)" << std::endl;
+	it = intMap.find(76);
+	it--;
+	std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Count element in map with count() function (return 1 or 0 because we don't duplicate keys)" << std::endl;
+	std::cout << "Is 3 in the map?: " << intMap.count(3) << std::endl;
+	std::cout << "Is 42 in the map?: " << intMap.count(42) << std::endl;
+	std::cout << "The count function can returns greater number but our tree doesn't allow multiple keys." << std::endl;
+
+	std::cout << std::endl;
+	
 	std::cout << std::endl;
 }
 
@@ -209,6 +273,8 @@ static void	showTestList() {
 	std::cout << " \'2\'\tCapacity" << std::endl;
 	std::cout << " \'3\'\tAccess" << std::endl;
 	std::cout << " \'4\'\tModifiers" << std::endl;
+	std::cout << " \'5\'\tObservers" << std::endl;
+	std::cout << " \'6\'\tOperations" << std::endl;
 	std::cout << "\033[31m";
 	std::cout << "\'exit\'\tMain menu" << std::endl;
 	std::cout << "\033[33m";
@@ -248,6 +314,14 @@ void	mapTests() {
 			}
 			case 4: {
 				modifiersTests();
+				break ;
+			}
+			case 5: {
+				observersTest();
+				break ;
+			}
+			case 6: {
+				operationsTests();
 				break ;
 			}
 			default:

@@ -130,12 +130,12 @@ void	ft::BSTree<T>::printChildren(value_type key) {
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key) {
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key) const {
 	return (findNode(key, this->_root));
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key, node_pointer node) {
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key, node_pointer node) const {
 	if (node == NULL)
 		return NULL;
 

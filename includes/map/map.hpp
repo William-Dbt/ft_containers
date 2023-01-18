@@ -88,6 +88,19 @@ namespace ft {
 			size_type	erase(const key_type& k);
 			void		erase(iterator first, iterator last);
 			void		swap(map& x);
+			void		clear();
+
+			// Observers
+			// TODO
+			// key_compare		key_comp() const;
+			// value_compare	value_comp() const;
+
+			// Operations
+			iterator		find(const key_type& k);
+			const_iterator	find(const key_type& k) const;
+			size_type		count(const key_type& k) const;
+			// iterator		lower_bound(const key_type& k);
+			// const_iterator	lower_bound(const key_type& k) const;
 
 		private:
 			ft::BSTree<value_type>	_tree;
