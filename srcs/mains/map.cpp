@@ -220,8 +220,49 @@ static void	modifiersTests() {
 }
 
 static void	observersTest() {
-	// TODO
-	;
+	std::cout << "Create a map of two contents" << std::endl;
+	ft::map<int, int>					map;
+
+	map[3] = 3;
+	map[5] = 5;
+	std::cout << "Get the key value of the first and begin iterator" << std::endl;
+	ft::map<int, int>::iterator			firstIt = map.begin();
+	ft::map<int, int>::reverse_iterator	lastIt = map.rbegin();
+	int	firstKey = firstIt->first;
+	int	lastKey = lastIt->first;
+
+	std::cout << "first: " << firstKey << " last: " << lastKey << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Now get the key_compare function to compare first and last key" << std::endl;
+	ft::map<int, int>::key_compare	comp = map.key_comp();
+
+	if (comp(firstKey, lastKey) == true)
+		std::cout << "first is inferior than last" << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Now check the reverse" << std::endl;
+	if (comp(lastKey, firstKey) == false)
+		std::cout << "last is superior than first" << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Get the two pair of iterator on begin and end" << std::endl;
+	ft::pair<int, int>	first = *(map.begin());
+	ft::pair<int, int>	last = *(map.rbegin());
+
+	std::cout << "first: " << first.first << " last: " << last.second << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Use value_comp() function (that returns true or false) to check if first is inferior than last" << std::endl;
+	if (map.value_comp()(first, last) == true)
+		std::cout << "first is inferior than last" << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Now check the reverse" << std::endl;
+	if (map.value_comp()(last, first) == false)
+		std::cout << "last is superior than first" << std::endl;
+
+	std::cout << std::endl;
 }
 
 static void	operationsTests() {

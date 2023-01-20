@@ -91,9 +91,8 @@ namespace ft {
 			void		clear();
 
 			// Observers
-			// TODO
-			// key_compare		key_comp() const;
-			// value_compare	value_comp() const;
+			key_compare		key_comp() const;
+			value_compare	value_comp() const;
 
 			// Operations
 			iterator		find(const key_type& k);
