@@ -17,15 +17,6 @@ typename ft::map<Key, T, Compare, Alloc>::iterator	ft::map<Key, T, Compare, Allo
 		return (iterator(this->_tree.findNode(value), NULL));
 
 	this->insert(value);
-	// MB TODO - Optimize adding element in tree by pos
-	// if (pos == NULL)
-	// 	this->insert(value);
-	// else {
-	// 	if (pos->key.first < value.first)
-	// 		std::cout << "key <" << std::endl;
-	// 	else
-	// 		std::cout << "key >" << std::endl;
-	// }
 	return (iterator(this->_tree.findNode(value), NULL));
 }
 

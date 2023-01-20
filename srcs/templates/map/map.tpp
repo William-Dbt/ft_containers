@@ -5,3 +5,4 @@
 #include "modifiers.tpp"
 #include "observers.tpp"
 #include "operations.tpp"
+#include "allocator.tpp"

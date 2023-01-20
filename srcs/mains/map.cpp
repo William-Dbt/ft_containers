@@ -12,16 +12,16 @@ static void	constructorTests() {
 
 static void	iteratorTests() {
 	std::cout << "Create a map container of 7 contents" << std::endl;
-	ft::map<std::string, int>			people;
-	ft::map<std::string, int>::iterator	it;
+	std::map<std::string, int>				people;
+	std::map<std::string, int>::iterator	it;
 
-	people.insert(ft::pair<std::string, int>("Emeline", 42));
-	people.insert(ft::pair<std::string, int>("Franck", 12));
-	people.insert(ft::pair<std::string, int>("Greg", 56));
-	people.insert(ft::pair<std::string, int>("Dylan", 34));
-	people.insert(ft::pair<std::string, int>("Abil", 99));
-	people.insert(ft::pair<std::string, int>("Bill", 4));
-	people.insert(ft::pair<std::string, int>("Celi", 2));
+	people.insert(std::pair<std::string, int>("Emeline", 42));
+	people.insert(std::pair<std::string, int>("Franck", 12));
+	people.insert(std::pair<std::string, int>("Greg", 56));
+	people.insert(std::pair<std::string, int>("Dylan", 34));
+	people.insert(std::pair<std::string, int>("Abil", 99));
+	people.insert(std::pair<std::string, int>("Bill", 4));
+	people.insert(std::pair<std::string, int>("Celi", 2));
 	it = people.begin();
 	std::cout << "Key of first element: " << it->first << std::endl;
 	it = people.end();
@@ -36,11 +36,10 @@ static void	iteratorTests() {
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Try reverse_iterator:" << std::endl;
-	ft::map<std::string, int>::reverse_iterator	revIt;
+	std::map<std::string, int>::reverse_iterator	revIt;
 
-	// TODO - Check why infinite loop
-	// revIt = people.rbegin();
-	// std::cout << "Key of rbegin (last element): " << revIt->first << std::endl;
+	revIt = people.rbegin();
+	std::cout << "Key of rbegin (last element): " << revIt->first << std::endl;
 	revIt = people.rend();
 	revIt--;
 	std::cout << "Key of rend (first element): " << revIt->first << std::endl;
@@ -267,8 +266,8 @@ static void	observersTest() {
 
 static void	operationsTests() {
 	std::cout << "Create a map with a lot of int and print them" << std::endl;
-	ft::map<int, int>			intMap;
-	ft::map<int, int>::iterator	it;
+	std::map<int, int>			intMap;
+	std::map<int, int>::iterator	it;
 
 	intMap[0] = 0;
 	intMap[1] = 1;
@@ -302,7 +301,37 @@ static void	operationsTests() {
 	std::cout << "The count function can returns greater number but our tree doesn't allow multiple keys." << std::endl;
 
 	std::cout << std::endl;
-	
+	std::cout << "Get two iterators from 2 to 7 with lower_bound() and upper_bound() functions and print the tab" << std::endl;
+	std::map<int, int>::iterator	itLow, itUp;
+
+	itLow = intMap.lower_bound(2);
+	itUp = intMap.upper_bound(7);
+	while (itLow != itUp)
+		std::cout << (*itLow++).first << ' ';
+
+	std::cout << std::endl;
+	std::cout << "Check for equal_range() function at the key value 8" << std::endl;
+	std::pair< std::map<int, int>::iterator, std::map<int, int>::iterator >	itPair;
+
+	itPair = intMap.equal_range(8);
+
+	std::cout << std::endl;
+	std::cout << "first value is: " << itPair.first->first << std::endl;
+	std::cout << "second value is: " << itPair.second->first << std::endl;
+	std::cout << std::endl;
+}
+
+static void	allocatorTest() {
+	int psize;
+	ft::map<char,int>			mymap;
+	ft::pair<const char, int>	*p;
+
+	p = mymap.get_allocator().allocate(5);
+
+	psize = sizeof(ft::map<char, int>::value_type) * 5;
+
+	std::cout << "The allocated array has a size of " << psize << " bytes." << std::endl;
+	mymap.get_allocator().deallocate(p, 5);
 	std::cout << std::endl;
 }
 
@@ -316,6 +345,7 @@ static void	showTestList() {
 	std::cout << " \'4\'\tModifiers" << std::endl;
 	std::cout << " \'5\'\tObservers" << std::endl;
 	std::cout << " \'6\'\tOperations" << std::endl;
+	std::cout << " \'7\'\tAllocator" << std::endl;
 	std::cout << "\033[31m";
 	std::cout << "\'exit\'\tMain menu" << std::endl;
 	std::cout << "\033[33m";
@@ -363,6 +393,10 @@ void	mapTests() {
 			}
 			case 6: {
 				operationsTests();
+				break ;
+			}
+			case 7: {
+				allocatorTest();
 				break ;
 			}
 			default:

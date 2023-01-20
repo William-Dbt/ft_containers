@@ -95,11 +95,23 @@ namespace ft {
 			value_compare	value_comp() const;
 
 			// Operations
-			iterator		find(const key_type& k);
-			const_iterator	find(const key_type& k) const;
-			size_type		count(const key_type& k) const;
-			// iterator		lower_bound(const key_type& k);
-			// const_iterator	lower_bound(const key_type& k) const;
+			iterator									find(const key_type& k);
+			const_iterator								find(const key_type& k) const;
+			size_type									count(const key_type& k) const;
+			iterator									lower_bound(const key_type& k);
+			const_iterator								lower_bound(const key_type& k) const;
+			iterator									upper_bound(const key_type& k);
+			const_iterator								upper_bound(const key_type& k) const;
+
+			ft::pair<const_iterator, const_iterator>	equal_range(const key_type& k) const {
+				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+			}
+			ft::pair<iterator, iterator>				equal_range(const key_type& k) {
+				return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+			}
+
+			// Allocator
+			allocator_type	get_allocator() const;
 
 		private:
 			ft::BSTree<value_type>	_tree;
