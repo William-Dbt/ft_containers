@@ -40,7 +40,7 @@ namespace	ft {
 			template <class Tn, class Containern>
 			friend bool	operator>=(const ft::stack<Tn,Containern>& lhs, const ft::stack<Tn,Containern>& rhs);
 
-		private:
+		protected:
 			container_type	c;
 	};
 
