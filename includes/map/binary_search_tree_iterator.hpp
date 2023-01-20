@@ -6,8 +6,8 @@ namespace	ft {
 	class	bst_iterator {
 		public:
 			typedef typename T::value_type						value_type;
-			typedef value_type*									pointer;
-			typedef value_type&									reference;
+			typedef const value_type*							pointer;
+			typedef const value_type&							reference;
 			typedef T											node;
 			typedef T*											node_pointer;
 			typedef typename std::bidirectional_iterator_tag	iterator_category;

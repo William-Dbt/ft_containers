@@ -58,11 +58,11 @@ ft::BSTree<T>::BSTree(const value_type& key) {
 
 template <class T>
 ft::BSTree<T>::~BSTree() {
-	this->removeSubTree(this->_root);
+	this->_removeSubTree(this->_root);
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::createLeaf(value_type key) {
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_createLeaf(value_type key) {
 	node_pointer	buffer;
 
 	buffer = this->_alloc.allocate(1);
@@ -72,28 +72,28 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::createLeaf(value_type key) {
 
 template <class T>
 void	ft::BSTree<T>::addLeaf(value_type key) {
-	addLeaf(key, this->_root);
+	_addLeaf(key, this->_root);
 }
 
 template <class T>
-void	ft::BSTree<T>::addLeaf(value_type key, node_pointer node) {
+void	ft::BSTree<T>::_addLeaf(value_type key, node_pointer node) {
 	if (this->_root == NULL) {
-		this->_root = createLeaf(key);
+		this->_root = _createLeaf(key);
 		return ;
 	}
 	if (key.first < node->key.first) {
 		if (node->left != NULL)
-			addLeaf(key, node->left);
+			_addLeaf(key, node->left);
 		else {
-			node->left = createLeaf(key);
+			node->left = _createLeaf(key);
 			node->left->parent = node;
 		}
 	}
 	else if (key.first > node->key.first) {
 		if (node->right != NULL)
-			addLeaf(key, node->right);
+			_addLeaf(key, node->right);
 		else {
-			node->right = createLeaf(key);
+			node->right = _createLeaf(key);
 			node->right->parent = node;
 		}
 	}
@@ -101,20 +101,20 @@ void	ft::BSTree<T>::addLeaf(value_type key, node_pointer node) {
 
 template <class T>
 void	ft::BSTree<T>::printInOrder() {
-	printInOrder(this->_root);
+	_printInOrder(this->_root);
 }
 
 template <class T>
-void	ft::BSTree<T>::printInOrder(node_pointer node) {
+void	ft::BSTree<T>::_printInOrder(node_pointer node) {
 	if (this->_root == NULL)
 		return ;
 
 	if (node->left != NULL)
-		printInOrder(node->left);
+		_printInOrder(node->left);
 
 	std::cout << node->key << " ";
 	if (node->right != NULL)
-		printInOrder(node->right);
+		_printInOrder(node->right);
 }
 
 template <class T>
@@ -131,11 +131,11 @@ void	ft::BSTree<T>::printChildren(value_type key) {
 
 template <class T>
 typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key) const {
-	return (findNode(key, this->_root));
+	return (_findNode(key, this->_root));
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key, node_pointer node) const {
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_findNode(value_type key, node_pointer node) const {
 	if (node == NULL)
 		return NULL;
 
@@ -143,9 +143,9 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key, nod
 		return node;
 	else {
 		if (key.first < node->key.first)
-			return (findNode(key, node->left));
+			return (_findNode(key, node->left));
 		else
-			return (findNode(key, node->right));
+			return (_findNode(key, node->right));
 	}
 }
 
@@ -155,59 +155,59 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::getRoot() const {
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findSmallest() {
-	return (findSmallest(this->_root));
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findSmallest() const {
+	return (_findSmallest(this->_root));
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findSmallest(node_pointer node) {
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_findSmallest(node_pointer node) const {
 	if (this->_root == NULL || node == NULL)
 		return NULL;
 
 	if (node->left != NULL)
-		return (findSmallest(node->left));
+		return (_findSmallest(node->left));
 	else
 		return node;
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findGreatest() {
-	return (findGreatest(this->_root));
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findGreatest() const {
+	return (_findGreatest(this->_root));
 }
 
 template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findGreatest(node_pointer node) {
+typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_findGreatest(node_pointer node) const {
 	if (this->_root == NULL || node == NULL)
 		return NULL;
 
 	if (node->right != NULL)
-		return (findGreatest(node->right));
+		return (_findGreatest(node->right));
 	else
 		return node;
 }
 
 template <class T>
 void	ft::BSTree<T>::removeNode(value_type key) {
-	removeNode(key, this->_root);
+	_removeNode(key, this->_root);
 }
 
 template <class T>
-void	ft::BSTree<T>::removeNode(value_type key, node_pointer node) {
+void	ft::BSTree<T>::_removeNode(value_type key, node_pointer node) {
 	if (this->_root == NULL)
 		return ;
 
 	if (this->_root->key.first == key.first)
-		removeRootNode();
+		_removeRootNode();
 	else {
 		if (node->left != NULL && key < node->key)
-			node->left->key.first == key.first ? this->removeNode(node, node->left, true) : this->removeNode(key, node->left);
+			node->left->key.first == key.first ? this->_removeNode(node, node->left, true) : this->_removeNode(key, node->left);
 		else if (node->right != NULL && key.first > node->key.first)
-			node->right->key.first == key.first ? this->removeNode(node, node->right, false) : this->removeNode(key, node->right);
+			node->right->key.first == key.first ? this->_removeNode(node, node->right, false) : this->_removeNode(key, node->right);
 	}
 }
 
 template <class T>
-void	ft::BSTree<T>::removeNode(node_pointer parent, node_pointer node, bool isLeft) {
+void	ft::BSTree<T>::_removeNode(node_pointer parent, node_pointer node, bool isLeft) {
 	value_type	smallestKeyRightTree;
 
 	if (this->_root == NULL)
@@ -231,14 +231,14 @@ void	ft::BSTree<T>::removeNode(node_pointer parent, node_pointer node, bool isLe
 		this->_alloc.deallocate(node, 1);
 	}
 	else { // Case 2: 2 children
-		smallestKeyRightTree = this->findSmallest(node->right)->key;
-		this->removeNode(smallestKeyRightTree, node);
+		smallestKeyRightTree = this->_findSmallest(node->right)->key;
+		this->_removeNode(smallestKeyRightTree, node);
 		node->key = smallestKeyRightTree;
 	}
 }
 
 template <class T>
-void	ft::BSTree<T>::removeRootNode() {
+void	ft::BSTree<T>::_removeRootNode() {
 	node_pointer	node;
 	value_type		key, smallestKeyRightTree;
 
@@ -265,8 +265,8 @@ void	ft::BSTree<T>::removeRootNode() {
 		this->_alloc.deallocate(node, 1);
 	}
 	else { // Case 2: 2 children
-		smallestKeyRightTree = this->findSmallest(this->_root->right)->key;
-		this->removeNode(smallestKeyRightTree, this->_root);
+		smallestKeyRightTree = this->_findSmallest(this->_root->right)->key;
+		this->_removeNode(smallestKeyRightTree, this->_root);
 		this->_root->key = smallestKeyRightTree;
 	}
 }
@@ -276,8 +276,8 @@ void	ft::BSTree<T>::deleteTree() {
 	if (this->_root == NULL)
 		return ;
 
-	this->removeSubTree(this->_root->left);
-	this->removeSubTree(this->_root->right);
+	this->_removeSubTree(this->_root->left);
+	this->_removeSubTree(this->_root->right);
 	this->_alloc.destroy(this->_root);
 	this->_alloc.deallocate(this->_root, 1);
 	this->_root = NULL;
@@ -286,15 +286,15 @@ void	ft::BSTree<T>::deleteTree() {
 // This function refers to the printInOrder function, if we delete the smaller to the greater
 // It's sure that we'll not remove a node that we need to to go up in the tree
 template <class T>
-void	ft::BSTree<T>::removeSubTree(node_pointer node) {
+void	ft::BSTree<T>::_removeSubTree(node_pointer node) {
 	if (node == NULL)
 		return ;
 
 	if (node->left != NULL)
-		removeSubTree(node->left);
+		_removeSubTree(node->left);
 
 	if (node->right != NULL)
-		removeSubTree(node->right);
+		_removeSubTree(node->right);
 	
 	this->_alloc.destroy(node);
 	this->_alloc.deallocate(node, 1);

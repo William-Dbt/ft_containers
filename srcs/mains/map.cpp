@@ -6,8 +6,51 @@
 #include "pair.hpp"
 
 static void	constructorTests() {
-	// Todo
-	;
+	std::cout << "Try to create an empty container" << std::endl;
+	ft::map<char, int>				map;
+	ft::map<char, int>::iterator	it;
+
+	std::cout << "map.size(): " << map.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Fill some values in the map and print them" << std::endl;
+	map.insert(ft::pair<char, int>('a', 1));
+	map.insert(ft::pair<char, int>('b', 2));
+	map.insert(ft::pair<char, int>('c', 3));
+	map.insert(ft::pair<char, int>('d', 4));
+	for (it = map.begin(); it != map.end(); it++)
+		std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+	
+	std::cout << "Map size: " << map.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Create a container by copy of map and print content" << std::endl;
+	ft::map<char, int>	copyMap(map);
+
+	for (it = copyMap.begin(); it != copyMap.end(); it++)
+		std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+	
+	std::cout << "copyMap size: " << copyMap.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Try the operator with iterators" << std::endl;
+	ft::map<char, int>	iteratorMap(map.begin(), map.end());
+
+	for (it = iteratorMap.begin(); it != iteratorMap.end(); it++)
+		std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+
+	std::cout << "iteratorMap size: " << iteratorMap.size() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Create an empty container and test operator= on it" << std::endl;
+	ft::map<char, int>	operatorMap;
+
+	operatorMap = map;
+	for (it = operatorMap.begin(); it != operatorMap.end(); it++)
+		std::cout << "Key: " << it->first << " | Value: " << it->second << std::endl;
+
+	std::cout << "operatorMap size: " << operatorMap.size() << std::endl;
+	std::cout << std::endl;
 }
 
 static void	iteratorTests() {

@@ -55,23 +55,23 @@ namespace	ft {
 
 			node_pointer	findNode(value_type key) const;
 			node_pointer	getRoot() const;
-			node_pointer	findSmallest();
-			node_pointer	findSmallest(node_pointer node);
-			node_pointer	findGreatest();
-			node_pointer	findGreatest(node_pointer node);
+			node_pointer	findSmallest() const;
+			node_pointer	findGreatest() const;
 
 			size_t	max_size() const;
 
 		private:
-			node_pointer	createLeaf(value_type key);
-			node_pointer	findNode(value_type key, node_pointer node) const;
+			node_pointer	_createLeaf(value_type key);
+			node_pointer	_findNode(value_type key, node_pointer node) const;
+			node_pointer	_findSmallest(node_pointer node) const;
+			node_pointer	_findGreatest(node_pointer node) const;
 
-			void	addLeaf(value_type key, node_pointer node);
-			void	printInOrder(node_pointer node);
-			void	removeNode(value_type key, node_pointer node);
-			void	removeNode(node_pointer parent, node_pointer node, bool isLeft);
-			void	removeRootNode();
-			void	removeSubTree(node_pointer node);
+			void	_addLeaf(value_type key, node_pointer node);
+			void	_printInOrder(node_pointer node);
+			void	_removeNode(value_type key, node_pointer node);
+			void	_removeNode(node_pointer parent, node_pointer node, bool isLeft);
+			void	_removeRootNode();
+			void	_removeSubTree(node_pointer node);
 
 			node_pointer	_root;
 			node_alloc		_alloc;

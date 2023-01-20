@@ -3,17 +3,16 @@ ft::map<Key, T, Compare, Alloc>::map(const key_compare& comp, const allocator_ty
 	_size(0), _comp(comp), _alloc(alloc) {}
 
 template <class Key, class T, class Compare, class Alloc>
-ft::map<Key, T, Compare, Alloc>::map(const map& ref) {
-	(void)ref;
+ft::map<Key, T, Compare, Alloc>::map(const map& ref)  : _size(0), _comp(ref._comp), _alloc(ref._alloc) {
+	this->insert(ref.begin(), ref.end());
 }
 
 template <class Key, class T, class Compare, class Alloc>
 template <class InputIt>
 ft::map<Key, T, Compare, Alloc>::map(InputIt first, InputIt last, const key_compare& comp, const allocator_type& alloc) : 
-	_comp(comp), _alloc(alloc)
+	_size(0), _comp(comp), _alloc(alloc)
 {
-	(void)first;
-	(void)last;
+	this->insert(first, last);
 }
 
 template <class Key, class T, class Compare, class Alloc>
@@ -23,6 +22,10 @@ ft::map<Key, T, Compare, Alloc>::~map() {
 
 template <class Key, class T, class Compare, class Alloc>
 ft::map<Key, T, Compare, Alloc>&	ft::map<Key, T, Compare, Alloc>::operator=(const map& ref) {
-	(void)ref;
+	iterator	it;
+
+	if (this != &ref)
+		this->insert(ref.begin(), ref.end());
+
 	return *this;
 }
