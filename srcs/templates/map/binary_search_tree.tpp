@@ -72,30 +72,38 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_createLeaf(value_type key) 
 
 template <class T>
 void	ft::BSTree<T>::addLeaf(value_type key) {
-	_addLeaf(key, this->_root);
-}
+	node_pointer	node = this->_root;
+	bool			elementAdded = false;
 
-template <class T>
-void	ft::BSTree<T>::_addLeaf(value_type key, node_pointer node) {
 	if (this->_root == NULL) {
 		this->_root = _createLeaf(key);
 		return ;
 	}
-	if (key.first < node->key.first) {
-		if (node->left != NULL)
-			_addLeaf(key, node->left);
-		else {
-			node->left = _createLeaf(key);
-			node->left->parent = node;
+	while (!elementAdded) {
+		while (!elementAdded && key.first < node->key.first) {
+			if (node->left != NULL) {
+				node = node->left;
+				continue ;
+			}
+			else {
+				node->left = _createLeaf(key);
+				node->left->parent = node;
+				elementAdded = true;
+			}
 		}
-	}
-	else if (key.first > node->key.first) {
-		if (node->right != NULL)
-			_addLeaf(key, node->right);
-		else {
-			node->right = _createLeaf(key);
-			node->right->parent = node;
+		while (!elementAdded && key.first > node->key.first) {
+			if (node->right != NULL) {
+				node = node->right;
+				continue ;
+			}
+			else {
+				node->right = _createLeaf(key);
+				node->right->parent = node;
+				elementAdded = true;
+			}
 		}
+		if (key.first == node->key.first)
+			break ;
 	}
 }
 
@@ -131,22 +139,18 @@ void	ft::BSTree<T>::printChildren(value_type key) {
 
 template <class T>
 typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::findNode(value_type key) const {
-	return (_findNode(key, this->_root));
-}
+	node_pointer	node = this->_root;
 
-template <class T>
-typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_findNode(value_type key, node_pointer node) const {
 	if (node == NULL)
 		return NULL;
 
-	if (node->key.first == key.first)
-		return node;
-	else {
+	while (node && node->key.first != key.first) {
 		if (key.first < node->key.first)
-			return (_findNode(key, node->left));
+			node = node->left;
 		else
-			return (_findNode(key, node->right));
+			node = node->right;
 	}
+	return node;
 }
 
 template <class T>
@@ -164,10 +168,10 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_findSmallest(node_pointer n
 	if (this->_root == NULL || node == NULL)
 		return NULL;
 
-	if (node->left != NULL)
-		return (_findSmallest(node->left));
-	else
-		return node;
+	while (node && node->left != NULL)
+		node = node->left;
+
+	return node;
 }
 
 template <class T>
@@ -180,10 +184,10 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_findGreatest(node_pointer n
 	if (this->_root == NULL || node == NULL)
 		return NULL;
 
-	if (node->right != NULL)
-		return (_findGreatest(node->right));
-	else
-		return node;
+	while (node && node->right != NULL)
+		node = node->right;
+
+	return node;
 }
 
 template <class T>

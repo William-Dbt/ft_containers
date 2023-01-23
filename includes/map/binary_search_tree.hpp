@@ -62,11 +62,9 @@ namespace	ft {
 
 		private:
 			node_pointer	_createLeaf(value_type key);
-			node_pointer	_findNode(value_type key, node_pointer node) const;
 			node_pointer	_findSmallest(node_pointer node) const;
 			node_pointer	_findGreatest(node_pointer node) const;
 
-			void	_addLeaf(value_type key, node_pointer node);
 			void	_printInOrder(node_pointer node);
 			void	_removeNode(value_type key, node_pointer node);
 			void	_removeNode(node_pointer parent, node_pointer node, bool isLeft);
