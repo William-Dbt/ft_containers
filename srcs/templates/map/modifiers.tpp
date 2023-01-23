@@ -24,7 +24,8 @@ template <class Key, class T, class Compare, class Alloc>
 template <class InputIt>
 void	ft::map<Key, T, Compare, Alloc>::insert(InputIt first, InputIt last) {
 	for (; first != last; first++)
-		this->insert(first._data->key);
+		this->insert(*first);
+		// this->insert(first._data->key);
 }
 
 template <class Key, class T, class Compare, class Alloc>
