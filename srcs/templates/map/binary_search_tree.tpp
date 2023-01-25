@@ -1,6 +1,4 @@
 // This part was done with the youtube tutorial by PaulProgramming channel
-// The functions implementations are made with recursive method, I use the parent ptr in the node for iterators
-// I don't wanted to remake thoses functions
 
 /* ########## Node Part ########## */
 template <class T>

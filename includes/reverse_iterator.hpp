@@ -41,8 +41,8 @@ namespace	ft {
 		private:
 			iterator_type	_iterator;
 	};
-}
 
-# include "reverse_iterator.tpp"
+	# include "reverse_iterator.tpp"
+}
 
 #endif
