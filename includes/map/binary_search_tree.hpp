@@ -1,8 +1,10 @@
 #ifndef __RBTREE_HPP__
 # define __RBTREE_HPP__
 
+# include <cstdlib>
 # include "binary_search_tree_iterator.hpp"
 # include "reverse_iterator.hpp"
+# include "pair.hpp"
 
 namespace	ft {
 	/* Node key 
@@ -65,17 +67,20 @@ namespace	ft {
 			node_pointer	_findSmallest(node_pointer node) const;
 			node_pointer	_findGreatest(node_pointer node) const;
 
+			void	_balanceTree();
 			void	_printInOrder(node_pointer node);
 			void	_removeNode(value_type key, node_pointer node);
 			void	_removeNode(node_pointer parent, node_pointer node, bool isLeft);
 			void	_removeRootNode();
 			void	_removeSubTree(node_pointer node);
 
-			node_pointer	_root;
-			node_alloc		_alloc;
+			node_pointer		_root;
+			node_alloc			_alloc;
+			// This pair element refers to the number on the left and on the right of the tree
+			ft::pair<unsigned long int, unsigned long int>	_nbElements;
 	};
-}
 
-# include "binary_search_tree.tpp"
+	# include "binary_search_tree.tpp"
+}
 
 #endif

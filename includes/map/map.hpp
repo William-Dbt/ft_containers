@@ -113,14 +113,14 @@ namespace ft {
 			// Allocator
 			allocator_type	get_allocator() const;
 
-		private:
 			ft::BSTree<value_type>	_tree;
+		private:
 			size_type				_size;
 			key_compare				_comp;
 			allocator_type			_alloc;
 	};
-}
 
-# include "map.tpp"
+	# include "map.tpp"
+}
 
 #endif

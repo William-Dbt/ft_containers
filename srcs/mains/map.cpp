@@ -55,16 +55,17 @@ static void	constructorTests() {
 
 static void	iteratorTests() {
 	std::cout << "Create a map container of 7 contents" << std::endl;
-	std::map<std::string, int>				people;
-	std::map<std::string, int>::iterator	it;
+	ft::map<std::string, int>				people;
+	ft::map<std::string, int>::iterator	it;
 
-	people.insert(std::pair<std::string, int>("Emeline", 42));
-	people.insert(std::pair<std::string, int>("Franck", 12));
-	people.insert(std::pair<std::string, int>("Greg", 56));
-	people.insert(std::pair<std::string, int>("Dylan", 34));
-	people.insert(std::pair<std::string, int>("Abil", 99));
-	people.insert(std::pair<std::string, int>("Bill", 4));
-	people.insert(std::pair<std::string, int>("Celi", 2));
+	people.insert(ft::pair<std::string, int>("Emeline", 42));
+	people.insert(ft::pair<std::string, int>("Franck", 12));
+	people.insert(ft::pair<std::string, int>("Greg", 56));
+	people.insert(ft::pair<std::string, int>("Dylan", 34));
+	people.insert(ft::pair<std::string, int>("Abil", 99));
+	people.insert(ft::pair<std::string, int>("Bill", 4));
+	people.insert(ft::pair<std::string, int>("Celi", 2));
+
 	it = people.begin();
 	std::cout << "Key of first element: " << it->first << std::endl;
 	it = people.end();
@@ -79,7 +80,7 @@ static void	iteratorTests() {
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Try reverse_iterator:" << std::endl;
-	std::map<std::string, int>::reverse_iterator	revIt;
+	ft::map<std::string, int>::reverse_iterator	revIt;
 
 	revIt = people.rbegin();
 	std::cout << "Key of rbegin (last element): " << revIt->first << std::endl;
@@ -233,8 +234,9 @@ static void	modifiersTests() {
 	for (it = addressNeighbors.begin(); it != addressNeighbors.end(); it++)
 		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
 
+	std::cout << std::endl;
 	std::cout << "addressNeighbors.size(): " << addressNeighbors.size() << std::endl << std::endl;
-	std::cout << "----------" << std::endl;
+	std::cout << "----------" << std::endl << std::endl;
 	std::cout << "copyAddress:" << std::endl;
 	for (it = copyAddress.begin(); it != copyAddress.end(); it++)
 		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;
