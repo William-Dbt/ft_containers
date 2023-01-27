@@ -129,7 +129,7 @@ static void	accessTests() {
 	std::cout << "New \"right\" value: " << keys["right"] << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Try to add value that doesn't exist (space mapped on 101):" << std::endl;
+	std::cout << "Try to add value that doesn't exist (\"space\" mapped on 101):" << std::endl;
 	keys["space"] = 101;
 	std::cout << "New \"space\" variable value: " << keys["space"] << std::endl;
 
@@ -147,6 +147,8 @@ static void	accessTests() {
 	std::cout << "- Value \"left\": " << keys.at("left") << std::endl;
 	std::cout << "- Value \"up\": " << keys.at("up") << std::endl;
 	std::cout << "- Value \"down\": " << keys.at("down") << std::endl;
+
+	std::cout << std::endl;
 	std::cout << "Right value isn't good, let's change it" << std::endl;
 	keys.at("right") = 6;
 	std::cout << "- Value \"right\": " << keys.at("right") << std::endl;
@@ -244,7 +246,7 @@ static void	modifiersTests() {
 	std::cout << "copyAddress.size(): " << copyAddress.size() << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Try to clear copyAddress and try to print values with iterators (which is normally destroyed)" << std::endl;
+	std::cout << "Try to clear copyAddress and try to print values with iterators (which is normally empty)" << std::endl;
 	copyAddress.clear();
 	for (it = copyAddress.begin(); it != copyAddress.end(); it++)
 		std::cout << "Name: " << it->first << ", number: " << it->second << std::endl;

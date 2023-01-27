@@ -265,14 +265,16 @@ void	ft::BSTree<T>::_removeNode(node_pointer parent, node_pointer node, bool isL
 	else if (node->left == NULL && node->right != NULL) { // Case 1: 1 child
 		isLeft == true ? parent->left = node->right : parent->right = node->right;
 		node->key.first < this->_root->key.first ? this->_nbElements.first-- : this->_nbElements.second--;
-		node->right = NULL;
+		node->right->parent = parent;
+		// node->right = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
 	}
 	else if (node->left != NULL && node->right == NULL) {
 		isLeft == true ? parent->left = node->left : parent->right = node->left;
 		node->key.first < this->_root->key.first ? this->_nbElements.first-- : this->_nbElements.second--;
-		node->left = NULL;
+		node->left->parent = parent;
+		// node->left = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
 	}
@@ -299,13 +301,15 @@ void	ft::BSTree<T>::_removeRootNode() {
 	}
 	else if (this->_root->left == NULL && this->_root->right != NULL) { // Case 1: 1 child
 		this->_root = this->_root->right;
-		node->right->parent = NULL;
+		this->_root->parent = NULL;
+		// node->right->parent = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
 	}
 	else if (this->_root->left != NULL && this->_root->right == NULL) {
 		this->_root = this->_root->left;
-		node->left->parent = NULL;
+		this->_root->parent = NULL;
+		// node->left->parent = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
 	}
