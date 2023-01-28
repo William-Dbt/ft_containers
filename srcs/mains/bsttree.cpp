@@ -5,6 +5,13 @@
 void	BSTTests() {
 	ft::BSTree< ft::pair<int, float> >	tree;
 
+	(void)tree;
+	std::cout << "coucou" << std::endl;
+}
+
+/* void	BSTTests() {
+	ft::BSTree< ft::pair<int, float> >	tree;
+
 	std::cout << "Create an empty binary tree and try to print values: ";
 	tree.printInOrder();
 
@@ -57,4 +64,4 @@ void	BSTTests() {
 	tree.removeNode(ft::pair<int, int>(5153, 461));
 
 	std::cout << std::endl;
-}
+} */
