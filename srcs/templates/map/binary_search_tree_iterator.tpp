@@ -85,12 +85,12 @@ ft::bst_iterator<T>	ft::bst_iterator<T>::operator--(int) {
 
 template <class T>
 typename ft::bst_iterator<T>::reference	ft::bst_iterator<T>::operator*() const {
-	return (this->_data->key);
+	return (this->_data->data);
 }
 
 template <class T>
 typename ft::bst_iterator<T>::pointer	ft::bst_iterator<T>::operator->() const {
-	return (&this->_data->key);
+	return (&this->_data->data);
 }
 
 template <class T>

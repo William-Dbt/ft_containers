@@ -1,7 +1,7 @@
 template <class Key, class T, class Compare, class Alloc>
 ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, bool>	ft::map<Key, T, Compare, Alloc>::insert(const value_type& value) {
 	if (this->_tree.findNode(value) == NULL) {
-		this->_tree.addLeaf(value);
+		this->_tree.insertNode(value);
 		this->_size++;
 		return (ft::make_pair(iterator(this->_tree.findNode(value), NULL), true));
 	}
@@ -28,7 +28,7 @@ void	ft::map<Key, T, Compare, Alloc>::insert(InputIt first, InputIt last) {
 
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::erase(iterator position) {
-	this->_tree.removeNode(position._data->key);
+	this->_tree.eraseNode(position._data->data);
 	this->_size--;
 }
 

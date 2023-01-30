@@ -117,57 +117,57 @@ Node *nodeWithMimumValue(Node *node) {
 }
 
 // Delete a node
-Node *deleteNode(Node *root, int key) {
+Node *deleteNode(Node *node, int key) {
   // Find the node and delete it
-  if (root == NULL)
-    return root;
-  if (key < root->key)
-    root->left = deleteNode(root->left, key);
-  else if (key > root->key)
-    root->right = deleteNode(root->right, key);
+  if (node == NULL)
+    return node;
+  if (key < node->key)
+    node->left = deleteNode(node->left, key);
+  else if (key > node->key)
+    node->right = deleteNode(node->right, key);
   else {
-    if ((root->left == NULL) ||
-      (root->right == NULL)) {
-      Node *temp = root->left ? root->left : root->right;
+    if ((node->left == NULL) ||
+      (node->right == NULL)) {
+      Node *temp = node->left ? node->left : node->right;
       if (temp == NULL) {
-        temp = root;
-        root = NULL;
+        temp = node;
+        node = NULL;
       } else
-        *root = *temp;
+        *node = *temp;
       free(temp);
     } else {
-      Node *temp = nodeWithMimumValue(root->right);
-      root->key = temp->key;
-      root->right = deleteNode(root->right,
+      Node *temp = nodeWithMimumValue(node->right);
+      node->key = temp->key;
+      node->right = deleteNode(node->right,
                    temp->key);
     }
   }
 
-  if (root == NULL)
-    return root;
+  if (node == NULL)
+    return node;
 
   // Update the balance factor of each node and
   // balance the tree
-  root->height = 1 + max(height(root->left),
-               height(root->right));
-  int balanceFactor = getBalanceFactor(root);
+  node->height = 1 + max(height(node->left),
+               height(node->right));
+  int balanceFactor = getBalanceFactor(node);
   if (balanceFactor > 1) {
-    if (getBalanceFactor(root->left) >= 0) {
-      return rightRotate(root);
+    if (getBalanceFactor(node->left) >= 0) {
+      return rightRotate(node);
     } else {
-      root->left = leftRotate(root->left);
-      return rightRotate(root);
+      node->left = leftRotate(node->left);
+      return rightRotate(node);
     }
   }
   if (balanceFactor < -1) {
-    if (getBalanceFactor(root->right) <= 0) {
-      return leftRotate(root);
+    if (getBalanceFactor(node->right) <= 0) {
+      return leftRotate(node);
     } else {
-      root->right = rightRotate(root->right);
-      return leftRotate(root);
+      node->right = rightRotate(node->right);
+      return leftRotate(node);
     }
   }
-  return root;
+  return node;
 }
 
 // Print the tree

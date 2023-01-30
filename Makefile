@@ -21,9 +21,8 @@ PATHTEMP	= ${PATHSRCS}templates/
 PATHHEADERS	= includes/
 PATHNULL	= /dev/null
 
-SRCS		= $(addprefix ${PATHSRCS}mains/, main.cpp bsttree.cpp)
-# SRCS		= $(addprefix ${PATHSRCS}mains/, main.cpp vector.cpp stack.cpp map.cpp \
-# 											pair.cpp bsttree.cpp)
+SRCS		= $(addprefix ${PATHSRCS}mains/, main.cpp vector.cpp stack.cpp map.cpp \
+ 											pair.cpp)
 
 OBJS		= ${SRCS:.cpp=.o}
 

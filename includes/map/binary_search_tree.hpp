@@ -37,21 +37,38 @@ namespace	ft {
 			BSTree(const value_type& data);
 			~BSTree();
 
-			node_pointer	insert(const value_type& data);
-			
-			// node_pointer	find(const value_type& data) const;
+			void	printInOrder();
+			void	deleteTree();
+
+			int	getNodeHeight(node_pointer node) const;
+			int	getBalanceFactor(node_pointer node) const;
+
+			void			insertNode(const value_type& data);
+			void			eraseNode(const value_type& data);
+			node_pointer	findSmallest() const;
+			node_pointer	findGreatest() const;
+			node_pointer	findNode(const value_type& data) const;
+
+			size_t	max_size() const;
+
+			void	swap(BSTree& ref);
 
 		private:
-			int	_maxHeight(const int& lhs, const int& rhs) const;
-			int	_getNodeHeight(node_pointer node) const;
-			int	_getBalanceFactor(node_pointer node) const;
 
-			// Operations
+			void	_printInOrder(node_pointer node);
+			void	_removeSubTree(node_pointer node);
+			void	_balanceTree(node_pointer node, bool erase);
+
 			node_pointer	_leftRotate(node_pointer node);
 			node_pointer	_rightRotate(node_pointer node);
+			node_pointer	_findSmallest(node_pointer node) const;
+			node_pointer	_findGreatest(node_pointer node) const;
 
 			node_pointer	_createNode(const value_type& data);
-			node_pointer	_insert(node_pointer node, const value_type& data);
+			node_pointer	_insertNode(node_pointer parent, node_pointer node, const value_type& data);
+			void			_eraseNode(node_pointer node, const value_type& data);
+			void			_eraseNode(node_pointer parent, node_pointer node, bool isLeft);
+			void			_removeRootNode();
 
 			node_pointer	_root;
 			node_alloc		_alloc;
