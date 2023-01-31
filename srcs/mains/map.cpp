@@ -55,7 +55,7 @@ static void	constructorTests() {
 
 static void	iteratorTests() {
 	std::cout << "Create a map container of 7 contents" << std::endl;
-	ft::map<std::string, int>				people;
+	ft::map<std::string, int>			people;
 	ft::map<std::string, int>::iterator	it;
 
 	people.insert(ft::pair<std::string, int>("Emeline", 42));

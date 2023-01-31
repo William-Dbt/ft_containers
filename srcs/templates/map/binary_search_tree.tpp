@@ -67,105 +67,81 @@ int	ft::BSTree<T>::getBalanceFactor(node_pointer node) const {
 	return (getNodeHeight(node->left) - getNodeHeight(node->right));
 }
 
+/*	Original AVLTree operations given in the implementation
+  Node *rightRotate(Node *y) {
+  Node *x = y->left;
+  Node *T2 = x->right;
+  x->right = y;
+  y->left = T2;
+  y->height = max(height(y->left),
+          height(y->right)) +
+        1;
+  x->height = max(height(x->left),
+          height(x->right)) +
+        1;
+  return x;
+}
+
+Node *leftRotate(Node *x) {
+  Node *y = x->right;
+  Node *T2 = y->left;
+  y->left = x;
+  x->right = T2;
+  x->height = max(height(x->left),
+          height(x->right)) +
+        1;
+  y->height = max(height(y->left),
+          height(y->right)) +
+        1;
+  return y;
+} */
+
 template <class T>
 typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_leftRotate(node_pointer x) {
-	node_pointer	y = x->right;
-	node_pointer	beta = y->left;
+	node_pointer y = x->right;
+	node_pointer beta = y->left;
+	node_pointer parentX = x->parent;
 
 	y->left = x;
-	x->parent = y;
-
 	x->right = beta;
-	beta->parent = x;
+	if (parentX != NULL) {
+		if (parentX->left == x)
+			parentX->left = y;
+		else
+			parentX->right = y;
+	}
+	y->parent = x->parent;
+	x->parent = y;
+	if (beta != NULL)
+		beta->parent = x;
 
-	x->height = maxHeight(this->getNodeHeight(x->left), this->getNodeHeight(x->right)) + 1;
-	y->height = maxHeight(this->getNodeHeight(y->left), this->getNodeHeight(y->right)) + 1;
+	x->height = maxHeight(getNodeHeight(x->left), getNodeHeight(x->right)) + 1;
+	y->height = maxHeight(getNodeHeight(y->left), getNodeHeight(y->right)) + 1;
 	return y;
-
-
-// 	node_pointer y = x->right;
-// 	node_pointer T2 = y->left;
-
-// 	y->left = x;
-// 	x->right = T2;
-// 	x->height = maxHeight(getNodeHeight(x->left),
-// 		  getNodeHeight(x->right)) +
-// 		1;
-//   y->height = maxHeight(getNodeHeight(y->left),
-// 		  getNodeHeight(y->right)) +
-// 		1;
-//   return y;
-
-	// node_pointer	y = x->right;
-
-	// if (y->left != NULL)
-	// 	y->left->parent = x;
-
-	// if (x->parent == NULL) {
-	// 	this->_root = y;
-	// 	this->_root->parent = NULL;
-	// 	x->parent = this->_root;
-	// }
-	// else if (x->data.first < x->parent->data.first)
-	// 	x->parent->left = y;
-	// else
-	// 	x->parent->right = y;
-
-	// // y->left = x;
-	// x->parent = y;
-	// x->height = maxHeight(this->getNodeHeight(x->left), this->getNodeHeight(x->right)) + 1;
-	// y->height = maxHeight(this->getNodeHeight(y->left), this->getNodeHeight(y->right)) + 1;
-	// return y;
 }
 
 template <class T>
 typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_rightRotate(node_pointer y) {
-	// node_pointer	x = y->left;
-	// node_pointer	beta = x->right;
+	node_pointer x = y->left;
+	node_pointer beta = x->right;
+	node_pointer parentY = y->parent;
 
-	// x->right = y;
-	// y->parent = x;
+	x->right = y;
+	y->left = beta;
+	if (parentY != NULL) {
+		if (parentY->right == y)
+			parentY->right = x;
+		else
+			parentY->left = x;
+	}
+	x->parent = y->parent;
+	y->parent = x;
+	if (beta != NULL)
+		beta->parent = y;
 
-	// y->left = beta;
-	// beta->parent = y;
-
-	// x->height = maxHeight(this->getNodeHeight(x->left), this->getNodeHeight(x->right)) + 1;
-	// y->height = maxHeight(this->getNodeHeight(y->left), this->getNodeHeight(y->right)) + 1;
-	// return x;
-
-// 	node_pointer	x = y->left;
-// 	node_pointer	T2 = x->right;
-
-// 	x->right = y;
-// 	y->left = T2;
-// 	y->height = maxHeight(getNodeHeight(y->left),
-// 		  getNodeHeight(y->right)) +
-// 		1;
-//   x->height = maxHeight(getNodeHeight(x->left),
-// 		  getNodeHeight(x->right)) +
-// 		1;
-//   return x;
-
-	// node_pointer	x = y->left;
-
-	// if (x->right != NULL)
-	// 	x->right->parent = y;
-
-	// if (y->parent == NULL) {
-	// 	this->_root = x;
-	// 	this->_root->parent = NULL;
-	// 	y->parent = this->_root;
-	// }
-	// else if (y->data.first > y->parent->data.first)
-	// 	y->parent->right = x;
-	// else
-	// 	y->parent->left = x;
-
-	// x->right = y;
-	// // y->parent = x;
-	// x->height = maxHeight(this->getNodeHeight(x->left), this->getNodeHeight(x->right)) + 1;
-	// y->height = maxHeight(this->getNodeHeight(y->left), this->getNodeHeight(y->right)) + 1;
-	// return x;
+	y->height = maxHeight(getNodeHeight(y->left), getNodeHeight(y->right)) + 1;
+	x->height = maxHeight(getNodeHeight(x->left), getNodeHeight(x->right)) + 1;
+	return x;
 }
 
 template <class T>
@@ -189,10 +165,14 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_insertNode(node_pointer par
 	if (node == NULL) {
 		node = this->_createNode(data);
 		if (parent != NULL) {
-			if (data.first < parent->data.first)
+			if (data.first < parent->data.first) {
 				parent->left = node;
-			else
+				node->parent = parent;
+			}
+			else {
 				parent->right = node;
+				node->parent = parent;
+			}
 		}
 		return node;
 	}
@@ -213,7 +193,7 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_insertNode(node_pointer par
 			return this->_rightRotate(node);
 		}
 	}
-	if (balanceFactor < -1) {
+	else if (balanceFactor < -1) {
 		if (data.first > node->right->data.first)
 			return this->_leftRotate(node);
 		else if (data.first < node->right->data.first) {
@@ -224,6 +204,8 @@ typename ft::BSTree<T>::node_pointer	ft::BSTree<T>::_insertNode(node_pointer par
 	return node;
 }
 
+
+// TODO - AVLTree deleteNode
 template <class T>
 void	ft::BSTree<T>::eraseNode(const value_type& data) {
 	this->_eraseNode(this->_root, data);

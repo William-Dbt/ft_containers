@@ -113,6 +113,7 @@ namespace ft {
 			// Allocator
 			allocator_type	get_allocator() const;
 
+			// TODO - Remove from public
 			ft::BSTree<value_type>	_tree;
 		private:
 			size_type				_size;
