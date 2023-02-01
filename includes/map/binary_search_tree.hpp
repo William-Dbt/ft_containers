@@ -54,7 +54,6 @@ namespace	ft {
 			void	swap(BSTree& ref);
 
 		private:
-
 			void	_printInOrder(node_pointer node);
 			void	_removeSubTree(node_pointer node);
 			void	_balanceTree(node_pointer node, bool erase);
@@ -66,9 +65,7 @@ namespace	ft {
 
 			node_pointer	_createNode(const value_type& data);
 			node_pointer	_insertNode(node_pointer parent, node_pointer node, const value_type& data);
-			void			_eraseNode(node_pointer node, const value_type& data);
-			void			_eraseNode(node_pointer parent, node_pointer node, bool isLeft);
-			void			_removeRootNode();
+			node_pointer	_eraseNode(node_pointer node, const value_type& data);
 
 			node_pointer	_root;
 			node_alloc		_alloc;

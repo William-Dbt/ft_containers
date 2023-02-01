@@ -113,9 +113,8 @@ namespace ft {
 			// Allocator
 			allocator_type	get_allocator() const;
 
-			// TODO - Remove from public
-			ft::BSTree<value_type>	_tree;
 		private:
+			ft::BSTree<value_type>	_tree;
 			size_type				_size;
 			key_compare				_comp;
 			allocator_type			_alloc;
