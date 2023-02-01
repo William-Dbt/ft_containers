@@ -1,6 +1,6 @@
 Map:
 check max_size() return value function
-have to compare with value_compare() function in both tree and map object
+check const for ft::pair value
 
 Stack:
 check for conversion to const vector in constructors

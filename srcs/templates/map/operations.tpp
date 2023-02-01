@@ -31,7 +31,7 @@ typename ft::map<Key, T, Compare, Alloc>::iterator	ft::map<Key, T, Compare, Allo
 	iterator	it;
 
 	for (it = this->begin(); it != this->end(); it++)
-		if (this->key_comp()((*it).first, k) == false)
+		if (this->_comp((*it).first, k) == false)
 			return it;
 
 	return it;
@@ -42,7 +42,7 @@ typename ft::map<Key, T, Compare, Alloc>::const_iterator	ft::map<Key, T, Compare
 	const_iterator	it;
 
 	for (it = this->begin(); it != this->end(); it++)
-		if (this->key_comp()((*it).first, k) == false)
+		if (this->_comp((*it).first, k) == false)
 			return it;
 
 	return it;
@@ -53,7 +53,7 @@ typename ft::map<Key, T, Compare, Alloc>::iterator	ft::map<Key, T, Compare, Allo
 	iterator	it;
 
 	for (it = this->begin(); it != this->end(); it++)
-		if (this->key_comp()(k, (*it).first) == true)
+		if (this->_comp(k, (*it).first) == true)
 			return ++it;
 
 	return it;
@@ -64,7 +64,7 @@ typename ft::map<Key, T, Compare, Alloc>::const_iterator	ft::map<Key, T, Compare
 	const_iterator	it;
 
 	for (it = this->begin(); it != this->end(); it++)
-		if (this->key_comp()(k, (*it).first) == true)
+		if (this->_comp(k, (*it).first) == true)
 			return ++it;
 
 	return it;

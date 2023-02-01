@@ -23,10 +23,11 @@ namespace	ft {
 		int				height;
 	};
 
-	template <class T>
+	template <class T, class Compare>
 	class	BSTree {
 		public:
 			typedef T											value_type;
+			typedef Compare										key_compare;
 			typedef ft::Node<value_type>						node_type;
 			typedef std::allocator< ft::Node<value_type> >		node_alloc;
 			typedef typename ft::Node<value_type>::node_pointer	node_pointer;
@@ -69,6 +70,7 @@ namespace	ft {
 
 			node_pointer	_root;
 			node_alloc		_alloc;
+			key_compare		_comp;
 	};
 
 	# include "binary_search_tree.tpp"

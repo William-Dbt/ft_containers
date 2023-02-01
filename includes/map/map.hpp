@@ -13,21 +13,21 @@ namespace ft {
 	template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<ft::pair<const Key,T> > >
 	class map {
 		public:
-			typedef Key														key_type;
-			typedef T														mapped_type;
-			typedef ft::pair<key_type, mapped_type>							value_type;
-			typedef size_t													size_type;
-			typedef Compare													key_compare;
-			typedef Alloc													allocator_type;
-			typedef typename allocator_type::reference						reference;
-			typedef typename allocator_type::const_reference				const_reference;
-			typedef typename allocator_type::pointer						pointer;
-			typedef typename allocator_type::const_pointer					const_pointer;
-			typedef typename ft::BSTree<value_type>::iterator				iterator;
-			typedef typename ft::BSTree<value_type>::const_iterator			const_iterator;
-			typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
-			typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
-			typedef typename ft::iterator_traits<iterator>::difference_type	difference_type;
+			typedef Key																key_type;
+			typedef T																mapped_type;
+			typedef ft::pair<key_type, mapped_type>									value_type;
+			typedef size_t															size_type;
+			typedef Compare															key_compare;
+			typedef Alloc															allocator_type;
+			typedef typename allocator_type::reference								reference;
+			typedef typename allocator_type::const_reference						const_reference;
+			typedef typename allocator_type::pointer								pointer;
+			typedef typename allocator_type::const_pointer							const_pointer;
+			typedef typename ft::BSTree<value_type, key_compare>::iterator			iterator;
+			typedef typename ft::BSTree<value_type, key_compare>::const_iterator	const_iterator;
+			typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>					const_reverse_iterator;
+			typedef typename ft::iterator_traits<iterator>::difference_type			difference_type;
 
 			class	value_compare {
 				friend class map;
@@ -114,10 +114,10 @@ namespace ft {
 			allocator_type	get_allocator() const;
 
 		private:
-			ft::BSTree<value_type>	_tree;
-			size_type				_size;
-			key_compare				_comp;
-			allocator_type			_alloc;
+			ft::BSTree<value_type, key_compare>	_tree;
+			size_type							_size;
+			key_compare							_comp;
+			allocator_type						_alloc;
 	};
 
 	# include "map.tpp"
