@@ -1,0 +1,10 @@
+Map:
+check max_size() return value function
+have to compare with value_compare() function in both tree and map object
+
+Stack:
+check for conversion to const vector in constructors
+
+Vector:
+check for capacity of in constructors (should be same of the size (mb))
+- and check in other functions
