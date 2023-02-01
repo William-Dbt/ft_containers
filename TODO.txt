@@ -1,6 +1,7 @@
 Map:
 check max_size() return value function
 check const for ft::pair value
+Check for relational operator
 
 Stack:
 check for conversion to const vector in constructors
