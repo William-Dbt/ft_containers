@@ -41,7 +41,7 @@ void	ft::BSTree<T, Compare>::_printInOrder(node_pointer node) {
 		_printInOrder(node->right);
 }
 
-static int	maxHeight(const int& lhs, const int& rhs) {
+int	maxHeight(const int& lhs, const int& rhs) {
 	if (lhs > rhs)
 		return lhs;
 
