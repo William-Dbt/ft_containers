@@ -1,6 +1,7 @@
 #ifndef __BINARY_SEARCH_TREE_HPP__
 # define __BINARY_SEARCH_TREE_HPP__
 
+# include "utils.hpp"
 # include "binary_search_tree_iterator.hpp"
 # include "reverse_iterator.hpp"
 # include "pair.hpp"

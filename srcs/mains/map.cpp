@@ -781,6 +781,129 @@ static void	allocatorTest() {
 	}
 }
 
+static void	nonMemberTests() {
+	{
+		ft::map<char, int>				charMap;
+		ft::map<char, int>				charMap2;
+		ft::map<char, int>::iterator	it;
+
+		std::cout << "Create two map containers of 4 elements:" << std::endl;
+		std::cout << "Container 1: ";
+		charMap.insert(ft::pair<char, int>('a', 1));
+		charMap.insert(ft::pair<char, int>('b', 2));
+		charMap.insert(ft::pair<char, int>('c', 3));
+		charMap.insert(ft::pair<char, int>('d', 4));
+		for (it = charMap.begin(); it != charMap.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl;
+		std::cout << "Container 2: ";
+		charMap2.insert(ft::pair<char, int>('e', 5));
+		charMap2.insert(ft::pair<char, int>('f', 6));
+		charMap2.insert(ft::pair<char, int>('g', 7));
+		charMap2.insert(ft::pair<char, int>('h', 8));
+		for (it = charMap2.begin(); it != charMap2.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl << std::endl;
+		std::cout << "Swap the contents of the two containers:" << std::endl;
+		charMap.swap(charMap2);
+		std::cout << "Container 1: ";
+		for (it = charMap.begin(); it != charMap.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl;
+		std::cout << "Container 2: ";
+		for (it = charMap2.begin(); it != charMap2.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl << std::endl;
+		std::cout << std::boolalpha;
+		std::cout << "Container1 == Container2? : " << (charMap == charMap2) << std::endl;
+		std::cout << "Container1 == Container1? : " << (charMap == charMap) << std::endl;
+		std::cout << std::endl;
+		std::cout << "Container1 != Container2? : " << (charMap != charMap2) << std::endl;
+		std::cout << "Container2 != Container2? : " << (charMap2 != charMap2) << std::endl;
+		std::cout << std::endl;
+		std::cout << "Add one element to charMap (z, 26)" << std::endl;
+		charMap.insert(ft::pair<char, int>('z', 26));
+		std::cout << "Container 1: ";
+		for (it = charMap.begin(); it != charMap.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl << std::endl;
+		std::cout << "Container1 < Container2? : " << (charMap < charMap2) << std::endl;
+		std::cout << "Container1 <= Container2? : " << (charMap <= charMap2) << std::endl;
+		std::cout << "Container1 <= Container1? : " << (charMap <= charMap) << std::endl;
+		std::cout << std::endl;
+		std::cout << "Container1 > Container2? : " << (charMap > charMap2) << std::endl;
+		std::cout << "Container1 >= Container2? : " << (charMap >= charMap2) << std::endl;
+		std::cout << "Container1 >= Container1? : " << (charMap >= charMap) << std::endl;
+		std::cout << std::endl;
+	}
+	{
+		std::cout << "\033[36m";
+		std::map<char, int>				charMap;
+		std::map<char, int>				charMap2;
+		std::map<char, int>::iterator	it;
+
+		std::cout << "Create two map containers of 4 elements:" << std::endl;
+		std::cout << "Container 1: ";
+		charMap.insert(std::pair<char, int>('a', 1));
+		charMap.insert(std::pair<char, int>('b', 2));
+		charMap.insert(std::pair<char, int>('c', 3));
+		charMap.insert(std::pair<char, int>('d', 4));
+		for (it = charMap.begin(); it != charMap.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl;
+		std::cout << "Container 2: ";
+		charMap2.insert(std::pair<char, int>('e', 5));
+		charMap2.insert(std::pair<char, int>('f', 6));
+		charMap2.insert(std::pair<char, int>('g', 7));
+		charMap2.insert(std::pair<char, int>('h', 8));
+		for (it = charMap2.begin(); it != charMap2.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl << std::endl;
+		std::cout << "Swap the contents of the two containers:" << std::endl;
+		charMap.swap(charMap2);
+		std::cout << "Container 1: ";
+		for (it = charMap.begin(); it != charMap.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl;
+		std::cout << "Container 2: ";
+		for (it = charMap2.begin(); it != charMap2.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl << std::endl;
+		std::cout << std::boolalpha;
+		std::cout << "Container1 == Container2? : " << (charMap == charMap2) << std::endl;
+		std::cout << "Container1 == Container1? : " << (charMap == charMap) << std::endl;
+		std::cout << std::endl;
+		std::cout << "Container1 != Container2? : " << (charMap != charMap2) << std::endl;
+		std::cout << "Container2 != Container2? : " << (charMap2 != charMap2) << std::endl;
+		std::cout << std::endl;
+		std::cout << "Add one element to charMap (z, 26)" << std::endl;
+		charMap.insert(std::pair<char, int>('z', 26));
+		std::cout << "Container 1: ";
+		for (it = charMap.begin(); it != charMap.end(); it++)
+			std::cout << it->first << ' ';
+
+		std::cout << std::endl << std::endl;
+		std::cout << "Container1 < Container2? : " << (charMap < charMap2) << std::endl;
+		std::cout << "Container1 <= Container2? : " << (charMap <= charMap2) << std::endl;
+		std::cout << "Container1 <= Container1? : " << (charMap <= charMap) << std::endl;
+		std::cout << std::endl;
+		std::cout << "Container1 > Container2? : " << (charMap > charMap2) << std::endl;
+		std::cout << "Container1 >= Container2? : " << (charMap >= charMap2) << std::endl;
+		std::cout << "Container1 >= Container1? : " << (charMap >= charMap) << std::endl;
+		std::cout << "\033[0m";
+		std::cout << std::endl;
+	}
+}
+
 static void	showTestList() {
 	std::cout << "\033[33mList of category to test:" << std::endl;
 	std::cout << "\033[93m";
@@ -792,6 +915,7 @@ static void	showTestList() {
 	std::cout << " \'5\'\tObservers" << std::endl;
 	std::cout << " \'6\'\tOperations" << std::endl;
 	std::cout << " \'7\'\tAllocator" << std::endl;
+	std::cout << " \'8\'\tNon-member functions" << std::endl;
 	std::cout << "\033[31m";
 	std::cout << "\'exit\'\tMain menu" << std::endl;
 	std::cout << "\033[33m";
@@ -843,6 +967,10 @@ void	mapTests() {
 			}
 			case 7: {
 				allocatorTest();
+				break ;
+			}
+			case 8: {
+				nonMemberTests();
 				break ;
 			}
 			default:

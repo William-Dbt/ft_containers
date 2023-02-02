@@ -54,6 +54,7 @@ bool	operator>=(const ft::pair<T1,T2>& lhs, const ft::pair<T1,T2>& rhs) {
 	return (!(lhs < rhs));
 }
 
+// This one isn't a part of the real std::pair but it is usefull for the tests
 template <class T1, class T2>
 std::ostream&	operator<<(std::ostream& stream, const ft::pair<T1, T2>& ref) {
 	stream << '[' << ref.first << ", " << ref.second << ']';
