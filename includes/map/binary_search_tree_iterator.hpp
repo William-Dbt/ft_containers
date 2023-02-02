@@ -27,6 +27,7 @@ namespace	ft {
 			bst_iterator	operator--(int);
 
 			reference	operator*() const;
+			value_type*	operator->();
 			pointer		operator->() const;
 
 			bool	operator==(bst_iterator<const T> const & ref);

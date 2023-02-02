@@ -89,6 +89,11 @@ typename ft::bst_iterator<T>::reference	ft::bst_iterator<T>::operator*() const {
 }
 
 template <class T>
+typename ft::bst_iterator<T>::value_type*	ft::bst_iterator<T>::operator->() {
+	return (&this->_data->data);
+}
+
+template <class T>
 typename ft::bst_iterator<T>::pointer	ft::bst_iterator<T>::operator->() const {
 	return (&this->_data->data);
 }
