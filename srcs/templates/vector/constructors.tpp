@@ -4,7 +4,7 @@ ft::vector<T, Alloc>::vector(const allocator_type& alloc) : _datas(NULL), _alloc
 
 template <class T, class Alloc>
 ft::vector<T, Alloc>::vector(size_type n, const value_type& value, const allocator_type& alloc) :
-							_alloc(alloc), _size(n), _capacity(n * 2)
+							_alloc(alloc), _size(n), _capacity(n)
 {
 	pointer	tmp;
 
@@ -34,7 +34,7 @@ ft::vector<T, Alloc>::vector(InputIt first, InputIt last, const allocator_type& 
 							_alloc(alloc)
 {
 	this->_size = ft::distance(first, last);
-	this->_capacity = this->_size * 2;
+	this->_capacity = this->_size;
 	this->_datas = this->_alloc.allocate(this->_capacity);
 	for (int i = 0; first != last; i++, first++)
 		this->_alloc.construct(&this->_datas[i], *first);
