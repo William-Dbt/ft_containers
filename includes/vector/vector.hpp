@@ -59,7 +59,6 @@ namespace	ft {
 			size_type	capacity() const;
 			bool		empty() const;
 			void		reserve(size_type n);
-			// void		shrink_to_fit();	(C++11)
 
 			// Element Access>----------------------------------------
 			reference			operator[](size_type n);
