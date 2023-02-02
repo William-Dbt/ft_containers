@@ -11,10 +11,9 @@ ft::pair<T1, T2>::pair(const pair<U1, U2>& pr) : first(pr.first), second(pr.seco
 
 template <class T1, class T2>
 ft::pair<T1, T2>&	ft::pair<T1, T2>::operator=(const pair& ref) {
-	if (this != &ref) {
-		this->first = ref.first;
-		this->second = ref.second;
-	}
+	if (this != &ref)
+		new (this) pair(ref.first, ref.second);
+
 	return (*this);
 }
 
