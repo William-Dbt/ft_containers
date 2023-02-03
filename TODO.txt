@@ -1,1 +1,0 @@
-Do two binaries (one std and one ft)
