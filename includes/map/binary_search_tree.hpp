@@ -7,33 +7,14 @@
 # include "pair.hpp"
 
 namespace	ft {
-	template <class T>
-	struct	Node {
-		typedef T		value_type;
-		typedef Node*	node_pointer;
-		typedef Node&	node_reference;
-
-		Node();
-		Node(const value_type& vData);
-		virtual	~Node();
-
-		value_type		data;
-		node_pointer	parent;
-		node_pointer	left;
-		node_pointer	right;
-		int				height;
-	};
-
-	template <class T, class Compare>
+	template <class Key, class T, class Compare>
 	class	BSTree {
 		public:
-			typedef T											value_type;
+			typedef ft::pair<Key, T>							value_type;
 			typedef Compare										key_compare;
-			typedef ft::Node<value_type>						node_type;
-			typedef std::allocator< ft::Node<value_type> >		node_alloc;
-			typedef typename ft::Node<value_type>::node_pointer	node_pointer;
-			typedef ft::bst_iterator<node_type>					iterator;
-			typedef ft::bst_iterator<const node_type>			const_iterator;
+			typedef ft::Node<Key, T>							node_type;
+			typedef std::allocator< ft::Node<Key, T> >			node_alloc;
+			typedef typename ft::Node<Key, T>::node_pointer		node_pointer;
 
 			BSTree();
 			BSTree(const value_type& data);

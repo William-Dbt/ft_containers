@@ -1,35 +1,26 @@
-template <class T>
-ft::Node<T>::Node() : data(), parent(NULL), left(NULL), right(NULL), height(1) {}
-
-template <class T>
-ft::Node<T>::Node(const value_type& vData) : data(vData), parent(NULL), left(NULL), right(NULL), height(1) {}
-
-template <class T>
-ft::Node<T>::~Node() {}
-
 // ------------------------------------------------------------------------------------------
 // Binary Search Tree Part
 // This part was done with the AVL Tree Algorithm (https://www.programiz.com/dsa/avl-tree)
 // ------------------------------------------------------------------------------------------
-template <class T, class Compare>
-ft::BSTree<T, Compare>::BSTree() : _root(NULL) {}
+template <class Key, class T, class Compare>
+ft::BSTree<Key, T, Compare>::BSTree() : _root(NULL) {}
 
-template <class T, class Compare>
-ft::BSTree<T, Compare>::BSTree(const value_type& key) {
+template <class Key, class T, class Compare>
+ft::BSTree<Key, T, Compare>::BSTree(const value_type& key) {
 	this->_root = this->_alloc.allocate(1);
-	this->_alloc.construct(this->_root, ft::Node<T>(key));
+	this->_alloc.construct(this->_root, ft::Node<Key, T>(key));
 }
 
-template <class T, class Compare>
-ft::BSTree<T, Compare>::~BSTree() {} // The tree is deleted in the map container calling the deleteTree() function
+template <class Key, class T, class Compare>
+ft::BSTree<Key, T, Compare>::~BSTree() {} // The tree is deleted in the map container calling the deleteTree() function
 
-template <class T, class Compare>
-void	ft::BSTree<T, Compare>::printInOrder() {
+template <class Key, class T, class Compare>
+void	ft::BSTree<Key, T, Compare>::printInOrder() {
 	_printInOrder(this->_root);
 }
 
-template <class T, class Compare>
-void	ft::BSTree<T, Compare>::_printInOrder(node_pointer node) {
+template <class Key, class T, class Compare>
+void	ft::BSTree<Key, T, Compare>::_printInOrder(node_pointer node) {
 	if (this->_root == NULL)
 		return ;
 
@@ -48,16 +39,16 @@ int	maxHeight(const int& lhs, const int& rhs) {
 	return rhs;
 }
 
-template <class T, class Compare>
-int	ft::BSTree<T, Compare>::getNodeHeight(node_pointer node) const {
+template <class Key, class T, class Compare>
+int	ft::BSTree<Key, T, Compare>::getNodeHeight(node_pointer node) const {
 	if (node == NULL)
 		return 0;
 
 	return node->height;
 }
 
-template <class T, class Compare>
-int	ft::BSTree<T, Compare>::getBalanceFactor(node_pointer node) const {
+template <class Key, class T, class Compare>
+int	ft::BSTree<Key, T, Compare>::getBalanceFactor(node_pointer node) const {
 	if (node == NULL)
 		return 0;
 
@@ -93,8 +84,8 @@ Node *leftRotate(Node *x) {
   return y;
 } */
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_leftRotate(node_pointer x) {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_leftRotate(node_pointer x) {
 	node_pointer y = x->right;
 	node_pointer beta = y->left;
 	node_pointer parentX = x->parent;
@@ -117,8 +108,8 @@ typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_leftRotat
 	return y;
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_rightRotate(node_pointer y) {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_rightRotate(node_pointer y) {
 	node_pointer x = y->left;
 	node_pointer beta = x->right;
 	node_pointer parentY = y->parent;
@@ -141,25 +132,25 @@ typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_rightRota
 	return x;
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_createNode(const value_type& data) {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_createNode(const value_type& data) {
 	node_pointer	buffer;
 
 	buffer = this->_alloc.allocate(1);
-	this->_alloc.construct(buffer, ft::Node<T>(data));
+	this->_alloc.construct(buffer, ft::Node<Key, T>(data));
 	return buffer;
 }
 
-template <class T, class Compare>
-void	ft::BSTree<T, Compare>::insertNode(const value_type& data) {
+template <class Key, class T, class Compare>
+void	ft::BSTree<Key, T, Compare>::insertNode(const value_type& data) {
 	if (this->_root == NULL)
 		this->_root = this->_createNode(data);
 	else
 		this->_root = this->_insertNode(NULL, this->_root, data);
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_insertNode(node_pointer parent, node_pointer node, const value_type& data) {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_insertNode(node_pointer parent, node_pointer node, const value_type& data) {
 	int	balanceFactor;
 
 	if (node == NULL) {
@@ -204,16 +195,16 @@ typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_insertNod
 	return node;
 }
 
-template <class T, class Compare>
-void	ft::BSTree<T, Compare>::eraseNode(const value_type& data) {
+template <class Key, class T, class Compare>
+void	ft::BSTree<Key, T, Compare>::eraseNode(const value_type& data) {
 	if (this->_root == NULL)
 		return ;
 
 	this->_root = this->_eraseNode(this->_root, data);
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer ft::BSTree<T, Compare>::_eraseNode(node_pointer node, const value_type& data) {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::_eraseNode(node_pointer node, const value_type& data) {
 	node_pointer	child;
 	bool			isChildLeft;
 	int				balanceFactor;
@@ -302,13 +293,13 @@ typename ft::BSTree<T, Compare>::node_pointer ft::BSTree<T, Compare>::_eraseNode
 	return node;
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::findSmallest() const {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::findSmallest() const {
 	return (this->_findSmallest(this->_root));
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_findSmallest(node_pointer node) const {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_findSmallest(node_pointer node) const {
 	if (this->_root == NULL || node == NULL)
 		return NULL;
 
@@ -318,13 +309,13 @@ typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_findSmall
 	return node;
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::findGreatest() const {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::findGreatest() const {
 	return (this->_findGreatest(this->_root));
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_findGreatest(node_pointer node) const {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_findGreatest(node_pointer node) const {
 	if (this->_root == NULL || node == NULL)
 		return NULL;
 
@@ -334,8 +325,8 @@ typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::_findGreat
 	return node;
 }
 
-template <class T, class Compare>
-typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::findNode(const value_type& data) const {
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::findNode(const value_type& data) const {
 	node_pointer	node = this->_root;
 
 	if (this->_root == NULL)
@@ -350,8 +341,8 @@ typename ft::BSTree<T, Compare>::node_pointer	ft::BSTree<T, Compare>::findNode(c
 	return node;
 }
 
-template <class T, class Compare>
-void	ft::BSTree<T, Compare>::deleteTree() {
+template <class Key, class T, class Compare>
+void	ft::BSTree<Key, T, Compare>::deleteTree() {
 	if (this->_root == NULL)
 		return ;
 
@@ -364,8 +355,8 @@ void	ft::BSTree<T, Compare>::deleteTree() {
 
 // This function refers to the printInOrder function, if we delete the smaller to the greater
 // It's sure that we'll not remove a node that we need to to go up in the tree
-template <class T, class Compare>
-void	ft::BSTree<T, Compare>::_removeSubTree(node_pointer node) {
+template <class Key, class T, class Compare>
+void	ft::BSTree<Key, T, Compare>::_removeSubTree(node_pointer node) {
 	if (node == NULL)
 		return ;
 
@@ -380,13 +371,13 @@ void	ft::BSTree<T, Compare>::_removeSubTree(node_pointer node) {
 	node = NULL;
 }
 
-template <class T, class Compare>
-size_t	ft::BSTree<T, Compare>::max_size() const {
+template <class Key, class T, class Compare>
+size_t	ft::BSTree<Key, T, Compare>::max_size() const {
 	return this->_alloc.max_size();
 }
 
-template <class T, class Compare>
-void	ft::BSTree<T, Compare>::swap(BSTree& ref) {
+template <class Key, class T, class Compare>
+void	ft::BSTree<Key, T, Compare>::swap(BSTree& ref) {
 	node_pointer	rootTmp;
 	node_alloc		allocTmp;
 
