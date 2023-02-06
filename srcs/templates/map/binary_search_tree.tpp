@@ -335,7 +335,7 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 	while (node && node->data.first != data.first) {
 		if (this->_comp(data.first, node->data.first))
 			node = node->left;
-		else if (!this->_comp(data.first, node->data.first))
+		else
 			node = node->right;
 	}
 	return node;

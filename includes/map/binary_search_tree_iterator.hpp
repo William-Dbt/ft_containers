@@ -7,12 +7,6 @@ namespace	ft {
 	template <class Key, class T>
 	class	bst_iterator {
 		public:
-			// typedef typename T::value_type						value_type;
-			// typedef const value_type*							pointer;
-			// typedef const value_type&							reference;
-			// typedef T											node;
-			// typedef T*											node_pointer;
-
 			typedef ft::pair<Key, T>							value_type;
 			typedef value_type*									pointer;
 			typedef value_type&									reference;
@@ -24,12 +18,8 @@ namespace	ft {
 			bst_iterator(node_pointer data, node_pointer parent);
 			bst_iterator(const bst_iterator& ref);
 
-			// template <class InputIt>
-			// bst_iterator(const InputIt& ref);
-
 			~bst_iterator();
 
-			// operator		bst_iterator<Key, T>() const;
 			bst_iterator&	operator=(const bst_iterator& ref);
 
 			template <class InputIt>
@@ -60,12 +50,6 @@ namespace	ft {
 	template <class Key, class T>
 	class	const_bst_iterator {
 		public:
-			// typedef typename T::value_type						value_type;
-			// typedef const value_type*							pointer;
-			// typedef const value_type&							reference;
-			// typedef T											node;
-			// typedef T*											node_pointer;
-
 			typedef ft::pair<Key, T>							value_type;
 			typedef const value_type*							pointer;
 			typedef const value_type&							reference;
@@ -82,7 +66,6 @@ namespace	ft {
 
 			~const_bst_iterator();
 
-			// operator		const_bst_iterator<Key, T>() const;
 			const_bst_iterator&	operator=(const const_bst_iterator& ref);
 
 			template <class InputIt>

@@ -7,17 +7,8 @@ ft::bst_iterator<Key, T>::bst_iterator(node_pointer data, node_pointer parent) :
 template <class Key, class T>
 ft::bst_iterator<Key, T>::bst_iterator(const bst_iterator& ref) : _data(ref._data), _parent(ref._parent) {}
 
-// template <class Key, class T>
-// template <class InputIt>
-// ft::bst_iterator<Key, T>::bst_iterator(const InputIt& ref) : _data(ref._data), _parent(ref._parent) {}
-
 template <class Key, class T>
 ft::bst_iterator<Key, T>::~bst_iterator() {}
-
-/* template <class Key, class T>
-ft::bst_iterator<Key, T>::operator bst_iterator<const T>() const {
-	return bst_iterator<const T>(this->_data, this->_parent);
-} */
 
 template <class Key, class T>
 ft::bst_iterator<Key, T>&	ft::bst_iterator<Key, T>::operator=(const bst_iterator& ref) {
@@ -27,16 +18,6 @@ ft::bst_iterator<Key, T>&	ft::bst_iterator<Key, T>::operator=(const bst_iterator
 	}
 	return *this;
 }
-
-// template <class Key, class T>
-// template <class InputIt>
-// ft::bst_iterator<Key, T>&	ft::bst_iterator<Key, T>::operator=(const InputIt& ref) {
-// 	if (this != &ref) {
-// 		this->_data = ref._data;
-// 		this->_parent = ref._parent;
-// 	}
-// 	return *this;
-// }
 
 template <class Key, class T>
 ft::bst_iterator<Key, T>&	ft::bst_iterator<Key, T>::operator++() {
@@ -154,11 +135,6 @@ ft::const_bst_iterator<Key, T>::const_bst_iterator(const InputIt& ref) : _data(r
 
 template <class Key, class T>
 ft::const_bst_iterator<Key, T>::~const_bst_iterator() {}
-
-/* template <class Key, class T>
-ft::const_bst_iterator<Key, T>::operator const_bst_iterator<const T>() const {
-	return const_bst_iterator<const T>(this->_data, this->_parent);
-} */
 
 template <class Key, class T>
 ft::const_bst_iterator<Key, T>&	ft::const_bst_iterator<Key, T>::operator=(const const_bst_iterator& ref) {
