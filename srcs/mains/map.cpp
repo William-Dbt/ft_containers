@@ -765,6 +765,7 @@ static void	allocatorTest() {
 
 	ft::map<T1, T2>			mp(lst.begin(), lst.end());
 	ft::map<T1, T2>::iterator	it;
+	ft::map<T1, T2>::iterator	it2;
 
 	for (it = mp.begin(); it != mp.end(); it++)
 		std::cout << *it << std::endl;
@@ -774,9 +775,21 @@ static void	allocatorTest() {
 	mp.erase(++mp.begin());
 	mp.erase(mp.begin());
 	mp.erase(--mp.end());
-
-	// std::cout << *(++(++(++mp.begin()))) << std::endl;
 	mp.erase(mp.begin(), ++(++(++mp.begin())));
+
+	std::cout << std::endl;
+	for (it = mp.begin(); it != mp.end(); it++)
+		std::cout << *it << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << std::endl;
+	for (it = (--(--(--mp.end()))); it != --mp.end(); it++)
+		std::cout << *it << std::endl;
+
+	std::cout << std::endl;
+
+	// std::cout << *(--(--(--mp.end()))) << std::endl;
 
 	std::cout << std::endl;
 	for (it = mp.begin(); it != mp.end(); it++)
@@ -786,7 +799,7 @@ static void	allocatorTest() {
 
 
 	// ft_erase(mp, mp.begin(), ++(++(++mp.begin())));
-	// ft_erase(mp, --(--(--mp.end())), --mp.end());
+	// ft_erase(mp, --(--(--mp.end())), --mp.end()); 
 
 
 

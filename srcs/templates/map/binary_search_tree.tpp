@@ -202,6 +202,7 @@ template <class Key, class T, class Compare>
 void	ft::BSTree<Key, T, Compare>::eraseNode(const value_type& data) {
 	if (this->_root == NULL)
 		return ;
+	std::cout << "erase: " << data << std::endl;
 
 	this->_root = this->_eraseNode(this->_root, data);
 }
@@ -257,14 +258,17 @@ typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::
 						else
 							node->parent->right = node->right;
 					}
+					this->_alloc.destroy(node);
+					this->_alloc.deallocate(node, 1);
+					node = NULL;
+					this->_size--;
 				}
 				else {
 					this->_alloc.destroy(node);
 					this->_alloc.deallocate(node, 1);
-					node = child;
-					node->parent = NULL;
+					child->parent = NULL;
 					this->_size--;
-					return node;
+					return child;
 				}
 			}
 		}

@@ -27,16 +27,15 @@ void	ft::map<Key, T, Compare, Alloc>::insert(InputIt first, InputIt last) {
 
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::erase(iterator position) {
-	this->_tree.eraseNode(position._data->data);
+	this->_tree.eraseNode(*position);
 }
 
 template <class Key, class T, class Compare, class Alloc>
 typename ft::map<Key, T, Compare, Alloc>::size_type	ft::map<Key, T, Compare, Alloc>::erase(const key_type& k) {
-	ft::pair<key_type, mapped_type>	buffer(k, mapped_type());
-	iterator						it(this->_tree.findNode(buffer), NULL);
+	iterator	it = find(k);
 
-	if (it != this->end()) {
-		this->erase(it);
+	if (it != end()) {
+		erase(it);
 		return 1;
 	}
 	return 0;
@@ -48,7 +47,7 @@ void	ft::map<Key, T, Compare, Alloc>::erase(iterator first, iterator last) {
 
 	while (first != last) {
 		pos = first;
-		this->erase(pos);
+		erase(pos);
 		first++;
 	}
 }
