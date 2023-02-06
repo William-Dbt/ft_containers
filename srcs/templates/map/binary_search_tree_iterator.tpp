@@ -90,7 +90,7 @@ typename ft::bst_iterator<Key, T>::pointer	ft::bst_iterator<Key, T>::operator->(
 
 template <class Key, class T>
 bool	ft::bst_iterator<Key, T>::operator==(bst_iterator<Key, T> const & ref) {
-	if (this->_data == ref._data && this->_parent == ref._parent)
+	if (this->_data == ref._data)
 		return true;
 
 	return false;
@@ -98,7 +98,7 @@ bool	ft::bst_iterator<Key, T>::operator==(bst_iterator<Key, T> const & ref) {
 
 template <class Key, class T>
 bool	ft::bst_iterator<Key, T>::operator!=(bst_iterator<Key, T> const & ref) {
-	if (this->_data != ref._data && this->_parent != ref._parent)
+	if (this->_data != ref._data)
 		return true;
 
 	return false;
@@ -107,13 +107,19 @@ bool	ft::bst_iterator<Key, T>::operator!=(bst_iterator<Key, T> const & ref) {
 template <class Key, class T>
 template <class InputIt>
 bool	ft::bst_iterator<Key, T>::operator==(InputIt const & ref) {
-	return (this->_data == ref._data);
+	if (this->_data == ref._data)
+		return true;
+
+	return false;
 }
 
 template <class Key, class T>
 template <class InputIt>
 bool	ft::bst_iterator<Key, T>::operator!=(InputIt const & ref) {
-	return (this->_data != ref._data);
+	if (this->_data != ref._data)
+		return true;
+
+	return false;
 }
 
 /* ------------------------------------------------------------ */
@@ -226,7 +232,7 @@ typename ft::const_bst_iterator<Key, T>::pointer	ft::const_bst_iterator<Key, T>:
 
 template <class Key, class T>
 bool	ft::const_bst_iterator<Key, T>::operator==(const_bst_iterator<Key, T> const & ref) {
-	if (this->_data == ref._data && this->_parent == ref._parent)
+	if (this->_data == ref._data)
 		return true;
 
 	return false;
@@ -234,7 +240,7 @@ bool	ft::const_bst_iterator<Key, T>::operator==(const_bst_iterator<Key, T> const
 
 template <class Key, class T>
 bool	ft::const_bst_iterator<Key, T>::operator!=(const_bst_iterator<Key, T> const & ref) {
-	if (this->_data != ref._data && this->_parent != ref._parent)
+	if (this->_data != ref._data)
 		return true;
 
 	return false;
@@ -243,11 +249,17 @@ bool	ft::const_bst_iterator<Key, T>::operator!=(const_bst_iterator<Key, T> const
 template <class Key, class T>
 template <class InputIt>
 bool	ft::const_bst_iterator<Key, T>::operator==(InputIt const & ref) {
-	return (this->_data == ref._data);
+	if (this->_data == ref._data)
+		return true;
+
+	return false;
 }
 
 template <class Key, class T>
 template <class InputIt>
 bool	ft::const_bst_iterator<Key, T>::operator!=(InputIt const & ref) {
-	return (this->_data != ref._data);
+	if (this->_data != ref._data)
+		return true;
+
+	return false;
 }
