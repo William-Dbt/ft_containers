@@ -3,10 +3,10 @@
 // This part was done with the AVL Tree Algorithm (https://www.programiz.com/dsa/avl-tree)
 // ------------------------------------------------------------------------------------------
 template <class Key, class T, class Compare>
-ft::BSTree<Key, T, Compare>::BSTree() : _root(NULL) {}
+ft::BSTree<Key, T, Compare>::BSTree() : _root(NULL), _size(0) {}
 
 template <class Key, class T, class Compare>
-ft::BSTree<Key, T, Compare>::BSTree(const value_type& key) {
+ft::BSTree<Key, T, Compare>::BSTree(const value_type& key) : _size(1) {
 	this->_root = this->_alloc.allocate(1);
 	this->_alloc.construct(this->_root, ft::Node<Key, T>(key));
 }
@@ -143,8 +143,10 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 
 template <class Key, class T, class Compare>
 void	ft::BSTree<Key, T, Compare>::insertNode(const value_type& data) {
-	if (this->_root == NULL)
+	if (this->_root == NULL) {
 		this->_root = this->_createNode(data);
+		this->_size++;
+	}
 	else
 		this->_root = this->_insertNode(NULL, this->_root, data);
 }
@@ -165,6 +167,7 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 				node->parent = parent;
 			}
 		}
+		this->_size++;
 		return node;
 	}
 	if (this->_comp(data.first, node->data.first))
@@ -213,7 +216,7 @@ typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::
 		return NULL;
 	else if (this->_comp(data.first, node->data.first))
 		node->left = this->_eraseNode(node->left, data);
-	else if (!this->_comp(data.first, node->data.first))
+	else if (this->_comp(node->data.first, data.first))
 		node->right = this->_eraseNode(node->right, data);
 	else {
 		// Check if the node is a leaf
@@ -238,6 +241,7 @@ typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::
 				this->_alloc.destroy(node);
 				this->_alloc.deallocate(node, 1);
 				node = NULL;
+				this->_size--;
 			}
 			else {
 				if (node->parent != NULL) {
@@ -259,6 +263,7 @@ typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::
 					this->_alloc.deallocate(node, 1);
 					node = child;
 					node->parent = NULL;
+					this->_size--;
 					return node;
 				}
 			}
@@ -351,6 +356,7 @@ void	ft::BSTree<Key, T, Compare>::deleteTree() {
 	this->_alloc.destroy(this->_root);
 	this->_alloc.deallocate(this->_root, 1);
 	this->_root = NULL;
+	this->_size = 0;
 }
 
 // This function refers to the printInOrder function, if we delete the smaller to the greater
@@ -372,20 +378,35 @@ void	ft::BSTree<Key, T, Compare>::_removeSubTree(node_pointer node) {
 }
 
 template <class Key, class T, class Compare>
-size_t	ft::BSTree<Key, T, Compare>::max_size() const {
+typename ft::BSTree<Key, T, Compare>::size_type	ft::BSTree<Key, T, Compare>::max_size() const {
 	return this->_alloc.max_size();
+}
+
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::size_type	ft::BSTree<Key, T, Compare>::size() const {
+	return this->_size;
 }
 
 template <class Key, class T, class Compare>
 void	ft::BSTree<Key, T, Compare>::swap(BSTree& ref) {
 	node_pointer	rootTmp;
+	size_type		sizeTmp;
 	node_alloc		allocTmp;
+	key_compare		compTmp;
 
 	rootTmp = this->_root;
 	this->_root = ref._root;
 	ref._root = rootTmp;
 
+	sizeTmp = this->_size;
+	this->_size = ref._size;
+	ref._size = sizeTmp;
+
 	allocTmp = this->_alloc;
 	this->_alloc = ref._alloc;
 	ref._alloc = allocTmp;
+
+	compTmp = this->_comp;
+	this->_comp = ref._comp;
+	ref._comp = compTmp;
 }

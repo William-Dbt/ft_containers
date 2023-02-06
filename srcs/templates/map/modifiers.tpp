@@ -2,7 +2,6 @@ template <class Key, class T, class Compare, class Alloc>
 ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, bool>	ft::map<Key, T, Compare, Alloc>::insert(const value_type& value) {
 	if (this->_tree.findNode(value) == NULL) {
 		this->_tree.insertNode(value);
-		this->_size++;
 		return (ft::make_pair(iterator(this->_tree.findNode(value), NULL), true));
 	}
 	return (ft::make_pair(iterator(this->_tree.findNode(value), NULL), false));
@@ -29,7 +28,6 @@ void	ft::map<Key, T, Compare, Alloc>::insert(InputIt first, InputIt last) {
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::erase(iterator position) {
 	this->_tree.eraseNode(position._data->data);
-	this->_size--;
 }
 
 template <class Key, class T, class Compare, class Alloc>
@@ -46,21 +44,21 @@ typename ft::map<Key, T, Compare, Alloc>::size_type	ft::map<Key, T, Compare, All
 
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::erase(iterator first, iterator last) {
-	while (first != last)
-		this->erase((first++)->first);
+	iterator	pos;
+
+	while (first != last) {
+		pos = first;
+		this->erase(pos);
+		first++;
+	}
 }
 
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::swap(map& x) {
-	size_type				sizeBuffer = this->_size;
-
 	this->_tree.swap(x._tree);
-	this->_size = x._size;
-	x._size = sizeBuffer;
 }
 
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::clear() {
 	this->_tree.deleteTree();
-	this->_size = 0;
 }

@@ -11,6 +11,7 @@ namespace	ft {
 	class	BSTree {
 		public:
 			typedef ft::pair<Key, T>							value_type;
+			typedef std::size_t									size_type;
 			typedef Compare										key_compare;
 			typedef ft::Node<Key, T>							node_type;
 			typedef std::allocator< ft::Node<Key, T> >			node_alloc;
@@ -32,7 +33,8 @@ namespace	ft {
 			node_pointer	findGreatest() const;
 			node_pointer	findNode(const value_type& data) const;
 
-			size_t	max_size() const;
+			size_type	max_size() const;
+			size_type	size() const;
 
 			void	swap(BSTree& ref);
 
@@ -51,6 +53,7 @@ namespace	ft {
 			node_pointer	_eraseNode(node_pointer node, const value_type& data);
 
 			node_pointer	_root;
+			size_type		_size;
 			node_alloc		_alloc;
 			key_compare		_comp;
 	};

@@ -115,9 +115,8 @@ namespace ft {
 
 		private:
 			ft::BSTree<Key, T, key_compare>	_tree;
-			size_type							_size;
-			key_compare							_comp;
-			allocator_type						_alloc;
+			key_compare						_comp;
+			allocator_type					_alloc;
 	};
 
 	# include "map.tpp"
