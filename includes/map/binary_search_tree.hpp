@@ -50,7 +50,10 @@ namespace	ft {
 
 			node_pointer	_createNode(const value_type& data);
 			node_pointer	_insertNode(node_pointer parent, node_pointer node, const value_type& data);
-			node_pointer	_eraseNode(node_pointer node, const value_type& data);
+			// node_pointer	_eraseNode(node_pointer node, const value_type& data);
+			void	_eraseNode(value_type data, node_pointer node);
+			void	_eraseNode(node_pointer parent, node_pointer node, bool isLeft);
+			void	_removeRootNode();
 
 			node_pointer	_root;
 			size_type		_size;
