@@ -18,14 +18,14 @@ void	ft_erase(MAP &mp, U param)
 template <typename MAP, typename U, typename V>
 void	ft_erase(MAP &mp, U param, V param2)
 {
-	U	tmp = param;
+	/* U	tmp = param;
 
 	if (iter == 4) {
 		while (tmp != param2) {
-			std::cout << ':' << *tmp << std::endl;
+			std::cout << ':' << *tmp.first << std::endl;
 			tmp++;
 		}
-	}
+	} */
 	std::cout << "\t-- [" << iter++ << "] --" << std::endl;
 	mp.erase(param, param2);
 	printSize(mp);

@@ -200,16 +200,17 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 
 template <class Key, class T, class Compare>
 void	ft::BSTree<Key, T, Compare>::eraseNode(const value_type& data) {
-	if (this->_root == NULL)
-		return ;
-	std::cout << "erase: " << data << std::endl;
+	// if (this->_root == NULL)
+	// 	return ;
+	// std::cout << "erase: " << data << std::endl;
 
 	this->_root = this->_eraseNode(this->_root, data);
 }
 
 template <class Key, class T, class Compare>
 typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::_eraseNode(node_pointer node, const value_type& data) {
-	node_pointer	child;
+	node_pointer	nodeTmp;
+	value_type		dataTmp;
 	bool			isChildLeft;
 	int				balanceFactor;
 
@@ -224,15 +225,15 @@ typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::
 		if (node->left == NULL || node->right == NULL) {
 			// Check if it have a child
 			if (node->left != NULL) {
-				child = node->left;
+				nodeTmp = node->left;
 				isChildLeft = true;
 			}
 			else {
-				child = node->right;
+				nodeTmp = node->right;
 				isChildLeft = false;
 			}
 			// Delete the node if it's a leaf
-			if (child == NULL) {
+			if (nodeTmp == NULL) {
 				if (node->parent != NULL) {
 					if (this->_comp(node->data.first, node->parent->data.first))
 						node->parent->left = NULL;
@@ -245,6 +246,7 @@ typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::
 				this->_size--;
 			}
 			else {
+				// Delete if isn't the root
 				if (node->parent != NULL) {
 					if (this->_comp(node->data.first, node->parent->data.first)) {
 						if (isChildLeft)
@@ -264,18 +266,29 @@ typename ft::BSTree<Key, T, Compare>::node_pointer ft::BSTree<Key, T, Compare>::
 					this->_size--;
 				}
 				else {
-					this->_alloc.destroy(node);
-					this->_alloc.deallocate(node, 1);
-					child->parent = NULL;
-					this->_size--;
-					return child;
+					// Check if the root has a child NULL
+					if (node->right == NULL || node->left == NULL) {
+						this->_alloc.destroy(node);
+						this->_alloc.deallocate(node, 1);
+						node = NULL;
+						nodeTmp->parent = NULL;
+						this->_size--;
+						return nodeTmp;
+					}
+					else {
+						nodeTmp = this->_findSmallest(node->right);
+						dataTmp = nodeTmp->data;
+						node->right = _eraseNode(node->right, nodeTmp->data);
+						this->_alloc.construct(node, dataTmp);
+						return node;
+					}
 				}
 			}
 		}
-		else {
-			child = this->_findSmallest(node->right);
-			node->data = child->data;
-			node->right = _eraseNode(node->right, child->data);
+		else { // TODO: Use construct function of alloc
+			nodeTmp = this->_findSmallest(node->right);
+			node->data = nodeTmp->data;
+			node->right = _eraseNode(node->right, nodeTmp->data);
 		}
 	}
 	if (node == NULL)
