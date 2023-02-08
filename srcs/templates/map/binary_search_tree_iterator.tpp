@@ -25,7 +25,7 @@ ft::bst_iterator<Key, T>&	ft::bst_iterator<Key, T>::operator++() {
 		this->_parent = this->_data;
 		if (this->_data->right != NULL) { // Check if greater value exist
 			this->_data = this->_data->right;
-			while (this->_data && this->_data->left)
+			while (/* this->_data &&  */this->_data->left)
 				this->_data = this->_data->left;
 		}
 		else { // If no greater value exist, go to the previous tree axe or just the parent

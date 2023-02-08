@@ -18,7 +18,7 @@ namespace	ft {
 			bst_iterator(node_pointer data, node_pointer parent);
 			bst_iterator(const bst_iterator& ref);
 
-			~bst_iterator();
+			virtual ~bst_iterator();
 
 			bst_iterator&	operator=(const bst_iterator& ref);
 
@@ -64,7 +64,7 @@ namespace	ft {
 			template <class InputIt>
 			const_bst_iterator(const InputIt& ref);
 
-			~const_bst_iterator();
+			virtual ~const_bst_iterator();
 
 			const_bst_iterator&	operator=(const const_bst_iterator& ref);
 

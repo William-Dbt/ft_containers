@@ -43,13 +43,8 @@ typename ft::map<Key, T, Compare, Alloc>::size_type	ft::map<Key, T, Compare, All
 
 template <class Key, class T, class Compare, class Alloc>
 void	ft::map<Key, T, Compare, Alloc>::erase(iterator first, iterator last) {
-	iterator	pos;
-
-	while (first != last) {
-		pos = first;
-		erase(pos);
-		first++;
-	}
+	while (first != last)
+		erase(first++);
 }
 
 template <class Key, class T, class Compare, class Alloc>

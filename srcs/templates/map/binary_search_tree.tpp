@@ -32,7 +32,8 @@ void	ft::BSTree<Key, T, Compare>::_printInOrder(node_pointer node) {
 		_printInOrder(node->right);
 }
 
-int	maxHeight(const int& lhs, const int& rhs) {
+template <class Key, class T, class Compare>
+int	ft::BSTree<Key, T, Compare>::_maxHeight(const int& lhs, const int& rhs) {
 	if (lhs > rhs)
 		return lhs;
 
@@ -83,7 +84,6 @@ Node *leftRotate(Node *x) {
         1;
   return y;
 } */
-
 template <class Key, class T, class Compare>
 typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_leftRotate(node_pointer x) {
 	node_pointer y = x->right;
@@ -103,8 +103,8 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 	if (beta != NULL)
 		beta->parent = x;
 
-	x->height = maxHeight(getNodeHeight(x->left), getNodeHeight(x->right)) + 1;
-	y->height = maxHeight(getNodeHeight(y->left), getNodeHeight(y->right)) + 1;
+	x->height = this->_maxHeight(getNodeHeight(x->left), getNodeHeight(x->right)) + 1;
+	y->height = this->_maxHeight(getNodeHeight(y->left), getNodeHeight(y->right)) + 1;
 	return y;
 }
 
@@ -127,9 +127,21 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 	if (beta != NULL)
 		beta->parent = y;
 
-	y->height = maxHeight(getNodeHeight(y->left), getNodeHeight(y->right)) + 1;
-	x->height = maxHeight(getNodeHeight(x->left), getNodeHeight(x->right)) + 1;
+	y->height = this->_maxHeight(getNodeHeight(y->left), getNodeHeight(y->right)) + 1;
+	x->height = this->_maxHeight(getNodeHeight(x->left), getNodeHeight(x->right)) + 1;
 	return x;
+}
+
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_rightLeftRotate(node_pointer node) {
+	node->right = _rightRotate(node->right);
+	return (_leftRotate(node));
+}
+
+template <class Key, class T, class Compare>
+typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::_leftRightRotate(node_pointer node) {
+	node->left = _leftRotate(node->left);
+	return (_rightRotate(node));
 }
 
 template <class Key, class T, class Compare>
@@ -143,12 +155,7 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 
 template <class Key, class T, class Compare>
 void	ft::BSTree<Key, T, Compare>::insertNode(const value_type& data) {
-	if (this->_root == NULL) {
-		this->_root = this->_createNode(data);
-		this->_size++;
-	}
-	else
-		this->_root = this->_insertNode(NULL, this->_root, data);
+	this->_root = this->_insertNode(NULL, this->_root, data);
 }
 
 template <class Key, class T, class Compare>
@@ -158,42 +165,36 @@ typename ft::BSTree<Key, T, Compare>::node_pointer	ft::BSTree<Key, T, Compare>::
 	if (node == NULL) {
 		node = this->_createNode(data);
 		if (parent != NULL) {
-			if (this->_comp(data.first, parent->data.first)) {
+			if (this->_comp(data.first, parent->data.first))
 				parent->left = node;
-				node->parent = parent;
-			}
-			else {
+			else
 				parent->right = node;
-				node->parent = parent;
-			}
+
+			node->parent = parent;
 		}
 		this->_size++;
 		return node;
 	}
 	if (this->_comp(data.first, node->data.first))
 		node->left = this->_insertNode(node, node->left, data);
-	else if (!this->_comp(data.first, node->data.first))
+	else if (this->_comp(node->data.first, data.first))
 		node->right = this->_insertNode(node, node->right, data);
 	else
 		return node;
 
-	node->height = maxHeight(getNodeHeight(node->left), getNodeHeight(node->right)) + 1;
+	node->height = this->_maxHeight(getNodeHeight(node->left), getNodeHeight(node->right)) + 1;
 	balanceFactor = this->getBalanceFactor(node);
 	if (balanceFactor > 1) {
 		if (this->_comp(data.first, node->left->data.first))
 			return this->_rightRotate(node);
-		else if (!this->_comp(data.first, node->left->data.first)) {
-			node->left = this->_leftRotate(node->left);
-			return this->_rightRotate(node);
-		}
+		else if (this->_comp(node->left->data.first, data.first))
+			return this->_leftRightRotate(node);
 	}
 	else if (balanceFactor < -1) {
-		if (!this->_comp(data.first, node->right->data.first))
+		if (this->_comp(node->right->data.first, data.first))
 			return this->_leftRotate(node);
-		else if (this->_comp(data.first, node->right->data.first)) {
-			node->right = this->_rightRotate(node->right);
-			return this->_leftRotate(node);
-		}
+		else if (this->_comp(data.first, node->right->data.first))
+			return this->_rightLeftRotate(node);
 	}
 	return node;
 }
@@ -229,22 +230,23 @@ void	ft::BSTree<Key, T, Compare>::_eraseNode(node_pointer parent, node_pointer n
 		isLeft == true ? parent->left = NULL : parent->right = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
+		node = NULL;
 		this->_size--;
 	}
 	else if (node->left == NULL && node->right != NULL) { // Case 1: 1 child
 		isLeft == true ? parent->left = node->right : parent->right = node->right;
 		node->right->parent = parent;
-		// node->right = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
+		node = NULL;
 		this->_size--;
 	}
 	else if (node->left != NULL && node->right == NULL) {
 		isLeft == true ? parent->left = node->left : parent->right = node->left;
 		node->left->parent = parent;
-		// node->left = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
+		node = NULL;
 		this->_size--;
 	}
 	else { // Case 2: 2 children
@@ -272,17 +274,17 @@ void	ft::BSTree<Key, T, Compare>::_removeRootNode() {
 	else if (this->_root->left == NULL && this->_root->right != NULL) { // Case 1: 1 child
 		this->_root = this->_root->right;
 		this->_root->parent = NULL;
-		// node->right->parent = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
+		node = NULL;
 		this->_size--;
 	}
 	else if (this->_root->left != NULL && this->_root->right == NULL) {
 		this->_root = this->_root->left;
 		this->_root->parent = NULL;
-		// node->left->parent = NULL;
 		this->_alloc.destroy(node);
 		this->_alloc.deallocate(node, 1);
+		node = NULL;
 		this->_size--;
 	}
 	else { // Case 2: 2 children
@@ -388,7 +390,7 @@ void	ft::BSTree<Key, T, Compare>::_removeRootNode() {
 // 	if (node == NULL)
 // 		return node;
 
-// 	node->height = maxHeight(getNodeHeight(node->left), getNodeHeight(node->right)) + 1;
+// 	node->height = this->_maxHeight(getNodeHeight(node->left), getNodeHeight(node->right)) + 1;
 // 	balanceFactor = this->getBalanceFactor(node);
 // 	if (balanceFactor > 1) {
 // 		if (this->_comp(data.first, node->left->data.first))

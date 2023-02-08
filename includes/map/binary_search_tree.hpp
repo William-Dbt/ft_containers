@@ -19,7 +19,7 @@ namespace	ft {
 
 			BSTree();
 			BSTree(const value_type& data);
-			~BSTree();
+			virtual ~BSTree();
 
 			void	printInOrder();
 			void	deleteTree();
@@ -39,12 +39,16 @@ namespace	ft {
 			void	swap(BSTree& ref);
 
 		private:
+			int	_maxHeight(const int& lhs, const int& rhs);
+
 			void	_printInOrder(node_pointer node);
 			void	_removeSubTree(node_pointer node);
 			void	_balanceTree(node_pointer node, bool erase);
 
 			node_pointer	_leftRotate(node_pointer node);
 			node_pointer	_rightRotate(node_pointer node);
+			node_pointer	_rightLeftRotate(node_pointer node);
+			node_pointer	_leftRightRotate(node_pointer node);
 			node_pointer	_findSmallest(node_pointer node) const;
 			node_pointer	_findGreatest(node_pointer node) const;
 

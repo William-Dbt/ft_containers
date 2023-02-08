@@ -757,80 +757,34 @@ static void	operationsTests() {
 typedef ft::pair<const T1, T2> T3;
 
 static void	allocatorTest() {
-	std::list<T3> lst;
-	unsigned int lst_size = 10;
+	{
+		int							psize;
+		ft::map<char,int>			mymap;
+		ft::pair<const char, int>	*p;
 
-	for (unsigned int i = 0; i < lst_size; ++i)
-		lst.push_back(T3(i, std::string((lst_size - i), i + 65)));
+		p = mymap.get_allocator().allocate(5);
 
-	ft::map<T1, T2>			mp(lst.begin(), lst.end());
-	ft::map<T1, T2>::iterator	it;
-	ft::map<T1, T2>::iterator	it2;
+		psize = sizeof(ft::map<char, int>::value_type) * 5;
 
-	for (it = mp.begin(); it != mp.end(); it++)
-		std::cout << *it << std::endl;
+		std::cout << "The allocated array has a size of " << psize << " bytes." << std::endl;
+		mymap.get_allocator().deallocate(p, 5);
+		std::cout << std::endl;
+	}
+	{
+		std::cout << "\033[36m";
+		int							psize;
+		std::map<char,int>			mymap;
+		std::pair<const char, int>	*p;
 
-	std::cout << std::endl;
+		p = mymap.get_allocator().allocate(5);
 
-	mp.erase(++mp.begin());
-	mp.erase(mp.begin());
-	mp.erase(--mp.end());
-	mp.erase(mp.begin(), ++(++(++mp.begin())));
+		psize = sizeof(std::map<char, int>::value_type) * 5;
 
-	std::cout << std::endl;
-	for (it = mp.begin(); it != mp.end(); it++)
-		std::cout << *it << std::endl;
-
-	std::cout << std::endl;
-
-	std::cout << std::endl;
-	for (it = (--(--(--mp.end()))); it != --mp.end(); it++)
-		std::cout << *it << std::endl;
-
-	std::cout << std::endl;
-
-	// std::cout << *(--(--(--mp.end()))) << std::endl;
-
-	std::cout << std::endl;
-	for (it = mp.begin(); it != mp.end(); it++)
-		std::cout << *it << std::endl;
-
-	std::cout << std::endl;
-
-
-	// ft_erase(mp, mp.begin(), ++(++(++mp.begin())));
-	// ft_erase(mp, --(--(--mp.end())), --mp.end()); 
-
-
-
-	// {
-	// 	int							psize;
-	// 	ft::map<char,int>			mymap;
-	// 	ft::pair<const char, int>	*p;
-
-	// 	p = mymap.get_allocator().allocate(5);
-
-	// 	psize = sizeof(ft::map<char, int>::value_type) * 5;
-
-	// 	std::cout << "The allocated array has a size of " << psize << " bytes." << std::endl;
-	// 	mymap.get_allocator().deallocate(p, 5);
-	// 	std::cout << std::endl;
-	// }
-	// {
-	// 	std::cout << "\033[36m";
-	// 	int							psize;
-	// 	std::map<char,int>			mymap;
-	// 	std::pair<const char, int>	*p;
-
-	// 	p = mymap.get_allocator().allocate(5);
-
-	// 	psize = sizeof(std::map<char, int>::value_type) * 5;
-
-	// 	std::cout << "The allocated array has a size of " << psize << " bytes." << std::endl;
-	// 	mymap.get_allocator().deallocate(p, 5);
-	// 	std::cout << "\033[0m";
-	// 	std::cout << std::endl;
-	// }
+		std::cout << "The allocated array has a size of " << psize << " bytes." << std::endl;
+		mymap.get_allocator().deallocate(p, 5);
+		std::cout << "\033[0m";
+		std::cout << std::endl;
+	}
 }
 
 static void	nonMemberTests() {
