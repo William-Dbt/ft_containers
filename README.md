@@ -32,7 +32,3 @@ First trying to understand how std::allocator works. Make some tests before star
 For each container documentation on **[cppreference](https://en.cppreference.com/w/)** and **[cplusplus](https://cplusplus.com/)** are usefull (we have to take thoses documentations as reference).  
 [AVL Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html), it helps to understand how binary search tree have to work.  
 [Programiz AVL Tree](https://www.programiz.com/dsa/avl-tree), I use this site to understand how to do AVL Tree.
-
-## Score
-
-[![wdebotte's 42 ft_containers Score](https://badge42.vercel.app/api/v2/cl2zu1sil002509mf9zd91hy6/project/2884410)](https://github.com/JaeSeoKim/badge42)
